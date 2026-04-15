@@ -287,6 +287,10 @@
     animation: glow 2s ease-in-out infinite;
   }
 
+  .animate-blink {
+    animation: blink 3s ease-in-out infinite;
+  }
+
   @keyframes fadeUp {
     from {
       opacity: 0;
@@ -376,6 +380,18 @@
 
     50% {
       box-shadow: 0 0 40px hsl(243 75% 59% / 0.5);
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+    }
+    50% {
+      opacity: 0.85;
+      box-shadow: 0 0 25px rgba(99, 102, 241, 0.6);
     }
   }
 

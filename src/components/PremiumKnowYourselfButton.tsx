@@ -15,7 +15,7 @@ const PremiumKnowYourselfButton = () => {
       {/* Premium Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="group relative inline-flex items-center gap-2.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105 border border-white/20 backdrop-blur-sm"
+        className="group relative inline-flex items-center gap-2.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105 border border-white/20 backdrop-blur-sm animate-blink"
       >
         {/* Sparkle Icon */}
         <Sparkles className="w-4 h-4 animate-pulse" />

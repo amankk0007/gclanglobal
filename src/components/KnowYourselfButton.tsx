@@ -26,12 +26,14 @@ const KnowYourselfButton = () => {
 
         {/* Button */}
         <div className="relative">
-          {/* Pulse ring */}
-          <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 animate-ping opacity-25"></span>
+          {/* Enhanced Pulse ring with light effect */}
+          <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 animate-ping opacity-40"></span>
+          <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-300 to-purple-400 animate-pulse opacity-60"></span>
+          <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-200 to-purple-300 animate-ping opacity-30"></span>
 
-          {/* Main button */}
-          <div className="relative w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 hover:scale-110">
-            <User className="w-7 h-7 text-white" />
+          {/* Main button with enhanced glow */}
+          <div className="relative w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 hover:scale-110 ring-4 ring-blue-300 ring-opacity-50">
+            <User className="w-7 h-7 text-white drop-shadow-lg" />
           </div>
         </div>
       </button>
