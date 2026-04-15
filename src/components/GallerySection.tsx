@@ -59,6 +59,8 @@ import imgPlacementDriveSvietCollege from "@/assets/gallery/Placement drive in S
 import imgJobPlacementDriveUsIt from "@/assets/gallery/Job placement drive organized by Global Pass for international students in a US-based IT company.jpeg";
 import imgIndustrialVisitAmbtel from "@/assets/gallery/Industrial Visit at US base company Ambtel .jpeg";
 import imgGuestOfHonourFootballTournament from "@/assets/gallery/Guest of Honour at the 63rd Principal Harbhajan Singh Football Tournament, Garhshankar.jpeg";
+import imgUniversal from "@/assets/gallery/universal.jpeg";
+import imgNews from "@/assets/gallery/news.jpeg";
 
 const GallerySection = () => {
     // Rotating selection of gallery images
@@ -75,26 +77,26 @@ const GallerySection = () => {
         { id: 4, src: imgKey, alt: "Student Success: Key Handover", category: "Student Success" },
         { id: 5, src: imgTorontoGroup, alt: "Toronto Cup 2023 Celebration", category: "Sports & Culture" },
         { id: 6, src: imgNewspaper2, alt: "Social Recognition Coverage", category: "Media" },
-        { id: 7, src: imgDougFord, alt: "Meeting with Premier Doug Ford", category: "Government Relations" },
-        { id: 8, src: imgAwardGroup, alt: "Community Service Award", category: "Awards" },
+        { id: 7, src: imgDougFord, alt: "Meeting with Premier Doug Ford", category: "Events" },
+        // { id: 8, src: imgAwardGroup, alt: "Community Service Award", category: "Awards" },
         { id: 9, src: imgGazeboAward, alt: "Community Award Ceremony", category: "Awards" },
-        { id: 10, src: imgThreeMen, alt: "Leadership Team Event", category: "Events" },
+        { id: 10, src: imgThreeMen, alt: "Great meeting with Mayor Patrick Brown and Councillor Rod Power in Brampton 🇨🇦.", category: "Events" },
         { id: 11, src: imgWomanAward, alt: "Excellence in Service Award", category: "Awards" },
         { id: 12, src: imgSinghGrafix, alt: "Singh Grafix Community Event", category: "Sports & Culture" },
         { id: 13, src: imgPressConf, alt: "Media Press Conference", category: "Media" },
-        { id: 14, src: imgBusinessMeeting, alt: "Business Partnership Meeting", category: "Collaborations" },
-        { id: 15, src: imgGoldenTemple, alt: "Golden Temple Visit", category: "Cultural Events" },
-        { id: 16, src: imgTrophy2023, alt: "Caledon West Community Fair Trophy", category: "Awards" },
+        { id: 14, src: imgBusinessMeeting, alt: "MOU with SG Encon Private Limited", category: "Collaborations" },
+        { id: 15, src: imgGoldenTemple, alt: "Blessed to Visit Golden Temple", category: "Cultural Events" },
+        // { id: 16, src: imgTrophy2023, alt: "Caledon West Community Fair Trophy", category: "Awards" },
         { id: 17, src: imgOutdoorDuo, alt: "Partnership Meeting", category: "Collaborations" },
         { id: 18, src: imgGalaEvent, alt: "Annual Gala Event", category: "Events" },
         { id: 19, src: imgTrudeau, alt: "Meeting with PM Justin Trudeau", category: "Government Relations" },
-        { id: 20, src: imgGalaTrio, alt: "Gala Fundraiser Event", category: "Events" },
-        { id: 21, src: imgAdeshHospital, alt: "Adesh Hospital Partnership", category: "Collaborations" },
+        // { id: 20, src: imgGalaTrio, alt: "Gala Fundraiser Event", category: "Events" },
+        { id: 21, src: imgAdeshHospital, alt: "Guest at Adesh hospital and college", category: "Collaborations" },
         { id: 22, src: imgGalaTrio2, alt: "Community Gala Evening", category: "Events" },
         { id: 23, src: imgSeminarGroup, alt: "Educational Seminar", category: "Events" },
-        { id: 24, src: imgEventDuo, alt: "Community Leaders Gathering", category: "Events" },
-        { id: 25, src: imgFutureDepot, alt: "Future Depot Partnership", category: "Collaborations" },
-        { id: 26, src: imgGalaTrio3, alt: "Charity Gala Dinner", category: "Events" },
+        { id: 24, src: imgEventDuo, alt: "Canada’s former defence Minister", category: "Events" },
+        { id: 25, src: imgFutureDepot, alt: "Meeting with Amarjot Sandhu, MPP for Brampton", category: "Events" },
+        // { id: 26, src: imgGalaTrio3, alt: "Charity Gala Dinner", category: "Events" },
         { id: 27, src: imgSeminarGroup2, alt: "Community Education Seminar", category: "Events" },
         { id: 28, src: imgFutureDepot2, alt: "Community Outreach Event", category: "Collaborations" },
         { id: 29, src: imgGalaTrio4, alt: "Leadership Gala", category: "Events" },
@@ -103,8 +105,8 @@ const GallerySection = () => {
         { id: 32, src: imgDougFord2, alt: "Community Event with Premier Ford", category: "Government Relations" },
         { id: 33, src: imgKingRealtyAward, alt: "King Realty Excellence Award", category: "Awards" },
         { id: 34, src: imgAirportStudent, alt: "Student Departure - Study Abroad", category: "Student Success" },
-        { id: 35, src: imgAirportFamily, alt: "Family Send-off - New Beginnings", category: "Student Success" },
-        { id: 36, src: imgAirportFamily2, alt: "Airport Family Farewell", category: "Student Success" },
+        // { id: 35, src: imgAirportFamily, alt: "Family Send-off - New Beginnings", category: "Student Success" },
+        { id: 36, src: imgAirportFamily2, alt: "Welcoming our student at Toronto Pearson International Airport 🇨🇦", category: "Student Success" },
         { id: 37, src: imgRestaurantGroup, alt: "Team Celebration Dinner", category: "Events" },
         { id: 38, src: imgPicnicCelebration, alt: "Community Picnic Celebration", category: "Community" },
         { id: 39, src: imgGarrySirSignature, alt: "Signature Moment with Garry Sir", category: "Special Moments" },
@@ -114,7 +116,9 @@ const GallerySection = () => {
         { id: 43, src: imgCommunityRally, alt: "Community Advocacy Rally", category: "Community" },
         { id: 44, src: imgGroupKey, alt: "Group Key Handover", category: "Student Success" },
         { id: 46, src: imgWinningFootballTeam, alt: "Congratulations to the Winning Football Team", category: "Sports & Culture" },
-        { id: 47, src: imgDelegateAustralia, alt: "Delegate from Australia", category: "Collaborations" }
+        { id: 47, src: imgDelegateAustralia, alt: "Delegate from Australia", category: "Collaborations" },
+        { id: 48, src: imgUniversal, alt: "Universal Event Highlight", category: "Events" },
+        { id: 49, src: imgNews, alt: "News Coverage", category: "Media" }
     ];
 
     const autoplayRef = useRef(

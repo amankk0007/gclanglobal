@@ -34,6 +34,13 @@ const Vision = () => {
             name: "Europe",
             flag: "🇪🇺"
         }
+        ,
+        {
+            url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Redfortdelhi1.jpg/1280px-Redfortdelhi1.jpg",
+            name: "India",
+            flag: "IN"
+        }
+
     ];
 
     // Duplicate for seamless loop
@@ -97,21 +104,15 @@ const Vision = () => {
                                         <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                                     </span>
                                     <p className="text-white font-bold text-xs tracking-wider uppercase drop-shadow-md">
-                                        10k+ Happy Families • Global Destinations
+                                        5k+ Happy Families • Global Destinations
                                     </p>
                                 </div>
                             </div>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="p-4 rounded-2xl bg-white border border-slate-100 shadow-lg text-center">
-                                <span className="block text-3xl font-bold text-primary mb-1">98%</span>
-                                <span className="text-xs text-slate-500 font-medium uppercase">Visa Success</span>
-                            </div>
-                            <div className="p-4 rounded-2xl bg-white border border-slate-100 shadow-lg text-center">
-                                <span className="block text-3xl font-bold text-secondary mb-1">10k+</span>
-                                <span className="text-xs text-slate-500 font-medium uppercase">Students Guided</span>
-                            </div>
+                            
+                           
                         </div>
                     </div>
 
@@ -125,7 +126,7 @@ const Vision = () => {
                             </div>
                             <h3 className="font-display font-bold text-2xl text-slate-900 mb-3">Our Mission</h3>
                             <p className="text-slate-500 leading-relaxed">
-                                To empower students by providing precise career guidance and securing admissions with leading global universities, while supporting institutions with financial tools for growth.
+                            Our mission is to support students at every step of their journey—helping them choose the right course, secure admissions, and achieve their career goals with confidence.
                             </p>
                         </div>
 
@@ -136,7 +137,7 @@ const Vision = () => {
                             </div>
                             <h3 className="font-display font-bold text-2xl text-slate-900 mb-3">Our Vision</h3>
                             <p className="text-slate-500 leading-relaxed">
-                                To become the world's most trusted partner in education, connecting students with opportunities worldwide and enabling institutions to expand their impact.
+                            To become a globally trusted education partner, transforming students into skilled professionals and future leaders, and creating opportunities for success worldwide.
                             </p>
                         </div>
 
@@ -145,8 +146,23 @@ const Vision = () => {
 
                 {/* Footer Badge */}
                 <div className="mt-12 lg:mt-14 text-center">
-                    <p className="inline-block text-sm font-medium text-slate-400 bg-white px-6 py-2 rounded-full border border-slate-100 shadow-sm">
-                        🇨🇦 Headquartered in Canada • 🇮🇳 Operations in India
+                    <p className="inline-flex items-center gap-2.5 text-sm font-medium text-slate-500 bg-white px-6 py-2.5 rounded-full border border-slate-200 shadow-sm">
+                        <span>•</span>
+                        <img
+                            src="https://flagcdn.com/ca.svg"
+                            alt="Canada flag"
+                            className="w-5 h-[14px] rounded-[2px] object-cover ring-1 ring-slate-200"
+                            loading="lazy"
+                        />
+                        <span>Canada</span>
+                        <span>|</span>
+                        <img
+                            src="https://flagcdn.com/in.svg"
+                            alt="India flag"
+                            className="w-5 h-[14px] rounded-[2px] object-cover ring-1 ring-slate-200"
+                            loading="lazy"
+                        />
+                        <span>India (Chandigarh, Punjab)</span>
                     </p>
                 </div>
 

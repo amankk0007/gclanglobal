@@ -5,6 +5,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Calendar, MapPin, ChevronLeft, ChevronRight, X, Camera, Users, Award, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import OptimizedImage from "@/components/ui/OptimizedImage";
+import { dataService } from "@/services/dataService";
 
 interface GalleryItem {
   id: number;
@@ -18,7 +19,7 @@ interface GalleryItem {
 const galleryItems: GalleryItem[] = [
   {
     id: 1,
-    title: "Career Consulting Seminar 2024",
+    title: "Career Consultancy Seminar 2024",
     category: "Seminars",
     date: "March 2024",
     location: "Chandigarh, India",
@@ -126,6 +127,40 @@ const AnimatedCounter = ({ target, suffix }: { target: number; suffix: string })
 const Gallery = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+
+  useEffect(() => {
+    // Load gallery images from backend only
+    const loadGalleryImages = () => {
+      const backendImages = dataService.getGalleryImages().filter(img => img.isActive);
+      console.log('Backend images loaded:', backendImages.length); // Debug log
+      
+      const convertedItems: GalleryItem[] = backendImages.map((img, index) => ({
+        id: index + 1,
+        title: img.title,
+        category: img.category.charAt(0).toUpperCase() + img.category.slice(1),
+        date: new Date(img.timestamp).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+        location: "Global Pass Events",
+        image: img.imageUrl.startsWith('http') ? img.imageUrl : img.imageUrl.startsWith('blob:') ? img.imageUrl : `https://via.placeholder.com/800x600?text=${encodeURIComponent(img.title)}`
+      }));
+      
+      setGalleryItems(convertedItems);
+    };
+
+    loadGalleryImages();
+    
+    // Listen for storage changes to auto-refresh
+    const handleStorageChange = () => {
+      console.log('Storage changed, reloading gallery...');
+      loadGalleryImages();
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
@@ -242,6 +277,40 @@ const Gallery = () => {
           </Link>
         </div>
       </div>
+
+      {/* Back Button */}
+      <Link to="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-8 group">
+        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+        <span className="font-medium">Back to Home</span>
+      </Link>
+      
+      {/* Refresh Gallery Button */}
+      <Button 
+        variant="outline" 
+        className="mb-8"
+        onClick={() => {
+          console.log('Refreshing gallery...');
+          const loadGalleryImages = () => {
+            const backendImages = dataService.getGalleryImages().filter(img => img.isActive);
+            console.log('Backend images loaded:', backendImages.length);
+            
+            const convertedItems: GalleryItem[] = backendImages.map((img, index) => ({
+              id: index + 1,
+              title: img.title,
+              category: img.category.charAt(0).toUpperCase() + img.category.slice(1),
+              date: new Date(img.timestamp).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+              location: "Global Pass Events",
+              image: img.imageUrl.startsWith('http') ? img.imageUrl : img.imageUrl.startsWith('blob:') ? img.imageUrl : `https://via.placeholder.com/800x600?text=${encodeURIComponent(img.title)}`
+            }));
+            
+            setGalleryItems(convertedItems);
+          };
+          loadGalleryImages();
+        }}
+      >
+        <ArrowLeft className="w-4 h-4 mr-2" />
+        Refresh Gallery
+      </Button>
 
       {/* Lightbox Modal */}
       <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>

@@ -5,7 +5,7 @@ const steps = [
   {
     number: "01",
     icon: MessageSquare,
-    title: "Free Consulting",
+    title: "Free Consultancy",
     description: "Book a free session with our expert counselors to discuss your goals and aspirations.",
     borderColor: "border-primary/50",
     iconColor: "text-primary",

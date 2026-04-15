@@ -42,26 +42,33 @@ import imgGalaTrio4 from "@/assets/gallery/gl-gala-trio-4.jpg";
 import imgEventCouple from "@/assets/gallery/gl-event-couple.jpg";
 import imgMississaugaMalton from "@/assets/gallery/gl-mississauga-malton.jpg";
 import imgDougFord2 from "@/assets/gallery/gl-doug-ford-2.jpg";
+import imgAmityUniversity from "@/assets/gallery/amity-university.jpeg";
 import imgKingRealtyAward from "@/assets/gallery/gl-king-realty-award.jpg";
 import imgAirportStudent from "@/assets/gallery/gl-airport-student.jpg";
 import imgAirportFamily from "@/assets/gallery/gl-airport-family.jpg";
+import imgFutureSummit from "@/assets/gallery/Future-Summit.jpeg";
 import imgAirportFamily2 from "@/assets/gallery/gl-airport-family-2.jpg";
 import imgRestaurantGroup from "@/assets/gallery/gl-restaurant-group.jpg";
 import imgPicnicCelebration from "@/assets/gallery/gl-picnic-celebration.jpg";
+import imgMrYong from "@/assets/gallery/Mr-Yong.jpeg";
 import imgGarrySirSignature from "@/assets/gallery/gl-garry-sir-signature.jpg";
+import imgAfricaPerson from "@/assets/gallery/Africa-Person.jpeg";
 import imgPicnicCelebration2 from "@/assets/gallery/gl-picnic-celebration-2.jpg";
 import imgGarrySirSignature2 from "@/assets/gallery/gl-garry-sir-signature-2.jpg";
 import imgFormalQuartet from "@/assets/gallery/gl-formal-quartet.jpg";
 import imgCommunityRally from "@/assets/gallery/gl-community-rally.jpg";
 import imgGroupKey from "@/assets/gallery/group-key.jpg";
+import imgRootsCountry from "@/assets/gallery/roots-country.jpeg";
 import imgMouIetBhaddal from "@/assets/gallery/MoU signed with IET Bhaddal College.jpeg";
 import imgWinningFootballTeam from "@/assets/gallery/Congratulations to the Winning Football Team.jpeg";
 import imgDelegateAustralia from "@/assets/gallery/Delegate from Australia.jpeg";
 import imgPlacementDriveSviet from "@/assets/gallery/Placement drive at sviet.jpeg";
-import imgPlacementDriveSvietCollege from "@/assets/gallery/Placement drive in SVIET college.jpeg";
+// import imgPlacementDriveSvietCollege from "@/assets/gallery/Placement drive in SVIET college.jpeg";
 import imgJobPlacementDriveUsIt from "@/assets/gallery/Job placement drive organized by Global Pass for international students in a US-based IT company.jpeg";
 import imgIndustrialVisitAmbtel from "@/assets/gallery/Industrial Visit at US base company Ambtel .jpeg";
 import imgGuestOfHonourFootballTournament from "@/assets/gallery/Guest of Honour at the 63rd Principal Harbhajan Singh Football Tournament, Garhshankar.jpeg";
+import imgUniversal from "@/assets/gallery/universal.jpeg";
+import imgNews from "@/assets/gallery/news.jpeg";
 
 interface GalleryItem {
   id: number;
@@ -124,19 +131,12 @@ const allGalleryItems: GalleryItem[] = [
   {
     id: 7,
     title: "Meeting with Premier Doug Ford",
-    category: "Government Relations",
+    category: "Events",
     date: "Summer 2023",
     location: "Toronto, Canada",
     image: imgDougFord
   },
-  {
-    id: 8,
-    title: "Community Service Award",
-    category: "Awards",
-    date: "2024",
-    location: "India",
-    image: imgAwardGroup
-  },
+  
   {
     id: 9,
     title: "Community Award Ceremony",
@@ -147,7 +147,7 @@ const allGalleryItems: GalleryItem[] = [
   },
   {
     id: 10,
-    title: "Leadership Team Event",
+    title: "Great meeting with Mayor Patrick Brown and Councillor Rod Power in Brampton 🇨🇦.",
     category: "Events",
     date: "2023",
     location: "Canada",
@@ -171,7 +171,7 @@ const allGalleryItems: GalleryItem[] = [
   },
   {
     id: 13,
-    title: "Media Press Conference",
+    title: "Press conference on Indo-Pacific Strategy in Amritsar 🇮🇳 with , MP George Chahal,  Calgary 🇨🇦.",
     category: "Media",
     date: "2024",
     location: "India",
@@ -179,7 +179,7 @@ const allGalleryItems: GalleryItem[] = [
   },
   {
     id: 14,
-    title: "Business Partnership Meeting",
+    title: "MOU with SG Encon Private Limited",
     category: "Collaborations",
     date: "2024",
     location: "India",
@@ -187,23 +187,23 @@ const allGalleryItems: GalleryItem[] = [
   },
   {
     id: 15,
-    title: "Golden Temple Visit",
+    title: "Blessed to Visit Golden Temple ",
     category: "Cultural Events",
     date: "2024",
     location: "Amritsar, India",
     image: imgGoldenTemple
   },
-  {
-    id: 16,
-    title: "Caledon West Community Fair Trophy",
-    category: "Awards",
-    date: "2023",
-    location: "Caledon, Canada",
-    image: imgTrophy2023
-  },
+  // {
+  //   id: 16,
+  //   title: "Caledon West Community Fair Trophy",
+  //   category: "Awards",
+  //   date: "2023",
+  //   location: "Caledon, Canada",
+  //   image: imgTrophy2023
+  // },
   {
     id: 17,
-    title: "Partnership Meeting",
+    title: "Mr Graham McGregor,MPP Brampton",
     category: "Collaborations",
     date: "2023",
     location: "Ontario, Canada",
@@ -225,17 +225,17 @@ const allGalleryItems: GalleryItem[] = [
     location: "Ottawa, Canada",
     image: imgTrudeau
   },
-  {
-    id: 20,
-    title: "Gala Fundraiser Event",
-    category: "Events",
-    date: "2024",
-    location: "Toronto, Canada",
-    image: imgGalaTrio
-  },
+  // {
+  //   id: 20,
+  //   title: "Gala Fundraiser Event",
+  //   category: "Events",
+  //   date: "2024",
+  //   location: "Toronto, Canada",
+  //   image: imgGalaTrio
+  // },
   {
     id: 21,
-    title: "Adesh Hospital Partnership",
+    title: "Guest at Adesh hospital and college",
     category: "Collaborations",
     date: "2024",
     location: "India",
@@ -259,7 +259,7 @@ const allGalleryItems: GalleryItem[] = [
   },
   {
     id: 24,
-    title: "Community Leaders Gathering",
+    title: "Canada’s former defence Minister",
     category: "Events",
     date: "2023",
     location: "Toronto, Canada",
@@ -267,20 +267,20 @@ const allGalleryItems: GalleryItem[] = [
   },
   {
     id: 25,
-    title: "Future Depot Partnership",
-    category: "Collaborations",
+    title: "Meeting with Amarjot Sandhu, MPP for Brampton",
+    category: "Events",
     date: "2023",
     location: "Ontario, Canada",
     image: imgFutureDepot
   },
-  {
-    id: 26,
-    title: "Charity Gala Dinner",
-    category: "Events",
-    date: "2024",
-    location: "Toronto, Canada",
-    image: imgGalaTrio3
-  },
+  // {
+  //   id: 26,
+  //   title: "Charity Gala Dinner",
+  //   category: "Events",
+  //   date: "2024",
+  //   location: "Toronto, Canada",
+  //   image: imgGalaTrio3
+  // },
   {
     id: 27,
     title: "Community Education Seminar",
@@ -299,7 +299,7 @@ const allGalleryItems: GalleryItem[] = [
   },
   {
     id: 29,
-    title: "Leadership Gala",
+    title: "Honored to attend a Christmas dinner in Ottawa with Randeep Sarai (MP, Surrey Centre) 🎄🇨🇦",
     category: "Events",
     date: "2024",
     location: "Toronto, Canada",
@@ -345,17 +345,17 @@ const allGalleryItems: GalleryItem[] = [
     location: "Toronto Airport, Canada",
     image: imgAirportStudent
   },
-  {
-    id: 35,
-    title: "Family Send-off - New Beginnings",
-    category: "Student Success",
-    date: "2024",
-    location: "Toronto Airport, Canada",
-    image: imgAirportFamily
-  },
+  // {
+  //   id: 35,
+  //   title: "Family Send-off - New Beginnings",
+  //   category: "Student Success",
+  //   date: "2024",
+  //   location: "Toronto Airport, Canada",
+  //   image: imgAirportFamily
+  // },
   {
     id: 36,
-    title: "Airport Family Farewell",
+    title: "Welcoming our student at Toronto Pearson International Airport 🇨🇦",
     category: "Student Success",
     date: "2024",
     location: "Toronto Airport, Canada",
@@ -429,7 +429,7 @@ const allGalleryItems: GalleryItem[] = [
     id: 45,
     title: "MoU Signed with IET Bhaddal College",
     category: "Collaborations",
-    date: "2024",
+    date: "2026",
     location: "Punjab, India",
     image: imgMouIetBhaddal
   },
@@ -437,7 +437,7 @@ const allGalleryItems: GalleryItem[] = [
     id: 46,
     title: "Congratulations to the Winning Football Team",
     category: "Sports & Culture",
-    date: "2024",
+    date: "2026",
     location: "India",
     image: imgWinningFootballTeam
   },
@@ -445,7 +445,7 @@ const allGalleryItems: GalleryItem[] = [
     id: 47,
     title: "Delegate from Australia",
     category: "Collaborations",
-    date: "2024",
+    date: "2026",
     location: "India",
     image: imgDelegateAustralia
   },
@@ -453,23 +453,23 @@ const allGalleryItems: GalleryItem[] = [
     id: 48,
     title: "Placement Drive at SVIET",
     category: "Student Success",
-    date: "2024",
+    date: "2026",
     location: "Punjab, India",
     image: imgPlacementDriveSviet
   },
-  {
-    id: 49,
-    title: "Placement Drive in SVIET College",
-    category: "Student Success",
-    date: "2024",
-    location: "Punjab, India",
-    image: imgPlacementDriveSvietCollege
-  },
+  // {
+  //   id: 49,
+  //   title: "Placement Drive in SVIET College",
+  //   category: "Student Success",
+  //   date: "2026",
+  //   location: "Punjab, India",
+  //   image: imgPlacementDriveSvietCollege
+  // },
   {
     id: 50,
     title: "Job Placement Drive for International Students in US-Based IT Company",
     category: "Student Success",
-    date: "2024",
+    date: "2026",
     location: "India",
     image: imgJobPlacementDriveUsIt
   },
@@ -489,6 +489,72 @@ const allGalleryItems: GalleryItem[] = [
     location: "Garhshankar, India",
     image: imgGuestOfHonourFootballTournament
   }
+  ,
+  {
+    id: 53,
+    title: "Guest of Honour at 63rd Principal Harbhajan Singh Football Tournament, Garhshankar",
+    category: "Sports & Culture",
+    date: "2024",
+    location: "Garhshankar, India",
+    image: imgGuestOfHonourFootballTournament
+  },
+  {
+    id: 54,
+    title: "Universal Event Highlight",
+    category: "Events",
+    date: "2026",
+    location: "India",
+    image: imgUniversal
+  },
+  {
+    id: 55,
+    title: "News Coverage",
+    category: "Media",
+    date: "2026",
+    location: "India",
+    image: imgNews
+  },
+  {
+    id: 56,
+    title: "Tie up with Amity University Mohali",
+    category: "Events",
+    date: "2026",
+    location: "India",
+    image: imgAmityUniversity
+  },
+  {
+    id: 57,
+    title: "Tie-up with Root Country School, Baghi (Himachal Pradesh)",
+    category: "Events",
+    date: "2026",
+    location: "India",
+    image: imgRootsCountry
+  },
+  {
+    id: 58,
+    title: "Government official from Africa, strengthening global partnerships in education and career opportunities.",
+    category: "Events",
+    date: "2026",
+    location: "India",  
+    image: imgAfricaPerson
+  },
+  {
+    id: 59,
+    title: "Thrive Future Summit 2026 – Honored to connect with key functionaries and global leaders shaping the future of education and innovation.",
+    category: "Events",
+    date: "2026",
+    location: "India",  
+    image: imgFutureSummit
+  },
+  {
+    id: 60,
+    title: "Young  entrepreneur Mr. Yong",
+    category: "Events",
+    date: "2026",
+    location: "India",  
+    image: imgMrYong
+  }
+
 ];
 
 const categories = ["All", "Awards", "Collaborations", "Student Success", "Sports & Culture", "Media", "Government Relations", "Events", "Cultural Events", "Community", "Special Moments"];

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import heroImg from "@/assets/hero_student.jpg";
 import OptimizedImage from "@/components/ui/OptimizedImage";
+import PremiumKnowYourselfButton from "@/components/PremiumKnowYourselfButton";
 import { ArrowRight, UserCheck, Globe, GraduationCap, Users, Award, Building2, Trophy, Star, ShieldCheck, Clock3 } from "lucide-react";
 
 const metrics = [
@@ -51,19 +52,23 @@ const Hero = ({ onOpenModal }: HeroProps) => {
                   </div>
                   <span className="text-xs font-bold text-slate-900">5.0</span>
                 </div>
-                <span className="text-xs text-slate-500 font-medium">Trusted by 5000+ Families</span>
+                <span className="text-xs text-slate-500 font-medium">Trusted by 5000+ Students</span>
               </div>
             </div>
 
+            {/* Premium Know Yourself Button */}
+            <div className="mb-6">
+              <PremiumKnowYourselfButton />
+            </div>
+
             <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-[1.1] mb-6">
-              Your Career Is Your <span className="text-primary">Identity.</span>
+              Admission | Training | Placement | Enterpreneurship 
               <br />
-              <span className="text-slate-500">Build It With </span>
-              <span className="text-secondary">Purpose.</span>
+              
             </h1>
 
-            <p className="text-slate-600 text-base lg:text-lg mb-6 leading-relaxed max-w-xl">
-              Expert career consulting, admission guidance, and visa support for students in India and abroad.
+            <p className="text-slate-900 text-lg lg:text-3xl font-semibold mb-8 leading-relaxed max-w-xl">
+            Comprehensive career solutions provided through expert advisory and facilitation, guiding students from admissions to skill development, career pathways, and entrepreneurial opportunities.
             </p>
 
             <div className="flex flex-wrap items-center gap-2.5 mb-8">
@@ -85,7 +90,7 @@ const Hero = ({ onOpenModal }: HeroProps) => {
                 className="rounded-full bg-primary hover:bg-primary/90 text-base px-7 h-12 shadow-lg shadow-primary/25 w-full sm:w-auto"
               >
                 <UserCheck className="w-5 h-5 mr-2" />
-                Book Free Consulting
+                Book Free Consultancy
               </Button>
               <Button
                 onClick={onOpenModal}
@@ -131,9 +136,9 @@ const Hero = ({ onOpenModal }: HeroProps) => {
                   <p className="text-white text-sm font-semibold">100% personalized profile guidance for each student</p>
                 </div>
               </div>
-              <div className="absolute -left-6 top-8 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-xl">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Visa Success</p>
-                <p className="text-2xl font-bold text-primary">98%</p>
+              <div >
+                {/* <p className="text-xs font-semibold uppercase tracking-wide text-slate-500"></p>
+                <p className="text-2xl font-bold text-primary"></p> */}
               </div>
               <div className="absolute -right-6 bottom-10 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-xl">
                 <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Students Guided</p>
@@ -206,7 +211,7 @@ const Hero = ({ onOpenModal }: HeroProps) => {
                       <Star key={star} className="w-3 h-3 text-yellow-400 fill-yellow-400" />
                     ))}
                   </div>
-                  <span className="font-medium">5.0 • Trusted by 5000+ families</span>
+                  <span className="font-medium">5.0 • Trusted by 5000+ Students</span>
                 </div>
               </div>
             </div>

@@ -1,8 +1,9 @@
-import { Phone, Menu, X, MessageCircle, Mail, Facebook, Instagram, Linkedin, ChevronRight } from "lucide-react";
+import { Phone, Menu, X, MessageCircle, Mail, Facebook, Instagram, Linkedin, ChevronRight, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import OptimizedImage from "@/components/ui/OptimizedImage";
+import PaymentModal from "@/components/PaymentModal";
 
 interface HeaderProps {
   onOpenModal?: () => void;
@@ -11,6 +12,7 @@ interface HeaderProps {
 const Header = ({ onOpenModal }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -34,9 +36,11 @@ const Header = ({ onOpenModal }: HeaderProps) => {
   const navLinks = [
     { label: "Home", id: "hero" },
     { label: "About", href: "/about" },
-    { label: "Services", id: "services" },
+    { label: "Services", href: "/services" },
+    { label: "Apply", href: "/apply" },
+    { label: "Partners", href: "/partners" },
     { label: "Gallery", href: "/gallery" },
-    { label: "Institutional Funding", href: "/institutional-loan", badge: "Hot" },
+    { label: "Scholarships Program", href: "/institutional-loan", badge: "Hot" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -60,14 +64,14 @@ const Header = ({ onOpenModal }: HeaderProps) => {
           <div className="hidden lg:flex items-center gap-4">
             <span className="opacity-60">Follow us:</span>
             <div className="flex items-center gap-3">
-              <a href="#" className="hover:text-primary transition-colors"><Facebook className="w-3.5 h-3.5" /></a>
-              <a href="#" className="hover:text-primary transition-colors"><Instagram className="w-3.5 h-3.5" /></a>
+              <a href="https://www.facebook.com/share/1DmTjjBvXC/?mibextid=wwXIfr" className="hover:text-primary transition-colors"><Facebook className="w-3.5 h-3.5" /></a>
+              <a href="https://www.instagram.com/globalpasscareer?igsh=MW41bmUwYm94MWNzMg==" className="hover:text-primary transition-colors"><Instagram className="w-3.5 h-3.5" /></a>
               <a href="#" className="hover:text-primary transition-colors"><Linkedin className="w-3.5 h-3.5" /></a>
             </div>
           </div>
           {/* Mobile: WhatsApp quick link */}
           <a
-            href="https://wa.me/15198060052"
+            href="https://wa.me/+917508813555"
             target="_blank"
             rel="noopener noreferrer"
             className="lg:hidden flex items-center gap-1.5 text-[#25D366] hover:text-[#20BA5C] transition-colors"
@@ -93,17 +97,17 @@ const Header = ({ onOpenModal }: HeaderProps) => {
                 <OptimizedImage
                   src="/logo.png"
                   alt="Global Pass Logo"
-                  className="w-14 h-14 lg:w-14 lg:h-14"
+                  className="w-16 h-16 lg:w-16 lg:h-18"
                   imgClassName="object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <div className="hidden sm:block">
-                <h1 className="font-display font-bold text-xl lg:text-2xl leading-none tracking-tight text-primary">
+                {/* <h1 className="font-display font-bold text-xl lg:text-2xl leading-none tracking-tight text-primary">
                   GLOBAL PASS
                 </h1>
                 <p className="text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] text-secondary">
-                  A Place for Solutions
-                </p>
+                  Career Consultancy Inc.
+                </p> */}
               </div>
             </Link>
 
@@ -114,7 +118,7 @@ const Header = ({ onOpenModal }: HeaderProps) => {
                   <Link
                     key={link.label}
                     to={link.href}
-                    className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-primary hover:bg-slate-50 rounded-full transition-all duration-300"
+                    className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-primary hover:bg-slate-50 rounded-full transition-all duration-300 whitespace-nowrap"
                   >
                     {link.label}
                     {link.badge && (
@@ -127,7 +131,7 @@ const Header = ({ onOpenModal }: HeaderProps) => {
                   <button
                     key={link.label}
                     onClick={() => scrollToSection(link.id!)}
-                    className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-primary hover:bg-slate-50 rounded-full transition-all duration-300"
+                    className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-primary hover:bg-slate-50 rounded-full transition-all duration-300 whitespace-nowrap"
                   >
                     {link.label}
                   </button>
@@ -146,20 +150,20 @@ const Header = ({ onOpenModal }: HeaderProps) => {
                 <Phone className="w-5 h-5 text-primary" />
               </a>
 
-              <a
-                href="https://wa.me/15198060052"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden md:flex w-10 h-10 rounded-full bg-[#25D366] items-center justify-center hover:bg-[#128C7E] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+              {/* Payment Gateway Button - Replaced WhatsApp */}
+              {/* <button
+                onClick={() => setIsPaymentModalOpen(true)}
+                className="hidden md:flex items-center gap-1.5 h-8 px-4 rounded-full bg-slate-900 border border-slate-700 hover:bg-slate-800 text-white shadow-md hover:shadow-slate-500/20 hover:-translate-y-0.5 transition-all duration-300 font-semibold text-xs whitespace-nowrap"
               >
-                <MessageCircle className="w-5 h-5 text-white" />
-              </a>
+                <CreditCard className="w-3.5 h-3.5 text-emerald-400" />
+                Pay Now
+              </button> */}
 
               <Button
                 onClick={onOpenModal}
                 className="hidden sm:flex rounded-full bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 px-6 h-11 font-semibold"
               >
-                Book Consulting
+                Book Consultancy
                 <ChevronRight className="w-4 h-4 ml-1 opacity-70" />
               </Button>
 
@@ -175,7 +179,7 @@ const Header = ({ onOpenModal }: HeaderProps) => {
 
           {/* Mobile Menu - Full Screen Overlay */}
           {isMenuOpen && (
-            <div className="lg:hidden fixed inset-0 top-[104px] sm:top-[108px] bg-white z-50 overflow-y-auto">
+            <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-2xl border-t border-slate-100 max-h-[85vh] overflow-y-auto flex flex-col">
               <div className="p-4">
                 <div className="rounded-2xl overflow-hidden">
                   <nav className="flex flex-col p-2">
@@ -220,11 +224,11 @@ const Header = ({ onOpenModal }: HeaderProps) => {
                       <Button onClick={onOpenModal} className="w-full justify-center gap-2 h-11 bg-primary text-white shadow-lg shadow-primary/20">
                         Book Now
                       </Button>
-                      <a href="https://wa.me/15198060052" target="_blank" rel="noopener noreferrer" className="w-full">
-                        <Button className="w-full justify-center gap-2 h-11 bg-[#25D366] hover:bg-[#128C7E] text-white border-none shadow-lg shadow-[#25D366]/20">
-                          <MessageCircle className="w-4 h-4" /> WhatsApp
+                      <button onClick={() => setIsPaymentModalOpen(true)} className="w-full">
+                        <Button className="w-full justify-center gap-2 h-11 bg-slate-900 hover:bg-slate-800 text-white border-none shadow-lg whitespace-nowrap">
+                          <CreditCard className="w-4 h-4 text-emerald-400" /> Pay Now
                         </Button>
-                      </a>
+                      </button>
                     </div>
                   </nav>
                 </div>
@@ -233,6 +237,8 @@ const Header = ({ onOpenModal }: HeaderProps) => {
           )}
         </div >
       </header >
+      
+      <PaymentModal isOpen={isPaymentModalOpen} onOpenChange={setIsPaymentModalOpen} />
     </>
   );
 };

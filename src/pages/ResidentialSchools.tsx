@@ -57,7 +57,7 @@ const ResidentialSchools = () => {
             <div className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#020617]">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                        src="https://lh3.googleusercontent.com/p/AF1QipOKERIQuamoVEqxFdkJOfkk6G6t7Hjupd3qXCDB=s1360-w1360-h1020-rw"
                         alt="Education Background"
                         className="w-full h-full object-cover opacity-20"
                     />
@@ -173,7 +173,7 @@ const ResidentialSchools = () => {
                         <div className="lg:w-1/2 relative">
                             <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border border-white/10 aspect-square sm:aspect-video lg:aspect-square">
                                 <img
-                                    src="https://images.unsplash.com/photo-1596767702656-628d0979a05b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80"
+                                    src="https://lh3.googleusercontent.com/p/AF1QipOKERIQuamoVEqxFdkJOfkk6G6t7Hjupd3qXCDB=s1360-w1360-h1020-rw"
                                     alt="Indian Residential School"
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                                 />

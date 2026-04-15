@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Send, CheckCircle, Sparkles, ArrowRight, Users } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { dataService } from "@/services/dataService";
 
 const LeadForm = () => {
   const { toast } = useToast();
@@ -22,13 +23,39 @@ const LeadForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast({
-      title: "Thank you!",
-      description: "Our team will reach out to you within 24 hours.",
-    });
+    
+    try {
+      // Save to backend (localStorage)
+      const leadData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        education: formData.education,
+        message: "Free consultation request",
+        subject: "Consultation Inquiry"
+      };
+
+      // Save as both lead and contact form
+      dataService.saveLead(leadData);
+      dataService.saveContactForm(leadData);
+      
+      // Simulate API delay
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      
+      setIsSubmitted(true);
+      toast({
+        title: "Thank you!",
+        description: "Our team will reach out to you within 24 hours.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to submit request. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {

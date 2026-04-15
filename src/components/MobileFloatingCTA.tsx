@@ -29,10 +29,10 @@ const MobileFloatingCTA = ({ onOpenModal }: MobileFloatingCTAProps) => {
         <div className="fixed bottom-6 right-4 z-50 lg:hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
             <Button
                 onClick={onOpenModal}
-                className="rounded-full shadow-lg shadow-primary/30 bg-primary hover:bg-primary/90 text-white font-bold px-6 py-6 h-auto flex items-center gap-2"
+                className="rounded-full shadow-lg shadow-primary/30 bg-primary hover:bg-primary/90 text-white font-semibold px-4 py-3 h-auto flex items-center gap-2 text-sm"
             >
-                <Calendar className="w-5 h-5" />
-                <span>Book Consulting</span>
+                <Calendar className="w-4 h-4" />
+                <span>Book Consultancy</span>
             </Button>
         </div>
     );

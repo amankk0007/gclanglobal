@@ -1,6 +1,7 @@
 import { Phone, MapPin, Facebook, Linkedin, Instagram, Twitter, Mail, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 
 const Footer = () => {
@@ -14,6 +15,7 @@ const Footer = () => {
   ];
 
   const services = [
+    { label: "Study in India", href: "#" },
     { label: "Study in Canada", href: "#" },
     { label: "Study in USA", href: "#" },
     { label: "Study in UK", href: "#" },
@@ -44,7 +46,7 @@ const Footer = () => {
           <div>
             <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-6">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-sm font-medium text-white/80">Accepting 2024-25 Applications</span>
+              <span className="text-sm font-medium text-white/80">Accepting 2026-27 Applications</span>
             </div>
             <h2 className="font-display font-bold text-4xl lg:text-5xl mb-6 leading-tight">
               Start your global journey <br /> with <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">confidence.</span>
@@ -173,12 +175,20 @@ const Footer = () => {
 
         {/* Copyright Bar */}
         <div className="border-t border-white/5 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-600">
-          <p>&copy; {currentYear} Global Pass Career Consulting Inc. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-slate-400 transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-slate-400 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-slate-400 transition-colors">Cookie Policy</a>
-          </div>
+          <p>&copy; {currentYear} Global Pass Career Consultancy Inc. All rights reserved.</p>
+          <div className="flex gap-4">
+  <Link to="/terms.tsx" className="hover:text-slate-400 transition-colors">
+    Terms of Service
+  </Link>
+
+  <Link to="/privacy" className="hover:text-slate-400 transition-colors">
+    Privacy Policy
+  </Link>
+
+  <Link to="/cookies" className="hover:text-slate-400 transition-colors">
+    Cookie Policy
+  </Link>
+</div>
         </div>
 
       </div>

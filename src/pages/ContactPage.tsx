@@ -133,7 +133,7 @@ const ContactPage = () => {
                             {/* Direct Contact Options */}
                             <div className="grid gap-4">
                                 <a
-                                    href="https://wa.me/15198060052"
+                                    href="https://wa.me/+917508813555"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="bg-[#25D366] hover:bg-[#20bd5a] text-white p-5 rounded-2xl flex items-center justify-between transition-all group hover:shadow-lg hover:shadow-[#25D366]/20"
@@ -149,14 +149,14 @@ const ContactPage = () => {
                                 </a>
 
                                 <a
-                                    href="tel:+15198060052"
+                                    href="tel:+91 75088 13555"
                                     className="bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-white p-5 rounded-2xl flex items-center justify-between transition-all group"
                                 >
                                     <div className="flex items-center gap-4">
                                         <Phone className="w-6 h-6 text-primary" />
                                         <div className="text-left">
                                             <p className="font-bold text-lg">Call Directly</p>
-                                            <p className="text-slate-400 text-sm">+1 (519) 806-0052</p>
+                                            <p className="text-slate-400 text-sm">+91 75088 13555</p>
                                         </div>
                                     </div>
                                     <ArrowRight className="w-5 h-5 text-slate-500 group-hover:translate-x-1 transition-transform" />

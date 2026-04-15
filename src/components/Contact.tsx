@@ -15,7 +15,7 @@ const Contact = () => {
             Start Your <span className="text-primary">Global Journey</span>
           </h2>
           <p className="text-xl font-display font-semibold text-secondary">
-            Build it with Global Pass Career Consulting Inc.
+            Build it with Global Pass Career Consultancy Inc.
           </p>
         </div>
 
@@ -78,7 +78,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-white/60 text-sm mb-1 uppercase tracking-wider font-semibold">Email</p>
-                    <a href="mailto:info@globalpasscareer.com" className="font-medium hover:text-secondary transition-colors">info@globalpasscareer.com</a>
+                    <a href="mailto:globalpasscareer@gmail.com" className="font-medium hover:text-secondary transition-colors">info@globalpasscareer.com</a>
                   </div>
                 </div>
               </div>

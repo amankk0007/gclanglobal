@@ -29,7 +29,7 @@ const teamMembers = [
     certifications: "OCT & RCIC Certified",
     icon: GraduationCap,
     linkedin: "https://linkedin.com",
-    position: "object-center", // Fix for zoomed in look
+    position: "object-top", // Fix for zoomed in look
   },
   {
     name: "Manoj dhiman",
@@ -43,12 +43,12 @@ const teamMembers = [
     position: "object-top", // Ensure head is visible
   },
   {
-    name: "Rajinder kumar",
+    name: "Rajinder kumar (Maddy)",
     title: "Director Public Relations",
     image: rajivBajwa,
     experience: "21+ Years",
     quote: "Building strong relationships and fostering trust is the cornerstone of our global community.",
-    description: "As Director of Public Relations, Rajiv Bajwa manages our external communications and strengthens our relationships with partners and the community.",
+    description: "As Director of Public Relations, Rajinder kumar manages our external communications and strengthens our relationships with partners and the community.",
     icon: Building2,
     linkedin: "https://linkedin.com",
     position: "object-top",

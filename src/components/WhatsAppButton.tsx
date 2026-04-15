@@ -5,8 +5,8 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 const WhatsAppButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const whatsappNumber = "+15198060052";
-  const phoneNumber = "+1 (519) 806-0052";
+  const whatsappNumber = "+917508813555";
+  const phoneNumber = "+91 75088 13555";
   const email = "info@globalpasscareer.com";
   const message = "Hello! I'm interested in career counseling services.";
   const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(message)}`;

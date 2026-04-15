@@ -18,7 +18,7 @@ const AboutPage = () => {
     }, []);
 
     const stats = [
-        { label: "Students Guided", value: "10k+", icon: Users },
+        { label: "Students Guided", value: "5k+", icon: Users },
         { label: "Partner Institutions", value: "500+", icon: Building2 },
         { label: "Visa Success Rate", value: "99%", icon: CheckCircle2 },
         { label: "Years Experience", value: "20+", icon: Award },
@@ -44,7 +44,7 @@ const AboutPage = () => {
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Building Futures</span>
                         </h1>
                         <p className="text-slate-400 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed">
-                            Global Pass Career Consulting Inc. is a Canada-based leader in global education, empowering students to achieve their dreams with precision, ethics, and expertise.
+                            Global Pass Career Consultancy Inc. is a Canada-based leader in global education, empowering students to achieve their dreams with precision, ethics, and expertise.
                         </p>
                     </div>
                 </section>
@@ -139,6 +139,106 @@ const AboutPage = () => {
                             Book Your Free Session
                         </Button>
                     </div>
+
+{/* 🔥 JOIN OUR TEAM (PREMIUM - MATCHING DESIGN) */}
+<section className="py-20 lg:py-28 relative overflow-hidden bg-[#020617]">
+
+  {/* Background Effects */}
+  <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-primary/20 blur-[120px] rounded-full" />
+  <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/20 blur-[120px] rounded-full" />
+
+  <div className="container mx-auto px-4 relative z-10">
+
+    {/* Header */}
+    <div className="text-center mb-14">
+      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-xs font-bold tracking-wider uppercase mb-6 backdrop-blur-sm">
+        🚀 Careers
+      </div>
+
+      <h2 className="font-display font-bold text-3xl lg:text-5xl text-white mb-4">
+        Join Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Growing Team</span>
+      </h2>
+
+      <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+        We are expanding and looking for passionate professionals to build impactful careers with us.
+      </p>
+    </div>
+
+    {/* JOB CARDS */}
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+
+      {[
+        { role: "Content Creator", location: "Chandigarh Office" },
+        { role: "Counselor", location: "Phagwara Office" },
+        { role: "Counselor", location: "Ropar Office" },
+        { role: "Counselor", location: "Hoshiarpur" },
+        { role: "Counselor", location: "Garhshankar" },
+      ].map((job, i) => (
+        <div
+          key={i}
+          className="group relative p-[1px] rounded-2xl bg-gradient-to-r from-white/10 to-white/5 hover:from-primary hover:to-secondary transition-all duration-300"
+        >
+          <div className="bg-[#020617] rounded-2xl p-6 h-full border border-white/10 backdrop-blur-sm group-hover:border-transparent transition-all">
+
+            <h3 className="text-lg font-bold text-white mb-2">
+              {job.role}
+            </h3>
+
+            <p className="text-sm text-slate-400">
+              📍 {job.location}
+            </p>
+
+          </div>
+        </div>
+      ))}
+
+    </div>
+
+    {/* BENEFITS */}
+    <div className="grid md:grid-cols-3 gap-6 mb-16">
+
+      {[
+        "Competitive Salary (Best in Industry)",
+        "Growth & Career Development",
+        "Dynamic & Professional Environment"
+      ].map((item, i) => (
+        <div
+          key={i}
+          className="p-6 bg-white/5 border border-white/10 rounded-2xl text-center backdrop-blur-sm hover:bg-white/10 transition"
+        >
+          <p className="text-slate-300 font-medium">{item}</p>
+        </div>
+      ))}
+
+    </div>
+
+    {/* CTA */}
+    <div className="text-center">
+      <div className="inline-block p-[1px] rounded-2xl bg-gradient-to-r from-primary to-secondary">
+        <div className="bg-[#020617] px-10 py-6 rounded-2xl text-center">
+
+          <h3 className="text-2xl font-bold text-white mb-3">
+            Apply Now
+          </h3>
+
+          <p className="text-slate-400 mb-5">
+            Send your resume and become part of our success journey.
+          </p>
+
+          <a
+            href="mailto:info@globalpasscareer.com"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold hover:scale-105 transition-transform"
+          >
+            📧 info@globalpasscareer.com
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+                    
                 </section>
 
             </main>

@@ -83,7 +83,7 @@ const WelcomeModal = () => {
                         <h3 className="font-semibold text-white mb-2 text-xs sm:text-sm">Why Families Trust Us:</h3>
                         <div className="space-y-2">
                             {[
-                                "Free Expert Career Consulting",
+                                "Free Expert Career Consultancy",
                                 "University Admission Assistance",
                                 "Visa & Immigration Support",
                                 "Scholarship Guidance"

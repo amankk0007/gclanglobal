@@ -60,15 +60,15 @@ const About = ({ onOpenModal }: AboutProps) => {
             </div>
 
             <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-slate-900 mb-8 leading-tight">
-              Global Pass <br />
+              Global Pass Career Consultancy Inc.<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-secondary">
-                Career Consulting Inc.
+              
               </span>
             </h2>
 
             <div className="relative pl-8 border-l-2 border-primary/20 mb-10">
-              <p className="text-xl md:text-2xl text-slate-600 leading-relaxed font-light font-display">
-                "Global Pass Career Consulting Inc. is a <span className="text-slate-900 font-medium">Canada-based</span> global education and career consultancy, established in 2022, serving <span className="text-slate-900 font-medium">Indian, NRI, and international students</span>."
+              <p className="text-xl md:text-3xl text-slate-600 leading-relaxed font-light font-display">
+                "Global Pass Career Consultancy Inc. is driven by a team of experienced educators and industry professionals focused on guiding students towards successful careers. <span className="text-slate-900 font-medium"></span><span className="text-slate-900 font-medium"></span>."
               </p>
             </div>
 
@@ -158,7 +158,7 @@ const About = ({ onOpenModal }: AboutProps) => {
                     >
                       {isSubmitting ? "Sending..." : (
                         <span className="flex items-center gap-2">
-                          Get Free Consulting <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          Get Free Consultancy <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </span>
                       )}
                     </Button>

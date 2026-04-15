@@ -30,7 +30,7 @@ const ConsultationModal = ({ isOpen, onClose }: ConsultationModalProps) => {
                                 </div>
                                 <div>
                                     <DialogTitle className="text-xl md:text-2xl font-display font-bold text-foreground">Start Your Global Journey</DialogTitle>
-                                    <DialogDescription className="text-base text-muted-foreground">Build it with Global Pass Career Consulting Inc.</DialogDescription>
+                                    <DialogDescription className="text-base text-muted-foreground">Build it with Global Pass Career Consultancy Inc.</DialogDescription>
                                 </div>
                             </div>
                         </DialogHeader>

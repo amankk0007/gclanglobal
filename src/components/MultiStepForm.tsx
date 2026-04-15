@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGr
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, ChevronRight, ChevronLeft, Loader2, User, GraduationCap, Globe, BookOpen, FileText } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { dataService } from "@/services/dataService";
 
 const MultiStepForm = ({ embedded = false }: { embedded?: boolean }) => {
     const { toast } = useToast();
@@ -86,14 +87,46 @@ const MultiStepForm = ({ embedded = false }: { embedded?: boolean }) => {
 
     const handleSubmit = async () => {
         setIsSubmitting(true);
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-        toast({
-            title: "Application Received!",
-            description: "Our counselors will review your profile and contact you shortly.",
-        });
+        
+        try {
+            // Save to backend (localStorage)
+            const applicationData = {
+                name: formData.fullName,
+                email: formData.email,
+                phone: formData.phone,
+                education: formData.qualification,
+                course: formData.courseInterest,
+                destination: formData.preferredCountries.join(", "),
+                message: formData.additionalInfo,
+                fatherName: formData.fatherName,
+                nationality: formData.nationality,
+                schoolName: formData.schoolName,
+                board: formData.board,
+                admissionRequiredIn: formData.admissionRequiredIn,
+                preferredCountries: formData.preferredCountries,
+                courseCategory: formData.courseCategory
+            };
+
+            // Save as admission form
+            dataService.saveAdmissionForm(applicationData);
+            
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            setIsSubmitted(true);
+            toast({
+                title: "Application Received!",
+                description: "Our counselors will review your profile and contact you shortly.",
+            });
+        } catch (error) {
+            toast({
+                title: "Error",
+                description: "Failed to submit application. Please try again.",
+                variant: "destructive"
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     if (isSubmitted) {
