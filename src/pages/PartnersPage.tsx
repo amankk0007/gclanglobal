@@ -18,11 +18,10 @@ const PartnersPage = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    // Partner data with actual logos and names
+    // Partner data with updated websites
     const partners = [
         {
             name: "Voytale",
-            logo: "/src/assets/partner/voytale-logo.png",
             type: "Educational Partner",
             description: "Leading educational consultancy providing comprehensive study abroad solutions and visa assistance.",
             website: "https://www.voytale.com",
@@ -31,7 +30,6 @@ const PartnersPage = () => {
         },
         {
             name: "Nrisetu",
-            logo: "/src/assets/partner/nrisetu-logo.png",
             type: "Educational Partner",
             description: "Premier platform for NRI students offering specialized educational services and guidance.",
             website: "https://www.nrisetu.in",
@@ -40,7 +38,6 @@ const PartnersPage = () => {
         },
         {
             name: "Jangatha",
-            logo: "/src/assets/partner/jangatha-logo.png",
             type: "Educational Partner",
             description: "Innovative educational technology platform connecting students with global opportunities.",
             website: "https://www.jangatha.com",
@@ -49,7 +46,6 @@ const PartnersPage = () => {
         },
         {
             name: "Sky Immigration Solutions",
-            logo: "/src/assets/partner/skyimmigration solutions.jpeg",
             type: "Immigration Partner",
             description: "Expert immigration services providing comprehensive visa and settlement solutions.",
             website: "https://www.skyimmigration.com",
@@ -57,29 +53,26 @@ const PartnersPage = () => {
             students: "5,000+"
         },
         {
-            name: "Swami Vivekanand University",
-            logo: "/src/assets/universities/swami.png",
-            type: "University Partner",
-            description: "Premier university offering quality education across various disciplines with modern infrastructure.",
-            website: "https://www.svuniversity.ac.in",
-            ranking: "Top University",
+            name: "TCIL ITI Chandigarh",
+            type: "Educational Partner",
+            description: "Premier technical institute offering quality education and training programs with modern infrastructure.",
+            website: "https://tcilitchandigarh.com",
+            ranking: "Top Technical Institute",
             students: "25,000+"
         },
         {
-            name: "Roots College",
-            logo: "/src/assets/universities/roots.png",
-            type: "College Partner",
-            description: "Leading educational institution known for academic excellence and holistic development.",
-            website: "https://www.rootscollege.edu",
-            ranking: "Top College",
+            name: "TowRides",
+            type: "Transport Partner",
+            description: "Leading transportation service provider known for reliability and excellent customer service.",
+            website: "https://towrides.in",
+            ranking: "Top Transport Service",
             students: "12,000+"
         },
         {
-            name: "LTSU",
-            logo: "/src/assets/universities/ltsu.png",
-            type: "University Partner",
-            description: "Progressive university offering innovative programs and research opportunities.",
-            website: "https://www.ltsu.edu",
+            name: "ICS Global Pass",
+            type: "Educational Partner",
+            description: "Progressive educational consultancy offering innovative programs and global opportunities.",
+            website: "https://icsglobalpass.com",
             ranking: "Top Innovation",
             students: "18,000+"
         }
@@ -254,77 +247,45 @@ const PartnersPage = () => {
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {partners.map((partner, index) => (
                                 <div
                                     key={index}
-                                    className="group relative"
-                                    onMouseEnter={() => setHoveredCard(index)}
-                                    onMouseLeave={() => setHoveredCard(null)}
+                                    className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-6 h-full"
                                 >
-                                    {/* Premium Glow Effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 via-blue-500/20 to-blue-600/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                                    
-                                    {/* Premium Card */}
-                                    <div className="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700 overflow-hidden border border-white/50 hover:border-cyan-200/50">
-                                        {/* Premium Header */}
-                                        <div className="relative h-56 bg-gradient-to-br from-slate-50 via-blue-50 to-blue-100 p-8">
-                                            <div className="absolute top-6 right-6">
-                                                <span className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-blue-200 border border-blue-300 text-blue-900 text-xs font-bold uppercase tracking-wider">
-                                                    {partner.type}
-                                                </span>
-                                            </div>
-                                            <div className="w-full h-full flex items-center justify-center">
-                                                {/* Partner Logo */}
-                                                <div className="w-40 h-40 bg-white rounded-xl shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-500 overflow-hidden">
-                                                    <OptimizedImage
-                                                        src={partner.logo}
-                                                        alt={partner.name}
-                                                        className="w-full h-full object-contain p-2"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Enhanced Content */}
-                                        <div className="p-8">
-                                            <div className="flex items-center justify-between mb-6">
-                                                <h3 className="font-bold text-2xl text-slate-900">
-                                                    {partner.name}
-                                                </h3>
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-3 h-3 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-pulse"></div>
-                                                    <span className="text-sm text-green-600 font-bold uppercase tracking-wider">Active</span>
-                                                </div>
-                                            </div>
-
-                                            <p className="text-slate-600 text-base leading-relaxed mb-8">
+                                    <div className="flex flex-col h-full">
+                                        <div className="mb-4">
+                                            <span className="inline-block px-3 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full mb-4">
+                                                {partner.type}
+                                            </span>
+                                            <h3 className="font-bold text-xl text-gray-900 mb-3">
+                                                {partner.name}
+                                            </h3>
+                                            <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
                                                 {partner.description}
                                             </p>
-
-                                            {/* Enhanced Stats */}
-                                            <div className="grid grid-cols-2 gap-6 mb-8">
-                                                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-4 border border-blue-200">
-                                                    <div className="text-xs text-blue-600 font-semibold mb-2 uppercase tracking-wider">Ranking</div>
-                                                    <div className="font-bold text-lg text-slate-900">{partner.ranking}</div>
-                                                </div>
-                                                <div className="bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl p-4 border border-blue-300">
-                                                    <div className="text-xs text-blue-700 font-semibold mb-2 uppercase tracking-wider">Students</div>
-                                                    <div className="font-bold text-lg text-slate-900">{partner.students}</div>
-                                                </div>
-                                            </div>
-
-                                            {/* Premium Action */}
-                                            <a
-                                                href={partner.website}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="flex items-center justify-between w-full px-6 py-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white rounded-2xl hover:from-blue-600 hover:via-blue-700 hover:to-blue-800 transition-all duration-500 group shadow-lg hover:shadow-xl"
-                                            >
-                                                <span className="font-bold text-base">Visit Website</span>
-                                                <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                                            </a>
                                         </div>
+                                        
+                                        <div className="grid grid-cols-2 gap-4 mb-6">
+                                            <div className="text-center">
+                                                <div className="text-xs text-gray-500 font-semibold mb-1 uppercase tracking-wider">Ranking</div>
+                                                <div className="font-bold text-base text-gray-900">{partner.ranking}</div>
+                                            </div>
+                                            <div className="text-center">
+                                                <div className="text-xs text-gray-500 font-semibold mb-1 uppercase tracking-wider">Students</div>
+                                                <div className="font-bold text-base text-gray-900">{partner.students}</div>
+                                            </div>
+                                        </div>
+
+                                        <a
+                                            href={partner.website}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center justify-center w-full px-4 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors duration-300 text-center"
+                                        >
+                                            Visit Website
+                                            <ArrowRight className="w-4 h-4 ml-2" />
+                                        </a>
                                     </div>
                                 </div>
                             ))}

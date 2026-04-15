@@ -6,7 +6,7 @@ const PremiumKnowYourselfButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openCareerForm = () => {
-    window.open('/src/career-form-2-saas.html', '_blank', 'width=900,height=700,scrollbars=yes,resizable=yes');
+    window.open('/career-form-2-saas.html', '_blank', 'width=900,height=700,scrollbars=yes,resizable=yes');
     setIsOpen(false);
   };
 

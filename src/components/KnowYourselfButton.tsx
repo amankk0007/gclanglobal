@@ -7,7 +7,7 @@ const KnowYourselfButton = () => {
 
   const openCareerForm = () => {
     // Open the career form in a new window
-    window.open('/src/career-form-2-saas.html', '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes');
+    window.open('/career-form-2-saas.html', '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes');
     setIsOpen(false);
   };
 
