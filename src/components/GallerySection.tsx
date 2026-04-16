@@ -55,7 +55,7 @@ import imgMouIetBhaddal from "@/assets/gallery/MoU signed with IET Bhaddal Colle
 import imgWinningFootballTeam from "@/assets/gallery/Congratulations to the Winning Football Team.jpeg";
 import imgDelegateAustralia from "@/assets/gallery/Delegate from Australia.jpeg";
 import imgPlacementDriveSviet from "@/assets/gallery/Placement drive at sviet.jpeg";
-import imgPlacementDriveSvietCollege from "@/assets/gallery/Placement drive in SVIET college.jpeg";
+// import imgPlacementDriveSvietCollege from "@/assets/gallery/Placement drive in SVIET college.jpeg";
 import imgJobPlacementDriveUsIt from "@/assets/gallery/Job placement drive organized by Global Pass for international students in a US-based IT company.jpeg";
 import imgIndustrialVisitAmbtel from "@/assets/gallery/Industrial Visit at US base company Ambtel .jpeg";
 import imgGuestOfHonourFootballTournament from "@/assets/gallery/Guest of Honour at the 63rd Principal Harbhajan Singh Football Tournament, Garhshankar.jpeg";
@@ -66,7 +66,7 @@ const GallerySection = () => {
     // Rotating selection of gallery images
     const galleryImages = [
         { id: 101, src: imgPlacementDriveSviet, alt: "Placement Drive at SVIET", category: "Student Success" },
-        { id: 102, src: imgPlacementDriveSvietCollege, alt: "Placement Drive in SVIET College", category: "Student Success" },
+        // { id: 102, src: imgPlacementDriveSvietCollege, alt: "Placement Drive in SVIET College", category: "Student Success" },
         { id: 103, src: imgMouIetBhaddal, alt: "MoU Signed with IET Bhaddal College", category: "Collaborations" },
         { id: 104, src: imgJobPlacementDriveUsIt, alt: "Job Placement Drive for International Students in US-Based IT Company", category: "Student Success" },
         { id: 105, src: imgIndustrialVisitAmbtel, alt: "Industrial Visit at US-Based Company Ambtel", category: "Collaborations" },

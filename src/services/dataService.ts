@@ -1,5 +1,6 @@
 // Data Service for managing frontend-backend integration
 // Using localStorage as a simple backend simulation
+import { emailService } from './emailService';
 
 export interface ContactForm {
   id: string;
@@ -33,11 +34,18 @@ export interface AdmissionForm {
   education: string;
   course: string;
   destination: string;
-  dob: string;
-  address: string;
+  dob?: string;
+  address?: string;
   message: string;
   timestamp: string;
   status: 'new' | 'reviewing' | 'accepted' | 'rejected';
+  fatherName?: string;
+  nationality?: string;
+  schoolName?: string;
+  board?: string;
+  admissionRequiredIn?: string;
+  preferredCountries?: string[];
+  courseCategory?: string;
 }
 
 export interface GalleryImage {
@@ -59,8 +67,13 @@ class DataService {
     LEADS: 'globalpass_leads'
   };
 
+  private readonly EMAIL_RECIPIENTS = [
+    'info@globalpasscareer.com',
+    'amankk0007@gmail.com'
+  ];
+
   // Contact Form Methods
-  saveContactForm(formData: Omit<ContactForm, 'id' | 'timestamp' | 'status'>): ContactForm {
+  async saveContactForm(formData: Omit<ContactForm, 'id' | 'timestamp' | 'status'>): Promise<ContactForm> {
     const forms = this.getContactForms();
     const newForm: ContactForm = {
       ...formData,
@@ -70,6 +83,10 @@ class DataService {
     };
     forms.push(newForm);
     localStorage.setItem(this.STORAGE_KEYS.CONTACT_FORMS, JSON.stringify(forms));
+
+    // Send email notification using Resend API
+    await emailService.sendFormSubmission(formData, 'contact');
+    
     return newForm;
   }
 
@@ -94,7 +111,7 @@ class DataService {
   }
 
   // Apply Form Methods
-  saveApplyForm(formData: Omit<ApplyForm, 'id' | 'timestamp' | 'status'>): ApplyForm {
+  async saveApplyForm(formData: Omit<ApplyForm, 'id' | 'timestamp' | 'status'>): Promise<ApplyForm> {
     const forms = this.getApplyForms();
     const newForm: ApplyForm = {
       ...formData,
@@ -104,6 +121,10 @@ class DataService {
     };
     forms.push(newForm);
     localStorage.setItem(this.STORAGE_KEYS.APPLY_FORMS, JSON.stringify(forms));
+
+    // Send email notification using Resend API
+    await emailService.sendFormSubmission(formData, 'application');
+    
     return newForm;
   }
 
@@ -128,7 +149,7 @@ class DataService {
   }
 
   // Admission Form Methods
-  saveAdmissionForm(formData: Omit<AdmissionForm, 'id' | 'timestamp' | 'status'>): AdmissionForm {
+  async saveAdmissionForm(formData: Omit<AdmissionForm, 'id' | 'timestamp' | 'status'>): Promise<AdmissionForm> {
     const forms = this.getAdmissionForms();
     const newForm: AdmissionForm = {
       ...formData,
@@ -138,6 +159,10 @@ class DataService {
     };
     forms.push(newForm);
     localStorage.setItem(this.STORAGE_KEYS.ADMISSION_FORMS, JSON.stringify(forms));
+
+    // Send email notification using Resend API
+    await emailService.sendFormSubmission(formData, 'admission');
+    
     return newForm;
   }
 
@@ -679,7 +704,7 @@ class DataService {
   }
 
   // Lead Management (for existing leads)
-  saveLead(leadData: any): any {
+  async saveLead(leadData: any): Promise<any> {
     const leads = this.getLeads();
     const newLead = {
       ...leadData,
@@ -688,6 +713,10 @@ class DataService {
     };
     leads.push(newLead);
     localStorage.setItem(this.STORAGE_KEYS.LEADS, JSON.stringify(leads));
+
+    // Send email notification using Resend API
+    await emailService.sendFormSubmission(leadData, 'lead');
+    
     return newLead;
   }
 
@@ -696,6 +725,7 @@ class DataService {
     return data ? JSON.parse(data) : [];
   }
 
+  
   // Utility Methods
   private generateId(): string {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);

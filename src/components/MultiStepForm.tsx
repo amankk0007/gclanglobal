@@ -107,16 +107,23 @@ const MultiStepForm = ({ embedded = false }: { embedded?: boolean }) => {
                 courseCategory: formData.courseCategory
             };
 
-            // Save as admission form
-            dataService.saveAdmissionForm(applicationData);
-            
-            // Simulate API delay
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            // Save as contact form if embedded, otherwise as admission form
+            if (embedded) {
+                await dataService.saveContactForm({
+                    name: formData.fullName,
+                    email: formData.email,
+                    phone: formData.phone,
+                    subject: "Contact Form Submission - Global Pass Career",
+                    message: formData.additionalInfo || "Contact form submission from website"
+                });
+            } else {
+                await dataService.saveAdmissionForm(applicationData);
+            }
             
             setIsSubmitted(true);
             toast({
-                title: "Application Received!",
-                description: "Our counselors will review your profile and contact you shortly.",
+                title: embedded ? "Message Sent!" : "Application Received!",
+                description: embedded ? "We'll get back to you within 24 hours." : "Our counselors will review your profile and contact you shortly.",
             });
         } catch (error) {
             toast({

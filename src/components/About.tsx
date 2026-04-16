@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { ArrowRight, Star, CheckCircle, Sparkles, Building2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { CheckCircle, Sparkles, ArrowRight, Users, Star, Building2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { emailJsService } from "@/services/emailJsService";
 
 interface AboutProps {
   onOpenModal?: () => void;
@@ -26,14 +27,77 @@ const About = ({ onOpenModal }: AboutProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast({
-      title: "Inquiry Sent!",
-      description: "We will get back to you within 24 hours.",
-    });
+    
+    try {
+      // FULLY AUTOMATED EMAIL SENDING - NO USER INTERVENTION NEEDED!
+      const emailParams = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        subject: 'Homepage Consultation Request - Global Pass Career',
+        timestamp: new Date().toLocaleString()
+      };
+
+      // Try EmailJS first (most reliable)
+      let result = await emailJsService.sendEmail(emailParams);
+      
+      // Fallback to Web3Forms if EmailJS fails
+      if (!result.success) {
+        console.log('EmailJS failed, trying Web3Forms...');
+        result = await emailJsService.sendViaWeb3Forms(emailParams);
+      }
+      
+      // Final fallback to Formspree
+      if (!result.success) {
+        console.log('Web3Forms failed, trying Formspree...');
+        result = await emailJsService.sendViaFormspree(emailParams);
+      }
+      
+      if (result.success) {
+        // Store in localStorage for backup
+        const submissions = JSON.parse(localStorage.getItem('homepage_submissions') || '[]');
+        submissions.push({
+          ...formData,
+          timestamp: new Date().toISOString(),
+          type: 'homepage_consultation',
+          email_sent: true
+        });
+        localStorage.setItem('homepage_submissions', JSON.stringify(submissions));
+        
+        setIsSubmitted(true);
+        toast({
+          title: "Request Sent Successfully! ",
+          description: "We have received your request and will contact you within 24 hours.",
+        });
+      } else {
+        throw new Error(result.error || 'All email services failed');
+      }
+      
+    } catch (error) {
+      console.error('Automated email error:', error);
+      
+      // Fallback to mailTo if all automated services fail
+      try {
+        const subject = 'Homepage Consultation Request - Global Pass Career';
+        const emailBody = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nInterested In: ${formData.message}\nTime: ${new Date().toLocaleString()}`;
+        const mailtoLink = `mailto:info@globalpasscareer.com,amankk0007@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+        window.location.href = mailtoLink;
+        
+        toast({
+          title: "Email Client Opened",
+          description: "Please send the email manually to complete your request.",
+        });
+      } catch (fallbackError) {
+        toast({
+          title: "Error",
+          description: "Failed to send request. Please contact us directly.",
+          variant: "destructive"
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

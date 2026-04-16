@@ -517,7 +517,59 @@
     });
   });
 
-  function calculateResult() {
+  async function sendCareerAssessmentEmail(answers, result) {
+    try {
+      // Store in localStorage for record keeping
+      storeCareerAssessment(answers, result);
+      
+      // Prepare data for email service
+      const formData = {
+        profile: result.profile,
+        title: result.title,
+        description: result.description,
+        careers: result.careers,
+        answers: answers,
+        timestamp: new Date().toISOString()
+      };
+      
+      // Send email using Resend API via local server
+      const response = await fetch('/send-email-proxy.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formData,
+          formType: 'career'
+        })
+      });
+      
+      if (response.ok) {
+        console.log('Career assessment email sent successfully');
+      } else {
+        console.error('Failed to send career assessment email');
+        // Fallback: store in localStorage
+        storeCareerAssessment(answers, result);
+      }
+      
+    } catch (error) {
+      console.error('Error sending career assessment email:', error);
+      // Fallback: store in localStorage
+      storeCareerAssessment(answers, result);
+    }
+  }
+
+  function storeCareerAssessment(answers, result) {
+    const assessments = JSON.parse(localStorage.getItem('career_assessments') || '[]');
+    assessments.push({
+      answers,
+      result,
+      timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('career_assessments', JSON.stringify(assessments));
+  }
+
+  async function calculateResult() {
     const answers = {};
     document.querySelectorAll('input:checked').forEach(i => answers[i.name] = i.value);
     if (Object.keys(answers).length < 5) { alert('Please answer all 5 questions first!'); return; }
@@ -543,6 +595,9 @@
     const rc = document.getElementById('resultCard');
     rc.classList.add('show');
     rc.scrollIntoView({ behavior: 'smooth' });
+
+    // Send email with assessment results
+    await sendCareerAssessmentEmail(answers, { profile: top, ...p });
   }
 </script>
 </body>

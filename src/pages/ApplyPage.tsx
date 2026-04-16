@@ -2,9 +2,13 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import CashfreePayment from "@/components/CashfreePayment";
+import { useToast } from "@/hooks/use-toast";
+import { dataService } from "@/services/dataService";
 import { CheckCircle, GraduationCap, Users, BookOpen, Award, Building2, CreditCard, Shield, Clock, FileText, ArrowRight, ChevronRight, User, Mail, Phone, Calendar, DollarSign, Lock } from "lucide-react";
 
 const ApplyPage = () => {
+    const { toast } = useToast();
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState({
         // Personal Information
@@ -121,21 +125,50 @@ const ApplyPage = () => {
         e.preventDefault();
         setIsSubmitting(true);
         
-        // Simulate form submission
-        setTimeout(() => {
-            setIsSubmitting(false);
+        try {
+            // Save application data using dataService
+            const applicationData = {
+                name: `${formData.firstName} ${formData.lastName}`,
+                email: formData.email,
+                phone: formData.phone,
+                education: formData.lastQualification,
+                course: formData.selectedCourse,
+                destination: formData.country,
+                message: formData.message,
+                subject: "New Application Submission",
+                formData: formData // Include full form data for reference
+            };
+
+            // Save as both apply form and contact form
+            await Promise.all([
+                dataService.saveApplyForm(applicationData),
+                dataService.saveContactForm(applicationData)
+            ]);
+            
             setCurrentStep(5); // Move to payment step
-        }, 2000);
+            
+            toast({
+                title: "Application Submitted!",
+                description: "Your application has been received and will be reviewed shortly.",
+            });
+        } catch (error) {
+            toast({
+                title: "Error",
+                description: "Failed to submit application. Please try again.",
+                variant: "destructive"
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
-    const handlePayment = async () => {
-        setIsSubmitting(true);
-        
-        // Simulate payment processing
-        setTimeout(() => {
-            setIsSubmitting(false);
-            setCurrentStep(6); // Move to confirmation
-        }, 3000);
+    const handlePaymentSuccess = () => {
+        setCurrentStep(6); // Move to confirmation
+    };
+
+    const handlePaymentFailure = (error: string) => {
+        console.error('Payment failed:', error);
+        // Handle payment failure (show message, etc.)
     };
 
     const isStepValid = () => {
@@ -594,62 +627,12 @@ const ApplyPage = () => {
                             </div>
                             <div className="bg-white rounded-2xl p-8 shadow-lg border border-slate-200">
                                 <h4 className="font-bold text-xl text-slate-900 mb-6">Payment Details</h4>
-                                <div className="space-y-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">Card Number</label>
-                                        <input
-                                            type="text"
-                                            placeholder="1234 5678 9012"
-                                            className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300"
-                                        />
-                                    </div>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-2">Expiry Date</label>
-                                            <input
-                                                type="text"
-                                                placeholder="MM/YY"
-                                                className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-2">CVV</label>
-                                            <input
-                                                type="text"
-                                                placeholder="123"
-                                                className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">Cardholder Name</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Name on card"
-                                            className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="mt-6">
-                                    <Button
-                                        onClick={handlePayment}
-                                        disabled={isSubmitting}
-                                        className="w-full bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-600 hover:via-green-700 hover:to-green-800 text-white shadow-2xl hover:shadow-green-500/25 px-8 py-4 text-lg font-bold rounded-full transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-                                    >
-                                        {isSubmitting ? (
-                                            <>
-                                                <Clock className="w-5 h-5 mr-2 animate-spin" />
-                                                Processing Payment...
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Lock className="w-5 h-5 mr-2" />
-                                                Pay â‚¹25,000 Now
-                                                <ArrowRight className="w-5 h-5 ml-2" />
-                                            </>
-                                        )}
-                                    </Button>
-                                </div>
+                                <CashfreePayment
+                                    formData={formData}
+                                    onSuccess={handlePaymentSuccess}
+                                    onFailure={handlePaymentFailure}
+                                    amount={25000}
+                                />
                             </div>
                         </div>
                     </div>
@@ -704,7 +687,7 @@ const ApplyPage = () => {
                                     Print Application
                                 </Button>
                                 <Button
-                                    onClick={() => window.location.href = '/admission'}
+                                    onClick={() => window.location.href = '/apply'}
                                     className="flex-1 bg-gradient-to-r from-slate-500 via-slate-600 to-slate-700 hover:from-slate-600 hover:via-slate-700 hover:to-slate-800 text-white shadow-2xl hover:shadow-slate-500/25 px-6 py-3 text-lg font-bold rounded-full transition-all duration-300"
                                 >
                                     <GraduationCap className="w-5 h-5 mr-2" />

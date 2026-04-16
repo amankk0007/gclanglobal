@@ -2,9 +2,12 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { dataService } from "@/services/dataService";
 import { CheckCircle, GraduationCap, Users, BookOpen, Award, Building2, CreditCard, Shield, Clock } from "lucide-react";
 
 const AdmissionPage = () => {
+    const { toast } = useToast();
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -69,11 +72,40 @@ const AdmissionPage = () => {
         e.preventDefault();
         setIsSubmitting(true);
         
-        // Simulate form submission
-        setTimeout(() => {
-            setIsSubmitting(false);
+        try {
+            // Save admission data using dataService
+            const admissionData = {
+                name: `${formData.firstName} ${formData.lastName}`,
+                email: formData.email,
+                phone: formData.phone,
+                education: formData.education,
+                course: formData.course,
+                destination: "Lamrin Tech Skills University",
+                message: formData.message,
+                subject: "New Admission Form Submission"
+            };
+
+            // Save as both admission form and contact form
+            await Promise.all([
+                dataService.saveAdmissionForm(admissionData),
+                dataService.saveContactForm(admissionData)
+            ]);
+            
             setIsSubmitted(true);
-        }, 2000);
+            
+            toast({
+                title: "Admission Form Submitted!",
+                description: "Your admission request has been received and will be reviewed shortly.",
+            });
+        } catch (error) {
+            toast({
+                title: "Error",
+                description: "Failed to submit admission form. Please try again.",
+                variant: "destructive"
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleInputChange = (e: any) => {

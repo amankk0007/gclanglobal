@@ -35,12 +35,11 @@ const LeadForm = () => {
         subject: "Consultation Inquiry"
       };
 
-      // Save as both lead and contact form
-      dataService.saveLead(leadData);
-      dataService.saveContactForm(leadData);
-      
-      // Simulate API delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Save as both lead and contact form (now async with email sending)
+      await Promise.all([
+        dataService.saveLead(leadData),
+        dataService.saveContactForm(leadData)
+      ]);
       
       setIsSubmitted(true);
       toast({
