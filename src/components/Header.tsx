@@ -66,7 +66,7 @@ const Header = ({ onOpenModal }: HeaderProps) => {
             <div className="flex items-center gap-3">
               <a href="https://www.facebook.com/share/1DmTjjBvXC/?mibextid=wwXIfr" className="hover:text-primary transition-colors"><Facebook className="w-3.5 h-3.5" /></a>
               <a href="https://www.instagram.com/globalpasscareer?igsh=MW41bmUwYm94MWNzMg==" className="hover:text-primary transition-colors"><Instagram className="w-3.5 h-3.5" /></a>
-              <a href="#" className="hover:text-primary transition-colors"><Linkedin className="w-3.5 h-3.5" /></a>
+              <a href="https://www.linkedin.com/company/global-pass-career-consultancy/?viewAsMember=true" className="hover:text-primary transition-colors"><Linkedin className="w-3.5 h-3.5" /></a>
             </div>
           </div>
           {/* Mobile: WhatsApp quick link */}
