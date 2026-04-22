@@ -1,14 +1,16 @@
-﻿import { useState } from "react";
+﻿import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import CashfreePayment from "@/components/CashfreePayment";
+import CashfreePayment from "../components/CashfreePayment";
 import { useToast } from "@/hooks/use-toast";
 import { dataService } from "@/services/dataService";
 import { CheckCircle, GraduationCap, Users, BookOpen, Award, Building2, CreditCard, Shield, Clock, FileText, ArrowRight, ChevronRight, User, Mail, Phone, Calendar, DollarSign, Lock } from "lucide-react";
 
 const ApplyPage = () => {
     const { toast } = useToast();
+    const [searchParams] = useSearchParams();
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState({
         // Personal Information
@@ -44,6 +46,20 @@ const ApplyPage = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [paymentStep, setPaymentStep] = useState(false);
+
+    // Handle payment success from URL parameters
+    useEffect(() => {
+        const paymentStatus = searchParams.get('payment');
+        if (paymentStatus === 'success') {
+            setCurrentStep(6); // Move to confirmation step
+            toast({
+                title: "Payment Successful!",
+                description: "Your payment has been processed successfully.",
+            });
+            // Clean up URL
+            window.history.replaceState({}, '', '/apply');
+        }
+    }, [searchParams, toast]);
 
     const courses = [
         {
@@ -829,7 +845,7 @@ const ApplyPage = () => {
                                 </div>
                                 <Button
                                     type="button"
-                                    onClick={currentStep === 5 ? handlePayment : currentStep === 6 ? undefined : handleNext}
+                                    onClick={currentStep === 6 ? undefined : handleNext}
                                     disabled={!isStepValid() || isSubmitting}
                                     className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:from-blue-600 hover:via-blue-700 hover:to-blue-800 text-white shadow-2xl hover:shadow-blue-500/25 px-8 py-4 text-lg font-bold rounded-full transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >

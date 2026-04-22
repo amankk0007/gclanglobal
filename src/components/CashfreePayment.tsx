@@ -99,7 +99,7 @@ const CashfreePayment = ({
 
     const paymentOptions = {
       paymentSessionId: sessionData.paymentSessionId,
-      returnUrl: `${window.location.origin}/payment-success`,
+      returnUrl: `${window.location.origin}/apply?payment=success`,
       redirectTarget: '_self',
       paymentMode: 'all',
       theme: {
@@ -125,7 +125,15 @@ const CashfreePayment = ({
     });
 
     // Open payment modal
-    window.Cashfree.show(paymentOptions);
+    try {
+      window.Cashfree.show(paymentOptions);
+    } catch (error) {
+      console.error('Error opening payment modal:', error);
+      setError('Failed to open payment gateway');
+      setPaymentStatus('error');
+      setIsLoading(false);
+      onFailure('Failed to open payment gateway');
+    }
   };
 
   const handlePayment = () => {
