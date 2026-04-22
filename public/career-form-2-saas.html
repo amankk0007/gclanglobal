@@ -394,11 +394,176 @@
     font-weight: 600;
   }
 
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+  }
+
+  .modal-overlay.show {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .modal-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .modal-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--blue), var(--purple));
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 16px;
+    box-shadow: 0 8px 24px rgba(37,99,235,0.25);
+  }
+
+  .modal-header h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .modal-header p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: all 0.2s ease;
+    background: var(--white);
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  .form-group input::placeholder {
+    color: var(--muted);
+    opacity: 0.7;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .btn-secondary {
+    flex: 1;
+    padding: 14px 20px;
+    background: var(--bg);
+    color: var(--muted);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    background: var(--border);
+    color: var(--text);
+  }
+
+  .btn-primary {
+    flex: 2;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, var(--blue), var(--purple));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(37, 99, 235, 0.4);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
   @media (max-width: 520px) {
     .options-grid { grid-template-columns: 1fr; padding-left: 0; }
     .header-card { padding: 32px 24px; }
     .form-card { padding: 28px 20px; }
     .stats-row { flex-wrap: wrap; gap: 12px; }
+    .modal-card { padding: 28px 20px; }
+    .modal-overlay { padding: 16px; }
   }
 </style>
 </head>
@@ -499,6 +664,38 @@
     <button class="btn-submit" onclick="calculateResult()">🎯 Get My Career Match</button>
   </div>
 
+  <!-- User Details Modal -->
+  <div class="modal-overlay" id="userDetailsModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-icon">📝</div>
+        <h3>Get Your Personalized Results</h3>
+        <p>Enter your details to receive your complete career assessment report</p>
+      </div>
+      <form id="userDetailsForm">
+        <div class="form-group">
+          <label for="userName">Full Name *</label>
+          <input type="text" id="userName" name="userName" required placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+          <label for="userEmail">Email Address *</label>
+          <input type="email" id="userEmail" name="userEmail" required placeholder="your.email@example.com">
+        </div>
+        <div class="form-group">
+          <label for="userPhone">Phone Number *</label>
+          <input type="tel" id="userPhone" name="userPhone" required placeholder="+91 98765 43210">
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" onclick="closeUserDetailsModal()">Cancel</button>
+          <button type="submit" class="btn-primary" id="submitUserDetails">
+            <span class="btn-text">Get My Results</span>
+            <span class="btn-loader" style="display: none;">⏳ Processing...</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div class="result-card" id="resultCard">
     <div class="result-icon" id="resultIcon">🚀</div>
     <div class="result-label">Your Career Match</div>
@@ -509,6 +706,10 @@
 
 </div>
 <script>
+  // Global variables to store assessment data
+  let currentAnswers = {};
+  let currentResult = null;
+
   document.querySelectorAll('input[type="radio"]').forEach(input => {
     input.addEventListener('change', () => {
       const count = new Set([...document.querySelectorAll('input:checked')].map(i=>i.name)).size;
@@ -517,13 +718,69 @@
     });
   });
 
-  async function sendCareerAssessmentEmail(answers, result) {
+  // User details form submission
+  document.getElementById('userDetailsForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const submitBtn = document.getElementById('submitUserDetails');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoader = submitBtn.querySelector('.btn-loader');
+    
+    // Get user details
+    const userDetails = {
+      name: document.getElementById('userName').value,
+      email: document.getElementById('userEmail').value,
+      phone: document.getElementById('userPhone').value
+    };
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    btnText.style.display = 'none';
+    btnLoader.style.display = 'inline';
+    
+    try {
+      // Send email with assessment results and user details
+      await sendCareerAssessmentEmail(currentAnswers, currentResult, userDetails);
+      
+      // Close modal and show results
+      closeUserDetailsModal();
+      showResults();
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Something went wrong. Please try again.');
+    } finally {
+      // Reset button state
+      submitBtn.disabled = false;
+      btnText.style.display = 'inline';
+      btnLoader.style.display = 'none';
+    }
+  });
+
+  function showUserDetailsModal() {
+    document.getElementById('userDetailsModal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeUserDetailsModal() {
+    document.getElementById('userDetailsModal').classList.remove('show');
+    document.body.style.overflow = 'auto';
+  }
+
+  function showResults() {
+    const rc = document.getElementById('resultCard');
+    rc.classList.add('show');
+    rc.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  async function sendCareerAssessmentEmail(answers, result, userDetails) {
     try {
       // Store in localStorage for record keeping
-      storeCareerAssessment(answers, result);
+      storeCareerAssessment(answers, result, userDetails);
       
       // Prepare data for email service
       const formData = {
+        ...userDetails,
         profile: result.profile,
         title: result.title,
         description: result.description,
@@ -549,19 +806,20 @@
       } else {
         console.error('Failed to send career assessment email');
         // Fallback: store in localStorage
-        storeCareerAssessment(answers, result);
+        storeCareerAssessment(answers, result, userDetails);
       }
       
     } catch (error) {
       console.error('Error sending career assessment email:', error);
       // Fallback: store in localStorage
-      storeCareerAssessment(answers, result);
+      storeCareerAssessment(answers, result, userDetails);
     }
   }
 
-  function storeCareerAssessment(answers, result) {
+  function storeCareerAssessment(answers, result, userDetails) {
     const assessments = JSON.parse(localStorage.getItem('career_assessments') || '[]');
     assessments.push({
+      userDetails,
       answers,
       result,
       timestamp: new Date().toISOString()
@@ -572,8 +830,12 @@
   async function calculateResult() {
     const answers = {};
     document.querySelectorAll('input:checked').forEach(i => answers[i.name] = i.value);
-    if (Object.keys(answers).length < 5) { alert('Please answer all 5 questions first!'); return; }
+    if (Object.keys(answers).length < 5) { 
+      alert('Please answer all 5 questions first!'); 
+      return; 
+    }
 
+    // Calculate results
     const scores = { creative: 0, analytical: 0, people: 0, technical: 0 };
     const direct = { creative: 'creative', analytical: 'analytical', people: 'people', technical: 'technical' };
     ['q1','q2'].forEach(q => { if(direct[answers[q]]) scores[direct[answers[q]]] += 2; });
@@ -587,17 +849,21 @@
       people: { icon: '🤝', title: 'Human-First Leader', desc: 'You have an exceptional ability to connect, lead, and care for others. Your empathy and communication skills are your greatest career asset.', careers: ['Clinical Psychologist','HR Manager','Healthcare Pro','Social Worker'] },
       technical: { icon: '⚙️', title: 'Technical Expert', desc: 'You turn problems into solutions with your hands and mind. Complex systems, machines, and precise craftsmanship are where you shine.', careers: ['Mechanical Engineer','Architect','IT Specialist','Robotics Engineer'] }
     };
+    
     const p = profiles[top];
+    
+    // Store data globally for later use
+    currentAnswers = answers;
+    currentResult = { profile: top, ...p };
+    
+    // Update result display (but don't show yet)
     document.getElementById('resultIcon').textContent = p.icon;
     document.getElementById('resultTitle').textContent = p.title;
     document.getElementById('resultDesc').textContent = p.desc;
     document.getElementById('resultCareers').innerHTML = p.careers.map(c=>`<span class="career-pill">${c}</span>`).join('');
-    const rc = document.getElementById('resultCard');
-    rc.classList.add('show');
-    rc.scrollIntoView({ behavior: 'smooth' });
-
-    // Send email with assessment results
-    await sendCareerAssessmentEmail(answers, { profile: top, ...p });
+    
+    // Show user details modal instead of results
+    showUserDetailsModal();
   }
 </script>
 </body>

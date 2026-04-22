@@ -143,6 +143,9 @@ function generateEmailContent(formData, formType) {
         case 'career':
             formDetails = `
                 <h3>Career Assessment Details</h3>
+                <p><strong>Name:</strong> ${formData.name}</p>
+                <p><strong>Email:</strong> ${formData.email}</p>
+                <p><strong>Phone:</strong> ${formData.phone}</p>
                 <p><strong>Profile Type:</strong> ${formData.profile}</p>
                 <p><strong>Career Title:</strong> ${formData.title}</p>
                 <p><strong>Description:</strong> ${formData.description}</p>

@@ -36,6 +36,7 @@ try {
     $subject = 'New ' . ucfirst($formType) . ' Form Submission - Global Pass Career';
     
     // Send to admin emails
+    $successCount = 0;
     foreach ($adminEmails as $email) {
         $emailData = [
             'from' => 'noreply@globalpasscareer.com',
@@ -52,14 +53,24 @@ try {
             'Content-Type: application/json',
             'Authorization: Bearer ' . $apiKey
         ]);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
         
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curlError = curl_error($ch);
         curl_close($ch);
         
-        if ($httpCode !== 200) {
-            error_log('Failed to send email to ' . $email . ': ' . $response);
+        if ($httpCode === 200) {
+            $successCount++;
+            error_log('Successfully sent email to ' . $email);
+        } else {
+            error_log('Failed to send email to ' . $email . '. HTTP Code: ' . $httpCode . '. Response: ' . $response . '. CURL Error: ' . $curlError);
         }
+    }
+    
+    if ($successCount === 0) {
+        throw new Exception('Failed to send any emails. Check error logs for details.');
     }
     
     // If user provided email, send confirmation
@@ -141,6 +152,9 @@ function generateEmailContent($formData, $formType) {
         case 'career':
             $formDetails = '
                 <h3>Career Assessment Details</h3>
+                <p><strong>Name:</strong> ' . htmlspecialchars($formData['name']) . '</p>
+                <p><strong>Email:</strong> ' . htmlspecialchars($formData['email']) . '</p>
+                <p><strong>Phone:</strong> ' . htmlspecialchars($formData['phone']) . '</p>
                 <p><strong>Profile Type:</strong> ' . htmlspecialchars($formData['profile']) . '</p>
                 <p><strong>Career Title:</strong> ' . htmlspecialchars($formData['title']) . '</p>
                 <p><strong>Description:</strong> ' . htmlspecialchars($formData['description']) . '</p>
