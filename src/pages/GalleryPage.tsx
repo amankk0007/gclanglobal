@@ -28,7 +28,7 @@ const GalleryPage = () => {
     
     // Add real-time sync - listen for storage changes
     const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === 'globalpass_gallery_images') {
+      if (e.key === 'gallery_images') {
         loadGallery();
       }
     };

@@ -60,11 +60,11 @@ export interface GalleryImage {
 
 class DataService {
   private readonly STORAGE_KEYS = {
-    CONTACT_FORMS: 'globalpass_contact_forms',
-    APPLY_FORMS: 'globalpass_apply_forms',
-    ADMISSION_FORMS: 'globalpass_admission_forms',
-    GALLERY_IMAGES: 'globalpass_gallery_images',
-    LEADS: 'globalpass_leads'
+    CONTACT_FORMS: 'contact_forms',
+    APPLY_FORMS: 'apply_forms',
+    ADMISSION_FORMS: 'admission_forms',
+    GALLERY_IMAGES: 'gallery_images',
+    LEADS: 'leads'
   };
 
   private readonly EMAIL_RECIPIENTS = [
@@ -701,7 +701,7 @@ class DataService {
       localStorage.setItem(this.STORAGE_KEYS.GALLERY_IMAGES, JSON.stringify(images));
       // Dispatch storage event for real-time sync
       window.dispatchEvent(new StorageEvent('storage', {
-        key: this.STORAGE_KEYS.GALLERY_IMAGES,
+        key: 'gallery_images',
         newValue: JSON.stringify(images)
       }));
     }

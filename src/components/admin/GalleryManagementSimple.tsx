@@ -42,7 +42,7 @@ const GalleryManagementSimple = () => {
     
     // Add real-time sync - listen for storage changes
     const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === 'globalpass_gallery_images') {
+      if (e.key === 'gallery_images') {
         loadImages();
       }
     };
@@ -300,7 +300,7 @@ const GalleryManagementSimple = () => {
         <div className="flex space-x-2">
           <Button variant="outline" onClick={() => {
             // Force refresh by clearing cache and reloading
-            localStorage.removeItem('globalpass_gallery_images');
+            localStorage.removeItem('gallery_images');
             loadImages();
             toast({
               title: "Gallery Refreshed",
