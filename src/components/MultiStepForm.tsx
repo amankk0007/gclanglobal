@@ -89,8 +89,14 @@ const MultiStepForm = ({ embedded = false }: { embedded?: boolean }) => {
         setIsSubmitting(true);
         
         try {
-            // Save to backend (localStorage)
-            const applicationData = {
+            // Prepare data for email API
+            const emailData = embedded ? {
+                name: formData.fullName,
+                email: formData.email,
+                phone: formData.phone,
+                subject: "Consultation Booking - Global Pass Career",
+                message: formData.additionalInfo || "Consultation booking from website"
+            } : {
                 name: formData.fullName,
                 email: formData.email,
                 phone: formData.phone,
@@ -107,30 +113,98 @@ const MultiStepForm = ({ embedded = false }: { embedded?: boolean }) => {
                 courseCategory: formData.courseCategory
             };
 
-            // Save as contact form if embedded, otherwise as admission form
-            if (embedded) {
-                await dataService.saveContactForm({
+            const formType = embedded ? 'contact' : 'admission';
+
+            // Send email using API
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    formData: emailData,
+                    formType: formType
+                })
+            });
+
+            if (response.ok) {
+                // Also save to localStorage as backup
+                if (embedded) {
+                    await dataService.saveContactForm({
+                        name: formData.fullName,
+                        email: formData.email,
+                        phone: formData.phone,
+                        subject: "Consultation Booking - Global Pass Career",
+                        message: formData.additionalInfo || "Consultation booking from website"
+                    });
+                } else {
+                    await dataService.saveAdmissionForm({
+                        ...emailData,
+                        education: emailData.education || "",
+                        course: emailData.course || "",
+                        destination: emailData.destination || "",
+                        message: emailData.message || ""
+                    });
+                }
+                
+                setIsSubmitted(true);
+                toast({
+                    title: embedded ? "Consultation Booked!" : "Application Received!",
+                    description: embedded ? "We'll get back to you within 24 hours." : "Our counselors will review your profile and contact you shortly.",
+                });
+            } else {
+                throw new Error('Failed to send email');
+            }
+        } catch (error) {
+            // Fallback to localStorage
+            try {
+                const applicationData = {
                     name: formData.fullName,
                     email: formData.email,
                     phone: formData.phone,
-                    subject: "Contact Form Submission - Global Pass Career",
-                    message: formData.additionalInfo || "Contact form submission from website"
+                    education: formData.qualification,
+                    course: formData.courseInterest,
+                    destination: formData.preferredCountries.join(", "),
+                    message: formData.additionalInfo,
+                    fatherName: formData.fatherName,
+                    nationality: formData.nationality,
+                    schoolName: formData.schoolName,
+                    board: formData.board,
+                    admissionRequiredIn: formData.admissionRequiredIn,
+                    preferredCountries: formData.preferredCountries,
+                    courseCategory: formData.courseCategory
+                };
+
+                if (embedded) {
+                    await dataService.saveContactForm({
+                        name: formData.fullName,
+                        email: formData.email,
+                        phone: formData.phone,
+                        subject: "Consultation Booking - Global Pass Career",
+                        message: formData.additionalInfo || "Consultation booking from website"
+                    });
+                } else {
+                    await dataService.saveAdmissionForm({
+                        ...applicationData,
+                        education: applicationData.education || "",
+                        course: applicationData.course || "",
+                        destination: applicationData.destination || "",
+                        message: applicationData.message || ""
+                    });
+                }
+                
+                setIsSubmitted(true);
+                toast({
+                    title: embedded ? "Consultation Booked!" : "Application Received!",
+                    description: embedded ? "We'll get back to you within 24 hours." : "Our counselors will review your profile and contact you shortly.",
                 });
-            } else {
-                await dataService.saveAdmissionForm(applicationData);
+            } catch (fallbackError) {
+                toast({
+                    title: "Error",
+                    description: "Failed to submit application. Please try again.",
+                    variant: "destructive"
+                });
             }
-            
-            setIsSubmitted(true);
-            toast({
-                title: embedded ? "Message Sent!" : "Application Received!",
-                description: embedded ? "We'll get back to you within 24 hours." : "Our counselors will review your profile and contact you shortly.",
-            });
-        } catch (error) {
-            toast({
-                title: "Error",
-                description: "Failed to submit application. Please try again.",
-                variant: "destructive"
-            });
         } finally {
             setIsSubmitting(false);
         }
