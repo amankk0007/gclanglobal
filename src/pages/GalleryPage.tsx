@@ -25,6 +25,19 @@ const GalleryPage = () => {
       setFilteredItems(items);
     };
     loadGallery();
+    
+    // Add real-time sync - listen for storage changes
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'globalpass_gallery_images') {
+        loadGallery();
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
   useEffect(() => {

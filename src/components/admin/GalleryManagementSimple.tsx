@@ -39,6 +39,19 @@ const GalleryManagementSimple = () => {
 
   useEffect(() => {
     loadImages();
+    
+    // Add real-time sync - listen for storage changes
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'globalpass_gallery_images') {
+        loadImages();
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
   useEffect(() => {
@@ -286,8 +299,13 @@ const GalleryManagementSimple = () => {
         <h2 className="text-2xl font-bold">Gallery Management</h2>
         <div className="flex space-x-2">
           <Button variant="outline" onClick={() => {
+            // Force refresh by clearing cache and reloading
             localStorage.removeItem('globalpass_gallery_images');
-            window.location.reload();
+            loadImages();
+            toast({
+              title: "Gallery Refreshed",
+              description: "Gallery images have been refreshed successfully",
+            });
           }}>
             <Plus className="w-4 h-4 mr-2" />
             Refresh Images

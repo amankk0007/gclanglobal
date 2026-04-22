@@ -196,6 +196,11 @@ class DataService {
     };
     images.push(newImage);
     localStorage.setItem(this.STORAGE_KEYS.GALLERY_IMAGES, JSON.stringify(images));
+    // Dispatch storage event for real-time sync
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: this.STORAGE_KEYS.GALLERY_IMAGES,
+      newValue: JSON.stringify(images)
+    }));
     return newImage;
   }
 
@@ -694,6 +699,11 @@ class DataService {
     if (index !== -1) {
       images[index] = { ...images[index], ...imageData };
       localStorage.setItem(this.STORAGE_KEYS.GALLERY_IMAGES, JSON.stringify(images));
+      // Dispatch storage event for real-time sync
+      window.dispatchEvent(new StorageEvent('storage', {
+        key: this.STORAGE_KEYS.GALLERY_IMAGES,
+        newValue: JSON.stringify(images)
+      }));
     }
   }
 
@@ -701,6 +711,11 @@ class DataService {
     const images = this.getGalleryImages();
     const filtered = images.filter(img => img.id !== id);
     localStorage.setItem(this.STORAGE_KEYS.GALLERY_IMAGES, JSON.stringify(filtered));
+    // Dispatch storage event for real-time sync
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: this.STORAGE_KEYS.GALLERY_IMAGES,
+      newValue: JSON.stringify(filtered)
+    }));
   }
 
   // Lead Management (for existing leads)
