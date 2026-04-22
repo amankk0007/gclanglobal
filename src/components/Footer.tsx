@@ -1,4 +1,4 @@
-import { Phone, MapPin, Facebook, Linkedin, Instagram, Mail, ArrowRight } from "lucide-react";
+import { Phone, MapPin, Facebook, Linkedin, Instagram, Youtube, Mail, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ const Footer = () => {
     { icon: Facebook, href: "https://www.facebook.com/GlobalPassCareerConsultancy", label: "Facebook" },
     { icon: Linkedin, href: "https://www.linkedin.com/company/global-pass-career-consultancy/?viewAsMember=true", label: "LinkedIn" },
     { icon: Instagram, href: "https://www.instagram.com/globalpasscareer/", label: "Instagram" },
+    { icon: Youtube, href: "https://www.youtube.com/@GlobalPassCareers", label: "YouTube" },
   ];
 
   const services = [
