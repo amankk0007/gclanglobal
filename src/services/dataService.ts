@@ -209,7 +209,7 @@ class DataService {
           title: "Bharat Vikas Parishad Award",
           description: "Bharat Vikas Parishad Award ceremony for excellence in education",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-newspaper.jpg",
+          imageUrl: "/gallery/gl-newspaper.jpg",
           timestamp: new Date("2024-03-31").toISOString(),
           isActive: true
         },
@@ -218,7 +218,7 @@ class DataService {
           title: "Rayat-Bahra University Partnership",
           description: "Partnership ceremony with Rayat-Bahra University",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-rayat-bahra.jpg",
+          imageUrl: "/gallery/gl-rayat-bahra.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -227,7 +227,7 @@ class DataService {
           title: "Evergreen College Global Tie-up",
           description: "Global partnership with Evergreen College",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-evergreen.jpg",
+          imageUrl: "/gallery/gl-evergreen.jpg",
           timestamp: new Date("2023-01-01").toISOString(),
           isActive: true
         },
@@ -236,7 +236,7 @@ class DataService {
           title: "Student Success: Key Handover",
           description: "Student receiving success key for international admission",
           category: "students",
-          imageUrl: "/src/assets/gallery/gl-key-handover.jpg",
+          imageUrl: "/gallery/gl-key-handover.jpg",
           timestamp: new Date("2023-12-01").toISOString(),
           isActive: true
         },
@@ -245,7 +245,7 @@ class DataService {
           title: "Toronto Cup 2023 Celebration",
           description: "Celebrating Toronto Cup 2023 victory",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-toronto-cup-group.jpg",
+          imageUrl: "/gallery/gl-toronto-cup-group.jpg",
           timestamp: new Date("2023-01-01").toISOString(),
           isActive: true
         },
@@ -254,7 +254,7 @@ class DataService {
           title: "Social Recognition Coverage",
           description: "Media coverage of social recognition",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-newspaper-2.jpg",
+          imageUrl: "/gallery/gl-newspaper-2.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -263,7 +263,7 @@ class DataService {
           title: "Meeting with Premier Doug Ford",
           description: "Meeting with Ontario Premier Doug Ford",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-doug-ford.jpg",
+          imageUrl: "/gallery/gl-doug-ford.jpg",
           timestamp: new Date("2023-06-01").toISOString(),
           isActive: true
         },
@@ -272,7 +272,7 @@ class DataService {
           title: "Community Award Ceremony",
           description: "Community award ceremony for educational excellence",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-gazebo-award.jpg",
+          imageUrl: "/gallery/gl-gazebo-award.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -281,7 +281,7 @@ class DataService {
           title: "Meeting with Mayor Patrick Brown",
           description: "Meeting with Brampton Mayor Patrick Brown and Councillor Rod Power",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-three-men.jpg",
+          imageUrl: "/gallery/gl-three-men.jpg",
           timestamp: new Date("2023-01-01").toISOString(),
           isActive: true
         },
@@ -290,7 +290,7 @@ class DataService {
           title: "Excellence in Service Award",
           description: "Award for excellence in educational services",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-woman-award.jpg",
+          imageUrl: "/gallery/gl-woman-award.jpg",
           timestamp: new Date("2023-01-01").toISOString(),
           isActive: true
         },
@@ -299,7 +299,7 @@ class DataService {
           title: "Singh Grafix Community Event",
           description: "Community event with Singh Grafix team",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-singh-grafix.jpg",
+          imageUrl: "/gallery/gl-singh-grafix.jpg",
           timestamp: new Date("2023-01-01").toISOString(),
           isActive: true
         },
@@ -308,7 +308,7 @@ class DataService {
           title: "Press Conference on Indo-Pacific Strategy",
           description: "Press conference with MP George Chahal in Amritsar",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-press-conf.jpg",
+          imageUrl: "/gallery/gl-press-conf.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -317,7 +317,7 @@ class DataService {
           title: "MOU with SG Encon Private Limited",
           description: "Memorandum of Understanding signing with SG Encon",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-business-meeting.jpg",
+          imageUrl: "/gallery/gl-business-meeting.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -326,7 +326,7 @@ class DataService {
           title: "Visit to Golden Temple",
           description: "Blessed visit to Golden Temple Amritsar",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-golden-temple.jpg",
+          imageUrl: "/gallery/gl-golden-temple.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -335,7 +335,7 @@ class DataService {
           title: "Meeting with Graham McGregor MPP",
           description: "Meeting with Brampton MPP Graham McGregor",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-outdoor-duo.jpg",
+          imageUrl: "/gallery/gl-outdoor-duo.jpg",
           timestamp: new Date("2023-01-01").toISOString(),
           isActive: true
         },
@@ -344,7 +344,7 @@ class DataService {
           title: "Annual Gala Event",
           description: "Annual gala event celebration in Toronto",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-gala-event.jpg",
+          imageUrl: "/gallery/gl-gala-event.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -353,7 +353,7 @@ class DataService {
           title: "Meeting with PM Justin Trudeau",
           description: "Meeting with Canadian Prime Minister Justin Trudeau",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-trudeau.jpg",
+          imageUrl: "/gallery/gl-trudeau.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -362,7 +362,7 @@ class DataService {
           title: "Guest at Adesh Hospital and College",
           description: "Guest visit at Adesh Hospital and College",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-adesh-hospital.jpg",
+          imageUrl: "/gallery/gl-adesh-hospital.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -371,7 +371,7 @@ class DataService {
           title: "Community Gala Evening",
           description: "Community gala evening celebration",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-gala-trio-2.jpg",
+          imageUrl: "/gallery/gl-gala-trio-2.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -380,7 +380,7 @@ class DataService {
           title: "Educational Seminar",
           description: "Educational seminar for students",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-seminar-group.jpg",
+          imageUrl: "/gallery/gl-seminar-group.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -389,7 +389,7 @@ class DataService {
           title: "Meeting with Canada's Former Defence Minister",
           description: "Meeting with former Canadian Defence Minister",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-event-duo.jpg",
+          imageUrl: "/gallery/gl-event-duo.jpg",
           timestamp: new Date("2023-01-01").toISOString(),
           isActive: true
         },
@@ -398,7 +398,7 @@ class DataService {
           title: "Meeting with Amarjot Sandhu MPP",
           description: "Meeting with Brampton MPP Amarjot Sandhu",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-future-depot.jpg",
+          imageUrl: "/gallery/gl-future-depot.jpg",
           timestamp: new Date("2023-01-01").toISOString(),
           isActive: true
         },
@@ -407,7 +407,7 @@ class DataService {
           title: "Community Education Seminar",
           description: "Community education seminar event",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-seminar-group-2.jpg",
+          imageUrl: "/gallery/gl-seminar-group-2.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -416,7 +416,7 @@ class DataService {
           title: "Community Outreach Event",
           description: "Community outreach program event",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-future-depot-2.jpg",
+          imageUrl: "/gallery/gl-future-depot-2.jpg",
           timestamp: new Date("2023-01-01").toISOString(),
           isActive: true
         },
@@ -425,7 +425,7 @@ class DataService {
           title: "Christmas Dinner in Ottawa",
           description: "Christmas dinner with MP Randeep Sarai in Ottawa",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-gala-trio-4.jpg",
+          imageUrl: "/gallery/gl-gala-trio-4.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -434,7 +434,7 @@ class DataService {
           title: "Networking Event",
           description: "Professional networking event in Toronto",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-event-couple.jpg",
+          imageUrl: "/gallery/gl-event-couple.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -443,7 +443,7 @@ class DataService {
           title: "Mississauga-Malton Community Event",
           description: "Community event in Mississauga-Malton",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-mississauga-malton.jpg",
+          imageUrl: "/gallery/gl-mississauga-malton.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -452,7 +452,7 @@ class DataService {
           title: "Community Event with Premier Ford",
           description: "Community event with Premier Doug Ford",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-doug-ford-2.jpg",
+          imageUrl: "/gallery/gl-doug-ford-2.jpg",
           timestamp: new Date("2023-01-01").toISOString(),
           isActive: true
         },
@@ -461,7 +461,7 @@ class DataService {
           title: "King Realty Excellence Award",
           description: "King Realty Excellence Award ceremony",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-king-realty-award.jpg",
+          imageUrl: "/gallery/gl-king-realty-award.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -470,7 +470,7 @@ class DataService {
           title: "Student Departure - Study Abroad",
           description: "Student departure for international studies",
           category: "students",
-          imageUrl: "/src/assets/gallery/gl-airport-student.jpg",
+          imageUrl: "/gallery/gl-airport-student.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -479,7 +479,7 @@ class DataService {
           title: "Welcoming Student at Toronto Airport",
           description: "Welcoming international student at Toronto Pearson Airport",
           category: "students",
-          imageUrl: "/src/assets/gallery/gl-airport-family-2.jpg",
+          imageUrl: "/gallery/gl-airport-family-2.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -488,7 +488,7 @@ class DataService {
           title: "Team Celebration Dinner",
           description: "Team celebration dinner event",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-restaurant-group.jpg",
+          imageUrl: "/gallery/gl-restaurant-group.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -497,7 +497,7 @@ class DataService {
           title: "Community Picnic Celebration",
           description: "Community picnic celebration event",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-picnic-celebration.jpg",
+          imageUrl: "/gallery/gl-picnic-celebration.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -506,7 +506,7 @@ class DataService {
           title: "Signature Moment with Garry Sir",
           description: "Autograph session with Garry Sir",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-garry-sir-signature.jpg",
+          imageUrl: "/gallery/gl-garry-sir-signature.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -515,7 +515,7 @@ class DataService {
           title: "Outdoor Community Picnic",
           description: "Outdoor community picnic celebration",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-picnic-celebration-2.jpg",
+          imageUrl: "/gallery/gl-picnic-celebration-2.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -524,7 +524,7 @@ class DataService {
           title: "Garry Sir Autograph Session",
           description: "Autograph session with Garry Sir",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-garry-sir-signature-2.jpg",
+          imageUrl: "/gallery/gl-garry-sir-signature-2.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -533,7 +533,7 @@ class DataService {
           title: "Formal Evening Reception",
           description: "Formal evening reception event",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-formal-quartet.jpg",
+          imageUrl: "/gallery/gl-formal-quartet.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -542,7 +542,7 @@ class DataService {
           title: "Community Advocacy Rally",
           description: "Community advocacy rally event",
           category: "events",
-          imageUrl: "/src/assets/gallery/gl-community-rally.jpg",
+          imageUrl: "/gallery/gl-community-rally.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -551,7 +551,7 @@ class DataService {
           title: "Group Key Handover",
           description: "Group key handover ceremony",
           category: "students",
-          imageUrl: "/src/assets/gallery/group-key.jpg",
+          imageUrl: "/gallery/group-key.jpg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -560,7 +560,7 @@ class DataService {
           title: "MoU Signed with IET Bhaddal College",
           description: "Memorandum of Understanding with IET Bhaddal College",
           category: "events",
-          imageUrl: "/src/assets/gallery/MoU signed with IET Bhaddal College.jpeg",
+          imageUrl: "/gallery/MoU signed with IET Bhaddal College.jpeg",
           timestamp: new Date("2026-01-01").toISOString(),
           isActive: true
         },
@@ -569,7 +569,7 @@ class DataService {
           title: "Congratulations to Winning Football Team",
           description: "Congratulations to winning football team",
           category: "events",
-          imageUrl: "/src/assets/gallery/Congratulations to the Winning Football Team.jpeg",
+          imageUrl: "/gallery/Congratulations to the Winning Football Team.jpeg",
           timestamp: new Date("2026-01-01").toISOString(),
           isActive: true
         },
@@ -578,7 +578,7 @@ class DataService {
           title: "Delegate from Australia",
           description: "Delegate meeting from Australia",
           category: "events",
-          imageUrl: "/src/assets/gallery/Delegate from Australia.jpeg",
+          imageUrl: "/gallery/Delegate from Australia.jpeg",
           timestamp: new Date("2026-01-01").toISOString(),
           isActive: true
         },
@@ -587,7 +587,7 @@ class DataService {
           title: "Placement Drive at SVIET",
           description: "Placement drive organized at SVIET College",
           category: "students",
-          imageUrl: "/src/assets/gallery/Placement drive at sviet.jpeg",
+          imageUrl: "/gallery/Placement drive at sviet.jpeg",
           timestamp: new Date("2026-01-01").toISOString(),
           isActive: true
         },
@@ -596,7 +596,7 @@ class DataService {
           title: "Job Placement Drive for International Students",
           description: "Job placement drive for international students in US-based IT company",
           category: "students",
-          imageUrl: "/src/assets/gallery/Job placement drive organized by Global Pass for international students in a US-based IT company.jpeg",
+          imageUrl: "/gallery/Job placement drive organized by Global Pass for international students in a US-based IT company.jpeg",
           timestamp: new Date("2026-01-01").toISOString(),
           isActive: true
         },
@@ -605,7 +605,7 @@ class DataService {
           title: "Industrial Visit at US Base Company Ambtel",
           description: "Industrial visit at US-based company Ambtel",
           category: "events",
-          imageUrl: "/src/assets/gallery/Industrial Visit at US base company Ambtel .jpeg",
+          imageUrl: "/gallery/Industrial Visit at US base company Ambtel .jpeg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -614,7 +614,7 @@ class DataService {
           title: "Guest of Honour at Football Tournament",
           description: "Guest of Honour at 63rd Principal Harbhajan Singh Football Tournament",
           category: "events",
-          imageUrl: "/src/assets/gallery/Guest of Honour at the 63rd Principal Harbhajan Singh Football Tournament, Garhshankar.jpeg",
+          imageUrl: "/gallery/Guest of Honour at the 63rd Principal Harbhajan Singh Football Tournament, Garhshankar.jpeg",
           timestamp: new Date("2024-01-01").toISOString(),
           isActive: true
         },
@@ -623,7 +623,7 @@ class DataService {
           title: "Tie up with Amity University Mohali",
           description: "Partnership with Amity University Mohali",
           category: "events",
-          imageUrl: "/src/assets/gallery/amity-university.jpeg",
+          imageUrl: "/gallery/amity-university.jpeg",
           timestamp: new Date("2026-01-01").toISOString(),
           isActive: true
         },
@@ -632,7 +632,7 @@ class DataService {
           title: "Tie-up with Root Country School",
           description: "Partnership with Root Country School, Baghi (Himachal Pradesh)",
           category: "events",
-          imageUrl: "/src/assets/gallery/roots-country.jpeg",
+          imageUrl: "/gallery/roots-country.jpeg",
           timestamp: new Date("2026-01-01").toISOString(),
           isActive: true
         },
@@ -641,7 +641,7 @@ class DataService {
           title: "Government Official from Africa",
           description: "Government official from Africa strengthening global partnerships",
           category: "events",
-          imageUrl: "/src/assets/gallery/Africa-Person.jpeg",
+          imageUrl: "/gallery/Africa-Person.jpeg",
           timestamp: new Date("2026-01-01").toISOString(),
           isActive: true
         },
@@ -650,7 +650,7 @@ class DataService {
           title: "Thrive Future Summit 2026",
           description: "Thrive Future Summit 2026 with global leaders",
           category: "events",
-          imageUrl: "/src/assets/gallery/Future-Summit.jpeg",
+          imageUrl: "/gallery/Future-Summit.jpeg",
           timestamp: new Date("2026-01-01").toISOString(),
           isActive: true
         },
@@ -659,7 +659,7 @@ class DataService {
           title: "Young Entrepreneur Mr. Yong",
           description: "Meeting with young entrepreneur Mr. Yong",
           category: "events",
-          imageUrl: "/src/assets/gallery/Mr-Yong.jpeg",
+          imageUrl: "/gallery/Mr-Yong.jpeg",
           timestamp: new Date("2026-01-01").toISOString(),
           isActive: true
         },
@@ -668,7 +668,7 @@ class DataService {
           title: "Universal Event Highlight",
           description: "Universal event highlight celebration",
           category: "events",
-          imageUrl: "/src/assets/gallery/universal.jpeg",
+          imageUrl: "/gallery/universal.jpeg",
           timestamp: new Date("2026-01-01").toISOString(),
           isActive: true
         },
@@ -677,7 +677,7 @@ class DataService {
           title: "News Coverage",
           description: "Media coverage of Global Pass activities",
           category: "events",
-          imageUrl: "/src/assets/gallery/news.jpeg",
+          imageUrl: "/gallery/news.jpeg",
           timestamp: new Date("2026-01-01").toISOString(),
           isActive: true
         }

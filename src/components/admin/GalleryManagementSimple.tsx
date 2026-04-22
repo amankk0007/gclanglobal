@@ -71,15 +71,18 @@ const GalleryManagementSimple = () => {
     const file = e.target.files?.[0];
     if (file) {
       setSelectedFile(file);
-      // Create a temporary URL for the uploaded image
-      const tempUrl = URL.createObjectURL(file);
       
-      // Update form data with the file info
-      setFormData(prev => ({
-        ...prev,
-        imageUrl: tempUrl,
-        title: prev.title || file.name.replace(/\.[^/.]+$/, ""), // Remove file extension
-      }));
+      // Convert file to base64 for permanent storage
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const base64 = event.target?.result as string;
+        setFormData(prev => ({
+          ...prev,
+          imageUrl: base64,
+          title: prev.title || file.name.replace(/\.[^/.]+$/, ""), // Remove file extension
+        }));
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -89,10 +92,11 @@ const GalleryManagementSimple = () => {
     try {
       let finalImageUrl = formData.imageUrl;
       
-      // If a file was uploaded, convert it to a data URL or handle it
-      if (selectedFile) {
-        // For now, create a data URL (in production, this would upload to server)
-        finalImageUrl = URL.createObjectURL(selectedFile);
+      // If a file was uploaded, the base64 is already in formData.imageUrl
+      // from handleFileChange function
+      if (selectedFile && finalImageUrl.startsWith('data:')) {
+        // Use the base64 string directly
+        finalImageUrl = formData.imageUrl;
       }
       
       if (editingImage) {

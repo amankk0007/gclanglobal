@@ -141,8 +141,20 @@ const ApplyPage = () => {
 
             // Save as both apply form and contact form
             await Promise.all([
-                dataService.saveApplyForm(applicationData),
-                dataService.saveContactForm(applicationData)
+                dataService.saveApplyForm({
+                    ...applicationData,
+                    education: applicationData.education || "",
+                    course: applicationData.course || "",
+                    destination: applicationData.destination || "",
+                    message: applicationData.message || ""
+                }),
+                dataService.saveContactForm({
+                    name: applicationData.name,
+                    email: applicationData.email,
+                    phone: applicationData.phone,
+                    subject: applicationData.subject || "New Application Submission",
+                    message: applicationData.message || "Application submitted via website"
+                })
             ]);
             
             setCurrentStep(5); // Move to payment step
