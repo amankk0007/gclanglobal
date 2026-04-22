@@ -789,8 +789,8 @@
         timestamp: new Date().toISOString()
       };
       
-      // Send email using Resend API via local server
-      const response = await fetch('/send-email-proxy.php', {
+      // Send email using Resend API via Vercel serverless function
+      const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

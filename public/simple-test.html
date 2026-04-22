@@ -86,7 +86,7 @@
                     message: document.getElementById('testMessage').value
                 };
                 
-                const response = await fetch('/send-email-proxy.php', {
+                const response = await fetch('/api/send-email', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -132,7 +132,7 @@
                     }
                 };
                 
-                const response = await fetch('/send-email-proxy.php', {
+                const response = await fetch('/api/send-email', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
