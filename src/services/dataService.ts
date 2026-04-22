@@ -207,8 +207,13 @@ class DataService {
   getGalleryImages(): GalleryImage[] {
     const data = localStorage.getItem(this.STORAGE_KEYS.GALLERY_IMAGES);
     if (!data) {
-      // Initialize with ALL frontend gallery images (54+ images)
-      const defaultImages: GalleryImage[] = [
+      // Only initialize with default images once, then preserve user changes
+      const initKey = this.STORAGE_KEYS.GALLERY_IMAGES + '_initialized';
+      const wasInitialized = localStorage.getItem(initKey);
+      
+      if (!wasInitialized) {
+        // First time initialization - create default images
+        const defaultImages: GalleryImage[] = [
         {
           id: this.generateId(),
           title: "Bharat Vikas Parishad Award",
@@ -687,8 +692,13 @@ class DataService {
           isActive: true
         }
       ];
-      localStorage.setItem(this.STORAGE_KEYS.GALLERY_IMAGES, JSON.stringify(defaultImages));
-      return defaultImages;
+        localStorage.setItem(this.STORAGE_KEYS.GALLERY_IMAGES, JSON.stringify(defaultImages));
+        localStorage.setItem(initKey, 'true'); // Mark as initialized
+        return defaultImages;
+      } else {
+        // Already initialized once but data is missing, return empty array
+        return [];
+      }
     }
     return JSON.parse(data);
   }
@@ -767,6 +777,14 @@ class DataService {
         break;
     }
     return JSON.stringify(data, null, 2);
+  }
+
+  // Reset gallery to default images
+  resetGalleryToDefault(): void {
+    const initKey = this.STORAGE_KEYS.GALLERY_IMAGES + '_initialized';
+    localStorage.removeItem(this.STORAGE_KEYS.GALLERY_IMAGES);
+    localStorage.removeItem(initKey);
+    // This will trigger re-initialization on next getGalleryImages() call
   }
 
   // Get statistics

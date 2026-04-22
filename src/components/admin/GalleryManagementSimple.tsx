@@ -300,15 +300,15 @@ const GalleryManagementSimple = () => {
         <div className="flex space-x-2">
           <Button variant="outline" onClick={() => {
             // Force refresh by clearing cache and reloading
-            localStorage.removeItem('gallery_images');
+            dataService.resetGalleryToDefault();
             loadImages();
             toast({
-              title: "Gallery Refreshed",
-              description: "Gallery images have been refreshed successfully",
+              title: "Gallery Reset to Default",
+              description: "Gallery has been reset to default images",
             });
           }}>
             <Plus className="w-4 h-4 mr-2" />
-            Refresh Images
+            Reset to Default
           </Button>
           <Button onClick={() => setIsAddDialogOpen(true)}>
             <Plus className="w-4 h-4 mr-2" />
