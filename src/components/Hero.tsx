@@ -119,9 +119,9 @@ const Hero = ({ onOpenModal }: HeroProps) => {
             </div>
           </div>
 
-          {/* Right Section (Image) */}
+          {/* Right Section - Enhanced Visual Content */}
           <div className="relative h-[400px] lg:h-auto lg:order-2 mt-8 lg:mt-0">
-            {/* Desktop Image */}
+            {/* Desktop Enhanced Content */}
             <div className="hidden lg:block relative h-full">
               <div className="relative rounded-[2.25rem] overflow-hidden shadow-2xl shadow-primary/10 bg-white flex items-center justify-center h-[500px] border border-white">
                 <OptimizedImage
@@ -132,80 +132,126 @@ const Hero = ({ onOpenModal }: HeroProps) => {
                   priority={true}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/35 via-slate-900/10 to-transparent" />
-                <div className="absolute left-6 right-6 bottom-6 rounded-2xl border border-white/25 bg-white/15 px-4 py-3 backdrop-blur-md">
-                  <p className="text-white text-sm font-semibold">100% personalized profile guidance for each student</p>
+                
+                {/* Enhanced Overlay Content */}
+                <div className="absolute left-6 right-6 bottom-6 space-y-4">
+                  <div className="rounded-2xl border border-white/25 bg-white/15 px-4 py-3 backdrop-blur-md">
+                    <p className="text-white text-sm font-semibold">100% personalized profile guidance for each student</p>
+                  </div>
+                  
+                  {/* Success Indicators */}
+                  <div className="flex gap-3">
+                    <div className="rounded-xl border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-sm">
+                      <div className="flex items-center gap-2">
+                        <Trophy className="w-4 h-4 text-yellow-300" />
+                        <span className="text-white text-xs font-medium">98% Success Rate</span>
+                      </div>
+                    </div>
+                    <div className="rounded-xl border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-sm">
+                      <div className="flex items-center gap-2">
+                        <Globe className="w-4 h-4 text-blue-300" />
+                        <span className="text-white text-xs font-medium">15+ Countries</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div >
-                {/* <p className="text-xs font-semibold uppercase tracking-wide text-slate-500"></p>
-                <p className="text-2xl font-bold text-primary"></p> */}
-              </div>
-              <div className="absolute -right-6 bottom-10 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-xl">
+              
+              {/* Floating Stats Cards */}
+              <div className="absolute -right-6 bottom-10 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-xl hover:shadow-2xl transition-shadow duration-300">
                 <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Students Guided</p>
                 <p className="text-2xl font-bold text-secondary">5000+</p>
               </div>
+              
+              <div className="absolute -left-4 top-8 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Years Experience</p>
+                <p className="text-2xl font-bold text-primary">20+</p>
+              </div>
+              
+              <div className="absolute right-8 top-1/4 rounded-2xl border border-slate-200 bg-white/90 backdrop-blur-sm px-4 py-3 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Partner Universities</p>
+                <p className="text-2xl font-bold text-primary">50+</p>
+              </div>
             </div>
 
-            {/* Enhanced Mobile Hero - Clean Design with Small Image */}
+            {/* Enhanced Mobile Hero - Dynamic Design */}
             <div className="lg:hidden">
               <div className="relative bg-gradient-to-br from-slate-50 via-white to-slate-50 rounded-3xl p-6 shadow-xl border border-slate-100">
 
-                {/* Small Circular Image - Top Right */}
-                <div className="absolute top-4 right-4 w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg">
-                  <OptimizedImage
-                    src={heroImg}
-                    alt="Student"
-                    className="w-full h-full"
-                    imgClassName="object-cover"
-                    priority={true}
-                  />
+                {/* Enhanced Image Section */}
+                <div className="relative mb-6">
+                  <div className="relative h-48 rounded-2xl overflow-hidden border border-slate-100">
+                    <OptimizedImage
+                      src={heroImg}
+                      alt="Student success"
+                      className="w-full h-full"
+                      imgClassName="object-cover"
+                      priority={true}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-slate-900/10 to-transparent" />
+                    
+                    {/* Overlay Stats */}
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <div className="bg-white/90 backdrop-blur-sm rounded-xl px-3 py-2">
+                        <p className="text-xs font-semibold text-slate-700">Your Global Career Starts Here</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Floating Badge */}
+                  <div className="absolute -top-2 -right-2 bg-primary text-white rounded-full px-3 py-1 text-xs font-bold shadow-lg">
+                    20+ Years
+                  </div>
                 </div>
 
-                {/* Content */}
-                <div className="pr-24">
-                  <div className="inline-flex items-center gap-1.5 bg-primary/10 rounded-full px-3 py-1.5 mb-4">
+                {/* Enhanced Content */}
+                <div className="space-y-4">
+                  <div className="inline-flex items-center gap-1.5 bg-primary/10 rounded-full px-3 py-1.5">
                     <GraduationCap className="w-3.5 h-3.5 text-primary" />
                     <span className="text-xs font-bold text-primary uppercase tracking-wide">Study Abroad</span>
                   </div>
 
-                  <h2 className="font-display font-bold text-2xl text-slate-900 mb-3 leading-tight">
+                  <h2 className="font-display font-bold text-2xl text-slate-900 leading-tight">
                     Build Your <span className="text-primary">Global Career</span>
                   </h2>
 
-                  <p className="text-sm text-slate-600 mb-6 leading-relaxed">
-                    Expert guidance for studying in 15+ countries with 98% success rate
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Expert guidance for studying in 15+ countries with 98% success rate and personalized mentorship
                   </p>
                 </div>
 
-                {/* Compact Metrics Grid */}
-                <div className="grid grid-cols-3 gap-3 mb-6">
-                  <div className="bg-white rounded-xl p-3 text-center border border-slate-100 shadow-sm">
+                {/* Enhanced Metrics Grid */}
+                <div className="grid grid-cols-3 gap-3 my-6">
+                  <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-3 text-center border border-primary/20 shadow-sm">
+                    <Trophy className="w-4 h-4 text-primary mx-auto mb-1" />
                     <p className="font-bold text-xl text-primary mb-0.5">98%</p>
-                    <p className="text-[9px] text-slate-500 font-medium uppercase tracking-wide">Success</p>
+                    <p className="text-[9px] text-slate-600 font-medium uppercase tracking-wide">Success</p>
                   </div>
-                  <div className="bg-white rounded-xl p-3 text-center border border-slate-100 shadow-sm">
+                  <div className="bg-gradient-to-br from-secondary/5 to-secondary/10 rounded-xl p-3 text-center border border-secondary/20 shadow-sm">
+                    <Users className="w-4 h-4 text-secondary mx-auto mb-1" />
                     <p className="font-bold text-xl text-secondary mb-0.5">5k+</p>
-                    <p className="text-[9px] text-slate-500 font-medium uppercase tracking-wide">Students</p>
+                    <p className="text-[9px] text-slate-600 font-medium uppercase tracking-wide">Students</p>
                   </div>
-                  <div className="bg-white rounded-xl p-3 text-center border border-slate-100 shadow-sm">
+                  <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-3 text-center border border-primary/20 shadow-sm">
+                    <Globe className="w-4 h-4 text-primary mx-auto mb-1" />
                     <p className="font-bold text-xl text-primary mb-0.5">15+</p>
-                    <p className="text-[9px] text-slate-500 font-medium uppercase tracking-wide">Countries</p>
+                    <p className="text-[9px] text-slate-600 font-medium uppercase tracking-wide">Countries</p>
                   </div>
                 </div>
 
-                {/* CTA Button */}
+                {/* Enhanced CTA Button */}
                 <Button
                   onClick={onOpenModal}
                   size="lg"
-                  className="w-full rounded-full bg-gradient-to-r from-primary to-secondary hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 text-base h-12"
+                  className="w-full rounded-full bg-gradient-to-r from-primary to-secondary hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 text-base h-12 font-semibold"
                 >
                   <UserCheck className="w-4 h-4 mr-2" />
                   Start Your Journey
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
 
-                {/* Trust Indicator */}
-                <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-500">
+                {/* Enhanced Trust Indicator */}
+                <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-500 bg-slate-50 rounded-full px-4 py-2">
                   <div className="flex">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star key={star} className="w-3 h-3 text-yellow-400 fill-yellow-400" />

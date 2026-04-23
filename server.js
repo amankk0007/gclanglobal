@@ -205,7 +205,7 @@ function generateEmailContent(formData, formType) {
                 </div>
                 <div class="footer">
                     <p>&copy; 2024 Global Pass Career Consultancy Inc. All rights reserved.</p>
-                    <p>Email: info@globalpasscareer.com | Phone: +1-437-243-6322</p>
+                    <p>Email: info@globalpasscareer.com | Phone: +91 75088 13555</p>
                 </div>
             </div>
         </body>
@@ -241,7 +241,7 @@ function generateConfirmationEmail(formData, formType) {
                     <ul>
                         <li>Our team will review your submission within 24-48 hours</li>
                         <li>We will contact you via email or phone to discuss the next steps</li>
-                        <li>If you have any urgent questions, please call us at +1-437-243-6322</li>
+                        <li>If you have any urgent questions, please call us at +91 75088 13555</li>
                     </ul>
                     <p>We look forward to helping you achieve your career and educational goals!</p>
                     <p><strong>Best regards,</strong><br>
@@ -249,7 +249,7 @@ function generateConfirmationEmail(formData, formType) {
                 </div>
                 <div class="footer">
                     <p>&copy; 2024 Global Pass Career Consultancy Inc. All rights reserved.</p>
-                    <p>Email: info@globalpasscareer.com | Phone: +1-437-243-6322</p>
+                    <p>Email: info@globalpasscareer.com | Phone: +91 75088 13555</p>
                 </div>
             </div>
         </body>

@@ -1,4 +1,4 @@
-import { Quote, Award, Building2, Sparkles, GraduationCap, Briefcase } from "lucide-react";
+import { Quote, Award, Building2, Sparkles, GraduationCap, Briefcase, Globe } from "lucide-react";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import useEmblaCarousel from "embla-carousel-react";
 import { useState, useEffect, useCallback } from "react";
@@ -53,6 +53,17 @@ const teamMembers = [
     linkedin: "https://linkedin.com",
     position: "object-top",
   },
+  {
+    name: "Global Head of Digital Marketing",
+    title: "Digital Marketing Expert",
+    image: rajivBajwa, // Using existing image, can be replaced with actual image
+    experience: "International Expert",
+    quote: "To empower students with the right guidance and global opportunities, helping them build successful international careers through transparent and result-oriented consulting.",
+    description: "A young, energetic professional with international exposure, graduated from Canada. Expert in digital marketing, global outreach, and student acquisition strategies. Focused on connecting students with top universities worldwide.",
+    icon: Globe,
+    linkedin: "https://linkedin.com",
+    position: "object-top",
+  },
 ];
 
 const Leadership = () => {
@@ -95,7 +106,7 @@ const Leadership = () => {
         </div>
 
         {/* Desktop Grid (Hidden on Mobile) */}
-        <div className="hidden lg:grid lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div className="hidden lg:grid lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-7xl mx-auto">
           {teamMembers.map((member, index) => (
             <TeamCard key={member.name} member={member} index={index} />
           ))}
@@ -135,7 +146,7 @@ const Leadership = () => {
 
 const TeamCard = ({ member, index }: { member: typeof teamMembers[0], index: number }) => (
   <div
-    className={`group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-border hover:border-primary/30 h-full flex flex-col`}
+    className={`group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-border hover:border-primary/30 h-full min-h-[600px] flex flex-col`}
   >
     {/* Image Section */}
     <div className="relative h-72 md:h-80 overflow-hidden flex-shrink-0">
@@ -161,7 +172,7 @@ const TeamCard = ({ member, index }: { member: typeof teamMembers[0], index: num
     </div>
 
     {/* Content Section */}
-    <div className="p-6 flex-1 flex flex-col">
+    <div className="p-6 flex-1 flex flex-col justify-between">
       {member.certifications && (
         <div className="mb-4 inline-flex items-center gap-2 bg-secondary/10 px-3 py-1 rounded-full w-fit">
           <Award className="w-4 h-4 text-secondary" />
@@ -169,18 +180,18 @@ const TeamCard = ({ member, index }: { member: typeof teamMembers[0], index: num
         </div>
       )}
 
-      <div className="relative mb-4 flex-1">
-        <Quote className="absolute -top-2 -left-2 w-6 h-6 text-primary/20 rotate-180" />
-        <p className="text-sm text-muted-foreground italic pl-4 leading-relaxed">
-          "{member.quote}"
+      <div className="flex-1 flex flex-col justify-center">
+        <div className="relative mb-4">
+          <Quote className="absolute -top-2 -left-2 w-6 h-6 text-primary/20 rotate-180" />
+          <p className="text-sm text-muted-foreground italic pl-4 leading-relaxed">
+            "{member.quote}"
+          </p>
+        </div>
+
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          {member.description}
         </p>
       </div>
-
-      <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-        {member.description}
-      </p>
-
-
     </div>
   </div>
 );

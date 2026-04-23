@@ -1,104 +1,6 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { CheckCircle, Sparkles, ArrowRight, Users, Star, Building2 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import { emailJsService } from "@/services/emailJsService";
+import { Users, Star, Building2 } from "lucide-react";
 
-interface AboutProps {
-  onOpenModal?: () => void;
-}
-
-const About = ({ onOpenModal }: AboutProps) => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      // FULLY AUTOMATED EMAIL SENDING - NO USER INTERVENTION NEEDED!
-      const emailParams = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        message: formData.message,
-        subject: 'Homepage Consultation Request - Global Pass Career',
-        timestamp: new Date().toLocaleString()
-      };
-
-      // Try EmailJS first (most reliable)
-      let result = await emailJsService.sendEmail(emailParams);
-      
-      // Fallback to Web3Forms if EmailJS fails
-      if (!result.success) {
-        console.log('EmailJS failed, trying Web3Forms...');
-        result = await emailJsService.sendViaWeb3Forms(emailParams);
-      }
-      
-      // Final fallback to Formspree
-      if (!result.success) {
-        console.log('Web3Forms failed, trying Formspree...');
-        result = await emailJsService.sendViaFormspree(emailParams);
-      }
-      
-      if (result.success) {
-        // Store in localStorage for backup
-        const submissions = JSON.parse(localStorage.getItem('homepage_submissions') || '[]');
-        submissions.push({
-          ...formData,
-          timestamp: new Date().toISOString(),
-          type: 'homepage_consultation',
-          email_sent: true
-        });
-        localStorage.setItem('homepage_submissions', JSON.stringify(submissions));
-        
-        setIsSubmitted(true);
-        toast({
-          title: "Request Sent Successfully! ",
-          description: "We have received your request and will contact you within 24 hours.",
-        });
-      } else {
-        throw new Error(result.error || 'All email services failed');
-      }
-      
-    } catch (error) {
-      console.error('Automated email error:', error);
-      
-      // Fallback to mailTo if all automated services fail
-      try {
-        const subject = 'Homepage Consultation Request - Global Pass Career';
-        const emailBody = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nInterested In: ${formData.message}\nTime: ${new Date().toLocaleString()}`;
-        const mailtoLink = `mailto:info@globalpasscareer.com,amankk0007@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-        window.location.href = mailtoLink;
-        
-        toast({
-          title: "Email Client Opened",
-          description: "Please send the email manually to complete your request.",
-        });
-      } catch (fallbackError) {
-        toast({
-          title: "Error",
-          description: "Failed to send request. Please contact us directly.",
-          variant: "destructive"
-        });
-      }
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+const About = () => {
 
   return (
     <section id="about" className="py-16 lg:py-20 relative overflow-hidden bg-white">
@@ -148,94 +50,46 @@ const About = ({ onOpenModal }: AboutProps) => {
             </div>
           </div>
 
-          {/* Right Column: Embedded Lead Form */}
-          <div className="lg:w-1/2 w-full">
-            <div className="relative bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xl overflow-hidden group hover:border-primary/30 transition-all duration-500">
-              {/* Glowing corner */}
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-secondary/20 rounded-full blur-3xl group-hover:bg-secondary/30 transition-colors" />
-
-              {isSubmitted ? (
-                <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-in">
-                  <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-6">
-                    <CheckCircle className="w-8 h-8 text-green-500" />
-                  </div>
-                  <h3 className="text-2xl font-display font-bold text-slate-900 mb-2">Request Received!</h3>
-                  <p className="text-slate-500 mb-8">We will contact you shortly to plan your journey.</p>
-                  <Button variant="outline" onClick={() => setIsSubmitted(false)} className="border-slate-200 text-slate-700 hover:bg-slate-50">
-                    Send Another Request
-                  </Button>
+          {/* Right Column: Simple Content */}
+          <div className="lg:w-1/2">
+            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200">
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">Our Achievements</h3>
+              
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="text-center">
+                  <p className="text-3xl font-bold text-primary mb-1">98%</p>
+                  <p className="text-sm text-slate-600">Success Rate</p>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="relative z-10">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg">
-                      <Sparkles className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-slate-900">Start Your Journey</h3>
-                      <p className="text-slate-500 text-sm">Get expert free career guidance.</p>
-                    </div>
-                  </div>
+                <div className="text-center">
+                  <p className="text-3xl font-bold text-secondary mb-1">5000+</p>
+                  <p className="text-sm text-slate-600">Students</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-3xl font-bold text-primary mb-1">15+</p>
+                  <p className="text-sm text-slate-600">Countries</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-3xl font-bold text-secondary mb-1">50+</p>
+                  <p className="text-sm text-slate-600">Universities</p>
+                </div>
+              </div>
 
-                  <div className="space-y-4">
-                    <div className="grid grid-cols-1 gap-4">
-                      <Input
-                        name="name"
-                        placeholder="Full Name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="h-12 bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-primary/50 rounded-xl"
-                      />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <Input
-                        name="phone"
-                        placeholder="Phone Number"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        required
-                        className="h-12 bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-primary/50 rounded-xl"
-                      />
-                      <Input
-                        name="email"
-                        type="email"
-                        placeholder="Email Address"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="h-12 bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-primary/50 rounded-xl"
-                      />
-                    </div>
-                    <Input
-                      name="message"
-                      placeholder="Which country or course are you interested in?"
-                      value={formData.message}
-                      onChange={handleChange}
-                      className="h-12 bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-primary/50 rounded-xl"
-                    />
-
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full h-12 bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-bold rounded-xl shadow-lg shadow-primary/25 mt-2 group"
-                    >
-                      {isSubmitting ? "Sending..." : (
-                        <span className="flex items-center gap-2">
-                          Get Free Consultancy <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </span>
-                      )}
-                    </Button>
-
-                    <p className="text-xs text-center text-slate-500 mt-4">
-                      By submitting, you agree to our privacy policy.
-                    </p>
-                  </div>
-                </form>
-              )}
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <Star className="w-4 h-4 text-yellow-400" />
+                  <span className="text-sm text-slate-700">20+ Years Experience</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Star className="w-4 h-4 text-yellow-400" />
+                  <span className="text-sm text-slate-700">Certified Counselors</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Star className="w-4 h-4 text-yellow-400" />
+                  <span className="text-sm text-slate-700">Global Network</span>
+                </div>
+              </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

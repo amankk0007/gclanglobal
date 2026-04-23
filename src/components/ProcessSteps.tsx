@@ -1,5 +1,4 @@
-import { MessageSquare, Search, FileText, Plane, ArrowRight, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { MessageSquare, Search, FileText, Plane, Sparkles } from "lucide-react";
 
 const steps = [
   {
@@ -40,11 +39,7 @@ const steps = [
   },
 ];
 
-interface ProcessStepsProps {
-  onOpenModal: () => void;
-}
-
-const ProcessSteps = ({ onOpenModal }: ProcessStepsProps) => {
+const ProcessSteps = () => {
   return (
     <section className="py-16 lg:py-20 relative overflow-hidden bg-gradient-to-br from-[#020617] via-[#081b3f] to-[#020617]">
       {/* Premium Background Ambience */}
@@ -101,21 +96,7 @@ const ProcessSteps = ({ onOpenModal }: ProcessStepsProps) => {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="text-center">
-          <Button
-            onClick={onOpenModal}
-            size="lg"
-            className="rounded-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-bold text-lg px-10 py-7 shadow-lg shadow-primary/25 transition-all duration-300 hover:scale-105 group"
-          >
-            Start Your Application
-            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-          </Button>
-          <p className="mt-4 text-slate-500 text-sm font-medium">
-            No hidden fees. Free initial consultation.
-          </p>
-        </div>
-
+        
       </div>
     </section>
   );

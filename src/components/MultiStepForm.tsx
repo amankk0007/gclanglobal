@@ -89,14 +89,8 @@ const MultiStepForm = ({ embedded = false }: { embedded?: boolean }) => {
         setIsSubmitting(true);
         
         try {
-            // Prepare data for email API
-            const emailData = embedded ? {
-                name: formData.fullName,
-                email: formData.email,
-                phone: formData.phone,
-                subject: "Consultation Booking - Global Pass Career",
-                message: formData.additionalInfo || "Consultation booking from website"
-            } : {
+            // Prepare data for email API - Always send full data
+            const emailData = {
                 name: formData.fullName,
                 email: formData.email,
                 phone: formData.phone,
@@ -110,7 +104,8 @@ const MultiStepForm = ({ embedded = false }: { embedded?: boolean }) => {
                 board: formData.board,
                 admissionRequiredIn: formData.admissionRequiredIn,
                 preferredCountries: formData.preferredCountries,
-                courseCategory: formData.courseCategory
+                courseCategory: formData.courseCategory,
+                subject: embedded ? "Consultation Booking - Global Pass Career" : "Admission Application - Global Pass Career"
             };
 
             const formType = embedded ? 'contact' : 'admission';
@@ -128,14 +123,27 @@ const MultiStepForm = ({ embedded = false }: { embedded?: boolean }) => {
             });
 
             if (response.ok) {
-                // Also save to localStorage as backup
+                // Also save to localStorage as backup - Always save full data
                 if (embedded) {
                     await dataService.saveContactForm({
                         name: formData.fullName,
                         email: formData.email,
                         phone: formData.phone,
                         subject: "Consultation Booking - Global Pass Career",
-                        message: formData.additionalInfo || "Consultation booking from website"
+                        message: `Full consultation details:
+Name: ${formData.fullName}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Father Name: ${formData.fatherName}
+Nationality: ${formData.nationality}
+School: ${formData.schoolName}
+Board: ${formData.board}
+Qualification: ${formData.qualification}
+Admission Required: ${formData.admissionRequiredIn}
+Preferred Countries: ${formData.preferredCountries.join(", ")}
+Course Category: ${formData.courseCategory}
+Course Interest: ${formData.courseInterest}
+Additional Info: ${formData.additionalInfo}`
                     });
                 } else {
                     await dataService.saveAdmissionForm({
@@ -156,9 +164,9 @@ const MultiStepForm = ({ embedded = false }: { embedded?: boolean }) => {
                 throw new Error('Failed to send email');
             }
         } catch (error) {
-            // Fallback to localStorage
+            // Fallback to localStorage - Always save full data
             try {
-                const applicationData = {
+                const fullApplicationData = {
                     name: formData.fullName,
                     email: formData.email,
                     phone: formData.phone,
@@ -181,15 +189,28 @@ const MultiStepForm = ({ embedded = false }: { embedded?: boolean }) => {
                         email: formData.email,
                         phone: formData.phone,
                         subject: "Consultation Booking - Global Pass Career",
-                        message: formData.additionalInfo || "Consultation booking from website"
+                        message: `Full consultation details:
+Name: ${formData.fullName}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Father Name: ${formData.fatherName}
+Nationality: ${formData.nationality}
+School: ${formData.schoolName}
+Board: ${formData.board}
+Qualification: ${formData.qualification}
+Admission Required: ${formData.admissionRequiredIn}
+Preferred Countries: ${formData.preferredCountries.join(", ")}
+Course Category: ${formData.courseCategory}
+Course Interest: ${formData.courseInterest}
+Additional Info: ${formData.additionalInfo}`
                     });
                 } else {
                     await dataService.saveAdmissionForm({
-                        ...applicationData,
-                        education: applicationData.education || "",
-                        course: applicationData.course || "",
-                        destination: applicationData.destination || "",
-                        message: applicationData.message || ""
+                        ...fullApplicationData,
+                        education: fullApplicationData.education || "",
+                        course: fullApplicationData.course || "",
+                        destination: fullApplicationData.destination || "",
+                        message: fullApplicationData.message || ""
                     });
                 }
                 

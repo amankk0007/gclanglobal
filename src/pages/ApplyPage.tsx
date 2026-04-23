@@ -780,13 +780,15 @@ const ApplyPage = () => {
 
                             {/* Steps Progress */}
                          <div className="relative">
-  <div className="absolute top-1/2 left-0 right-0 h-1 bg-slate-200"></div>
+  {/* Desktop Progress Line */}
+  <div className="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-slate-200 -translate-y-1/2"></div>
 
-  <div className="grid grid-cols-6 gap-4 relative">
+  {/* Mobile and Desktop Steps */}
+  <div className="grid grid-cols-1 md:grid-cols-6 gap-4 md:gap-2 relative">
     {applicationSteps.map((step, index) => (
       <div key={step.id} className="relative">
         <div
-          className={`flex flex-col items-center text-center p-6 rounded-xl border-2 transition-all duration-300 ${
+          className={`flex flex-col md:flex-row items-center text-center p-4 md:p-3 rounded-xl border-2 transition-all duration-300 ${
             currentStep === step.id
               ? "bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white border-blue-600 shadow-lg"
               : currentStep > step.id
@@ -795,7 +797,7 @@ const ApplyPage = () => {
           }`}
         >
           <div
-            className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${
+            className={`w-12 h-12 md:w-10 md:h-10 rounded-full flex items-center justify-center mb-3 md:mb-0 md:mr-3 flex-shrink-0 ${
               currentStep === step.id
                 ? "bg-white text-blue-600"
                 : currentStep > step.id
@@ -803,16 +805,23 @@ const ApplyPage = () => {
                 : "bg-slate-200 text-slate-600"
             }`}
           >
-            <step.icon className="w-6 h-6" />
+            <step.icon className="w-6 h-6 md:w-5 md:h-5" />
           </div>
 
-          <h3 className="font-bold text-lg mb-2">{step.title}</h3>
-          <p className="text-sm opacity-80">{step.description}</p>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-bold text-base md:text-sm mb-1 md:mb-0 truncate">{step.title}</h3>
+            <p className="text-xs md:text-xs opacity-80 hidden md:block">{step.description}</p>
+          </div>
 
           {currentStep > step.id && (
-            <CheckCircle className="w-5 h-5 text-green-600 absolute -top-2 -right-2" />
+            <CheckCircle className="w-5 h-5 md:w-4 md:h-4 text-green-600 absolute -top-2 -right-2 md:-top-1 md:-right-1" />
           )}
         </div>
+        
+        {/* Mobile Progress Line */}
+        {index < applicationSteps.length - 1 && (
+          <div className="md:hidden absolute top-8 left-1/2 w-0.5 h-8 bg-slate-200 -translate-x-1/2"></div>
+        )}
       </div>
     ))}
   </div>
@@ -822,17 +831,19 @@ const ApplyPage = () => {
 <div className="mt-8">{renderStepContent()}</div>
 
                             {/* Navigation */}
-                            <div className="flex justify-between items-center mt-8">
+                            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8">
                                 <Button
                                     type="button"
                                     variant="outline"
                                     onClick={handlePrevious}
                                     disabled={currentStep === 1}
-                                    className="border-2 border-slate-300 text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full sm:w-auto border-2 border-slate-300 text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     Previous
                                 </Button>
-                                <div className="flex gap-2">
+                                
+                                {/* Progress Indicators - Hidden on mobile to save space */}
+                                <div className="hidden sm:flex gap-2">
                                     {Array.from({ length: currentStep - 1 }, (_, index) => (
                                         <div key={index} className="w-2 h-2 bg-blue-200 rounded-full"></div>
                                     ))}
@@ -843,32 +854,33 @@ const ApplyPage = () => {
                                         <div key={index} className="w-2 h-2 bg-slate-200 rounded-full"></div>
                                     ))}
                                 </div>
+                                
                                 <Button
                                     type="button"
                                     onClick={currentStep === 6 ? undefined : handleNext}
                                     disabled={!isStepValid() || isSubmitting}
-                                    className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:from-blue-600 hover:via-blue-700 hover:to-blue-800 text-white shadow-2xl hover:shadow-blue-500/25 px-8 py-4 text-lg font-bold rounded-full transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full sm:w-auto bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:from-blue-600 hover:via-blue-700 hover:to-blue-800 text-white shadow-2xl hover:shadow-blue-500/25 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-full transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {isSubmitting ? (
                                         <>
-                                            <Clock className="w-5 h-5 mr-2 animate-spin" />
+                                            <Clock className="w-4 h-4 sm:w-5 sm:h-5 mr-2 animate-spin" />
                                             {currentStep === 5 ? 'Processing...' : 'Saving...'}
                                         </>
                                     ) : currentStep === 5 ? (
                                         <>
-                                            <Lock className="w-5 h-5 mr-2" />
+                                            <Lock className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                                             Complete Payment
-                                            <ArrowRight className="w-5 h-5 ml-2" />
+                                            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                                         </>
                                     ) : currentStep === 6 ? (
                                         <>
-                                            <CheckCircle className="w-5 h-5 mr-2" />
+                                            <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                                             Finish
                                         </>
                                     ) : (
                                         <>
                                             Next Step
-                                            <ArrowRight className="w-5 h-5 ml-2" />
+                                            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                                         </>
                                     )}
                                 </Button>
