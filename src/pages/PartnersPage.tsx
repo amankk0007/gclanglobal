@@ -48,7 +48,7 @@ const PartnersPage = () => {
             name: "Skypass Immigration",
             type: "Immigration Partner",
             description: "Canada-based RCIC regulated consultancy specializing in student visas and study abroad services. We provide complete end-to-end support—from course and university selection to visa filing and pre-departure guidance—ensuring a smooth and transparent process for every student.",
-            website: "https://www.skypassimmigration.com",
+            website: "https://69de00678dacd40f42aa340a--delightful-sawine-14413c.netlify.app",
             ranking: "Canada-Based RCIC Regulated",
             clients: "High Visa Success Rate"
         },
