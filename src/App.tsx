@@ -19,6 +19,10 @@ import ServiceDetailPage from "./pages/ServiceDetailPage";
 import DestinationDetailPage from "./pages/DestinationDetailPage";
 import PartnersPage from "./pages/PartnersPage";
 import ApplyPage from "./pages/ApplyPage";
+import LamrinPage from "./pages/apply/LamrinPage";
+import AmityPage from "./pages/apply/AmityPage";
+import SvietPage from "./pages/apply/SvietPage";
+import RootPage from "./pages/apply/RootPage";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminRoute from "./components/admin/AdminRoute";
@@ -43,6 +47,10 @@ const App = () => (
           <Route path="/destinations/:id" element={<DestinationDetailPage />} />
           <Route path="/partners" element={<PartnersPage />} />
           <Route path="/apply" element={<ApplyPage />} />
+          <Route path="/apply/lamrin" element={<LamrinPage />} />
+          <Route path="/apply/amity" element={<AmityPage />} />
+          <Route path="/apply/sviet" element={<SvietPage />} />
+          <Route path="/apply/root" element={<RootPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/institutional-loan" element={<InstitutionalLoanPage />} />
           <Route path="/residential-schools" element={<ResidentialSchools />} />

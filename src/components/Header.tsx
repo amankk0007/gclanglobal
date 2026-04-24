@@ -1,4 +1,17 @@
-import { Phone, Menu, X, MessageCircle, Mail, Facebook, Instagram, Linkedin, ChevronRight, CreditCard } from "lucide-react";
+import { 
+  Phone, 
+  Mail, 
+  Menu, 
+  X, 
+  ChevronRight,
+  CreditCard,
+  User,
+  ChevronDown,
+  MessageCircle, 
+  Facebook, 
+  Instagram, 
+  Linkedin 
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -13,6 +26,7 @@ const Header = ({ onOpenModal }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [isApplyDropdownOpen, setIsApplyDropdownOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -37,7 +51,16 @@ const Header = ({ onOpenModal }: HeaderProps) => {
     { label: "Home", id: "hero" },
     { label: "About", href: "/about" },
     { label: "Services", href: "/services" },
-    { label: "Apply", href: "/apply" },
+    { 
+      label: "Apply", 
+      isDropdown: true,
+      colleges: [
+        { name: "Lamrin Tech Skills University", href: "/apply/lamrin" },
+        { name: "Amity University Mohali", href: "/apply/amity" },
+        { name: "SVIET Banur", href: "/apply/sviet" },
+        { name: "Root Country School", href: "/apply/root" }
+      ]
+    },
     { label: "Partners", href: "/partners" },
     { label: "Gallery", href: "/gallery" },
     { label: "Scholarships Program", href: "/institutional-loan", badge: "Hot" },
@@ -114,7 +137,34 @@ const Header = ({ onOpenModal }: HeaderProps) => {
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center bg-white/80 backdrop-blur-md px-2 py-1.5 rounded-full border border-slate-200/70 shadow-md">
               {navLinks.map((link) => (
-                link.href ? (
+                link.isDropdown ? (
+                  <div 
+                    key={link.label} 
+                    className="relative"
+                    onMouseEnter={() => setIsApplyDropdownOpen(true)}
+                    onMouseLeave={() => setIsApplyDropdownOpen(false)}
+                  >
+                    <button
+                      className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-primary hover:bg-slate-50 rounded-full transition-all duration-300 whitespace-nowrap flex items-center gap-1"
+                    >
+                      {link.label}
+                      <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isApplyDropdownOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {isApplyDropdownOpen && (
+                      <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50">
+                        {link.colleges?.map((college) => (
+                          <Link
+                            key={college.name}
+                            to={college.href}
+                            className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors"
+                          >
+                            {college.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : link.href ? (
                   <Link
                     key={link.label}
                     to={link.href}
@@ -184,7 +234,34 @@ const Header = ({ onOpenModal }: HeaderProps) => {
                 <div className="rounded-2xl overflow-hidden">
                   <nav className="flex flex-col p-2">
                     {navLinks.map((link) => (
-                      link.href ? (
+                      link.isDropdown ? (
+                        <div key={link.label} className="space-y-1">
+                          <button
+                            onClick={() => setIsApplyDropdownOpen(!isApplyDropdownOpen)}
+                            className="w-full py-3 px-4 font-medium text-slate-600 hover:text-primary hover:bg-primary/5 rounded-xl transition-all duration-300 flex items-center justify-between group"
+                          >
+                            {link.label}
+                            <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isApplyDropdownOpen ? 'rotate-180' : ''}`} />
+                          </button>
+                          {isApplyDropdownOpen && (
+                            <div className="ml-4 space-y-1">
+                              {link.colleges?.map((college) => (
+                                <Link
+                                  key={college.name}
+                                  to={college.href}
+                                  onClick={() => {
+                                    setIsApplyDropdownOpen(false);
+                                    setIsMenuOpen(false);
+                                  }}
+                                  className="block py-2 px-4 text-sm text-slate-600 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
+                                >
+                                  {college.name}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ) : link.href ? (
                         <Link
                           key={link.label}
                           to={link.href}

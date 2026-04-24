@@ -22,11 +22,11 @@ const PartnersPage = () => {
     const partners = [
         {
             name: "Voytale",
-            type: "Educational Partner",
-            description: "Leading educational consultancy providing comprehensive study abroad solutions and visa assistance.",
+            type: "Spiritual Travel Partner",
+            description: "A leading spiritual tourism company offering curated pilgrimage journeys, wellness retreats, and luxury travel experiences across India.",
             website: "https://www.voytale.com",
-            ranking: "Top Consultancy",
-            students: "10,000+"
+            ranking: "Top Spiritual Travel Company",
+            clients: "10,000+"
         },
         {
             name: "Nrisetu",
