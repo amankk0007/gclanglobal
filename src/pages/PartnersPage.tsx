@@ -26,55 +26,47 @@ const PartnersPage = () => {
             description: "A leading spiritual tourism company offering curated pilgrimage journeys, wellness retreats, and luxury travel experiences across India.",
             website: "https://www.voytale.com",
             ranking: "Top Spiritual Travel Company",
-            clients: "10,000+"
+            clients: "1,000+ Satisfied Travelers"
         },
         {
-            name: "Nrisetu",
-            type: "Educational Partner",
-            description: "Premier platform for NRI students offering specialized educational services and guidance.",
-            website: "https://www.nrisetu.in",
-            ranking: "Top NRI Platform",
-            students: "15,000+"
+            name: "NRI Setu",
+            type: "NRI Service Platform",
+            description: "India's leading NRI service platform providing legal, property, tax, and concierge solutions tailored for global Indians.",
+            website: "https://www.nrisetu.com",
+            ranking: "Top NRI Service Platform",
+            clients: "5,000+ NRIs Served"
         },
         {
-            name: "Jangatha",
-            type: "Educational Partner",
-            description: "Innovative educational technology platform connecting students with global opportunities.",
-            website: "https://www.jangatha.com",
-            ranking: "Top EdTech",
-            students: "8,000+"
+            name: "Jangatha Times",
+            type: "Media Partner",
+            description: "A dynamic and emerging media platform committed to delivering credible, impactful, and people-centric news. With a strong focus on truth, transparency, and public interest, Jangatha Times bridges gap between information and common citizen.",
+            website: "https://www.jangathatimes.com",
+            ranking: "Voice of the People",
+            clients: "Media Platform"
         },
         {
-            name: "Sky Immigration Solutions",
+            name: "Skypass Immigration",
             type: "Immigration Partner",
-            description: "Expert immigration services providing comprehensive visa and settlement solutions.",
-            website: "https://www.skyimmigration.com",
-            ranking: "Top Immigration",
-            students: "5,000+"
+            description: "Canada-based RCIC regulated consultancy specializing in student visas and study abroad services. We provide complete end-to-end support—from course and university selection to visa filing and pre-departure guidance—ensuring a smooth and transparent process for every student.",
+            website: "https://www.skypassimmigration.com",
+            ranking: "Canada-Based RCIC Regulated",
+            clients: "High Visa Success Rate"
         },
         {
-            name: "TCIL IT Chandigarh",
-            type: "Educational Partner",
-            description: "Premier technical institute offering quality education and training programs with modern infrastructure.",
-            website: "https://tcilitchandigarh.com",
-            ranking: "Top Technical Institute",
-            students: "25,000+"
-        },
-        {
-            name: "TowRides",
-            type: "Transport Partner",
-            description: "Leading transportation service provider known for reliability and excellent customer service.",
-            website: "https://towrides.in",
-            ranking: "Top Transport Service",
-            students: "12,000+"
+            name: "TCIL IT",
+            type: "Training Partner",
+            description: "Advanced Skills & Training Division - TCIL IT is our dedicated training vertical focused on future-ready technologies, empowering students with industry-relevant skills in AI, Machine Learning, Cyber Security, and Robotics. With a strong emphasis on practical learning and real-world applications, TCIL IT bridges the gap between education and employability through expert-led training and hands-on experience.",
+            website: "https://www.tcilit.com",
+            ranking: "Industry-Aligned Training",
+            clients: "Building Next Generation Tech Professionals"
         },
         {
             name: "ICS Global Pass",
-            type: "Educational Partner",
-            description: "Progressive educational consultancy offering innovative programs and global opportunities.",
-            website: "https://icsglobalpass.com",
-            ranking: "Top Innovation",
-            students: "18,000+"
+            type: "Technology Partner",
+            description: "Tech company delivering software solutions, app development, and advanced digital training.",
+            website: "https://www.icsglobalpass.com",
+            ranking: "Technology & Innovation",
+            clients: "100+ Delivered"
         }
     ];
 
@@ -251,40 +243,55 @@ const PartnersPage = () => {
                             {partners.map((partner, index) => (
                                 <div
                                     key={index}
-                                    className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-6 h-full"
+                                    className="group bg-white border-2 border-gray-200 rounded-2xl shadow-lg hover:shadow-2xl hover:border-blue-300 transition-all duration-500 p-8 h-full flex flex-col"
                                 >
-                                    <div className="flex flex-col h-full">
-                                        <div className="mb-4">
-                                            <span className="inline-block px-3 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full mb-4">
-                                                {partner.type}
-                                            </span>
-                                            <h3 className="font-bold text-xl text-gray-900 mb-3">
-                                                {partner.name}
-                                            </h3>
-                                            <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
-                                                {partner.description}
-                                            </p>
-                                        </div>
-                                        
-                                        <div className="grid grid-cols-2 gap-4 mb-6">
+                                    {/* Partner Type Badge */}
+                                    <div className="mb-6">
+                                        <span className="inline-block px-4 py-2 text-xs font-bold text-blue-700 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-full uppercase tracking-wider">
+                                            {partner.type}
+                                        </span>
+                                    </div>
+                                    
+                                    {/* Partner Name */}
+                                    <h3 className="font-bold text-2xl text-gray-900 mb-4 group-hover:text-blue-700 transition-colors duration-300">
+                                        {partner.name}
+                                    </h3>
+                                    
+                                    {/* Description */}
+                                    <p className="text-gray-600 text-sm leading-relaxed mb-8 flex-grow line-clamp-4">
+                                        {partner.description}
+                                    </p>
+                                    
+                                    {/* Stats Section */}
+                                    <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-6 mb-8">
+                                        <div className="grid grid-cols-2 gap-6">
                                             <div className="text-center">
-                                                <div className="text-xs text-gray-500 font-semibold mb-1 uppercase tracking-wider">Ranking</div>
-                                                <div className="font-bold text-base text-gray-900">{partner.ranking}</div>
+                                                <div className="text-xs text-gray-500 font-semibold mb-2 uppercase tracking-wider flex items-center justify-center gap-1">
+                                                    <Award className="w-3 h-3" />
+                                                    Ranking
+                                                </div>
+                                                <div className="font-bold text-lg text-gray-900">{partner.ranking}</div>
                                             </div>
                                             <div className="text-center">
-                                                <div className="text-xs text-gray-500 font-semibold mb-1 uppercase tracking-wider">Students</div>
-                                                <div className="font-bold text-base text-gray-900">{partner.students}</div>
+                                                <div className="text-xs text-gray-500 font-semibold mb-2 uppercase tracking-wider flex items-center justify-center gap-1">
+                                                    <Users className="w-3 h-3" />
+                                                    Clients
+                                                </div>
+                                                <div className="font-bold text-lg text-gray-900">{partner.clients}</div>
                                             </div>
                                         </div>
+                                    </div>
 
+                                    {/* Website Button */}
+                                    <div className="mt-auto">
                                         <a
                                             href={partner.website}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center justify-center w-full px-4 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors duration-300 text-center"
+                                            className="inline-flex items-center justify-center w-full px-6 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25 text-center"
                                         >
                                             Visit Website
-                                            <ArrowRight className="w-4 h-4 ml-2" />
+                                            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                                         </a>
                                     </div>
                                 </div>
