@@ -6,6 +6,8 @@ import garryMadan from "@/assets/garry-madan.jpg";
 import premLata from "@/assets/prem_lata.jpg";
 import keertiDheer from "@/assets/keerti-dheer.jpg";
 import rajivBajwa from "@/assets/rajiv-bajwa.png";
+import rajbir from "@/assets/rajbir.jpeg";
+
 
 const teamMembers = [
   {
@@ -54,9 +56,9 @@ const teamMembers = [
     position: "object-top",
   },
   {
-    name: "Global Head of Digital Marketing",
-    title: "Digital Marketing Expert",
-    image: rajivBajwa, // Using existing image, can be replaced with actual image
+    name: "Rajbir",
+    title: "Global Head of Digital Marketing",
+    image: rajbir, // Using existing image, can be replaced with actual image
     experience: "International Expert",
     quote: "To empower students with the right guidance and global opportunities, helping them build successful international careers through transparent and result-oriented consulting.",
     description: "A young, energetic professional with international exposure, graduated from Canada. Expert in digital marketing, global outreach, and student acquisition strategies. Focused on connecting students with top universities worldwide.",

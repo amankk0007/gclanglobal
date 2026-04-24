@@ -53,7 +53,7 @@ const PartnersPage = () => {
             students: "5,000+"
         },
         {
-            name: "TCIL ITI Chandigarh",
+            name: "TCIL IT Chandigarh",
             type: "Educational Partner",
             description: "Premier technical institute offering quality education and training programs with modern infrastructure.",
             website: "https://tcilitchandigarh.com",
