@@ -32,7 +32,7 @@ const PartnersPage = () => {
             name: "NRI Setu",
             type: "NRI Service Platform",
             description: "India's leading NRI service platform providing legal, property, tax, and concierge solutions tailored for global Indians.",
-            website: "https://www.nrisetu.com",
+            website: "https://www.nrisetu.in",
             ranking: "Top NRI Service Platform",
             clients: "5,000+ NRIs Served"
         },
