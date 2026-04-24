@@ -10,7 +10,8 @@ import {
   MessageCircle, 
   Facebook, 
   Instagram, 
-  Linkedin 
+  Linkedin,
+  Youtube 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
@@ -89,6 +90,7 @@ const Header = ({ onOpenModal }: HeaderProps) => {
             <div className="flex items-center gap-3">
               <a href="https://www.facebook.com/share/1DmTjjBvXC/?mibextid=wwXIfr" className="hover:text-primary transition-colors"><Facebook className="w-3.5 h-3.5" /></a>
               <a href="https://www.instagram.com/globalpasscareer?igsh=MW41bmUwYm94MWNzMg==" className="hover:text-primary transition-colors"><Instagram className="w-3.5 h-3.5" /></a>
+              <a href="https://www.youtube.com/@vlgglobal" className="hover:text-primary transition-colors"><Youtube className="w-3.5 h-3.5" /></a>
               <a href="https://www.linkedin.com/company/global-pass-career-consultancy/?viewAsMember=true" className="hover:text-primary transition-colors"><Linkedin className="w-3.5 h-3.5" /></a>
             </div>
           </div>
