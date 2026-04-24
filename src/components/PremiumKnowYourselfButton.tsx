@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { User, Sparkles, Brain, Target, Award, ChevronRight, X } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import tabletImage from "../assets/tablet.jpeg";
 
 const PremiumKnowYourselfButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,23 +13,33 @@ const PremiumKnowYourselfButton = () => {
 
   return (
     <>
-      {/* Premium Button */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className="group relative inline-flex items-center gap-2.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105 border border-white/20 backdrop-blur-sm animate-blink"
-      >
-        {/* Sparkle Icon */}
-        <Sparkles className="w-4 h-4 animate-pulse" />
+      {/* Premium Button with Tablet Image */}
+      <div className="flex items-center gap-8">
+        {/* Premium Button */}
+        <button
+          onClick={() => setIsOpen(true)}
+          className="group relative inline-flex items-center gap-2.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105 border border-white/20 backdrop-blur-sm animate-blink"
+        >
+          {/* Sparkle Icon */}
+          <Sparkles className="w-4 h-4 animate-pulse" />
+          
+          {/* Button Text */}
+          <span className="font-semibold text-sm">Know Yourself</span>
+          
+          {/* Arrow Icon */}
+          <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
+          
+          {/* Gradient Border Effect */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm"></div>
+        </button>
         
-        {/* Button Text */}
-        <span className="font-semibold text-sm">Know Yourself</span>
-        
-        {/* Arrow Icon */}
-        <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
-        
-        {/* Gradient Border Effect */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm"></div>
-      </button>
+        {/* Tablet Image */}
+        <img 
+          src={tabletImage} 
+          alt="Tablet" 
+          className="w-48 h-48 object-contain rounded-full transition-all duration-300 hover:scale-105 -mt-20 ml-20"
+        />
+      </div>
 
       {/* Premium Modal */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
