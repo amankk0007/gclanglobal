@@ -56,7 +56,7 @@ const PartnersPage = () => {
             name: "TCIL IT",
             type: "Training Partner",
             description: "Advanced Skills & Training Division - TCIL IT is our dedicated training vertical focused on future-ready technologies, empowering students with industry-relevant skills in AI, Machine Learning, Cyber Security, and Robotics. With a strong emphasis on practical learning and real-world applications, TCIL IT bridges the gap between education and employability through expert-led training and hands-on experience.",
-            website: "https://www.tcilit.com",
+            website: "https://tcilitchandigarh.com/",
             ranking: "Industry-Aligned Training",
             clients: "Building Next Generation Tech Professionals"
         },
