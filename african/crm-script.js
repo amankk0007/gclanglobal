@@ -1,10 +1,49 @@
 // CRM Dashboard JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    // Check authentication
+    if (!checkAuth()) {
+        window.location.href = 'admin-login.html';
+        return;
+    }
+    
     initializeDashboard();
     loadVoteData();
     initializeEventListeners();
     initializeCharts();
+    
+    // Add logout functionality
+    addLogoutButton();
 });
+
+// Check authentication
+function checkAuth() {
+    const auth = localStorage.getItem('adminAuth');
+    return auth === 'true';
+}
+
+// Logout function
+function logout() {
+    if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('adminAuth');
+        localStorage.removeItem('adminLoginTime');
+        window.location.href = 'admin-login.html';
+    }
+}
+
+// Add logout button to navbar
+function addLogoutButton() {
+    const navbar = document.querySelector('.navbar .container-fluid .navbar-nav');
+    if (navbar) {
+        const logoutLi = document.createElement('li');
+        logoutLi.className = 'nav-item';
+        logoutLi.innerHTML = `
+            <a class="nav-link" href="#" onclick="logout()" style="cursor: pointer;">
+                <i class="fas fa-sign-out-alt me-1"></i>Logout
+            </a>
+        `;
+        navbar.appendChild(logoutLi);
+    }
+}
 
 // Global variables
 let votesData = [];
