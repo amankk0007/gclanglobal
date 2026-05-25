@@ -102,11 +102,11 @@ const VotingForm = () => {
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
       
-      <div>
+      <div style={{ fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", backgroundColor: '#f8f9fa' }}>
         {/* Navigation */}
         <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
           <div className="container">
-            <a className="navbar-brand" href="/">
+            <a className="navbar-brand" href="#">
               <i className="fas fa-graduation-cap me-2"></i>Global Pass Career
             </a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -115,7 +115,7 @@ const VotingForm = () => {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
-                  <a className="nav-link" href="/">Home</a>
+                  <a className="nav-link" href="#home">Home</a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#about">About</a>
@@ -123,27 +123,188 @@ const VotingForm = () => {
                 <li className="nav-item">
                   <a className="nav-link" href="#vision">Vision</a>
                 </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#vote">Vote</a>
+                </li>
               </ul>
             </div>
           </div>
         </nav>
 
         {/* Hero Section */}
-        <section className="hero-section text-center py-5">
-          <div className="container hero-content">
-            <h1 className="display-3 fw-bold mb-3">Vote for Alan Daylee Yealu</h1>
-            <h2 className="h3 mb-4">African Presidential Election</h2>
-            <p className="lead text-white-50 mb-4">Empowering Africa Through Education, Healthcare & Leadership</p>
+        <section id="home" className="hero-section">
+          <div className="container">
+            <div className="row align-items-center" style={{ minHeight: '85vh', paddingTop: '60px' }}>
+              <div className="col-lg-6">
+                <div className="hero-content">
+                  <h1 className="display-3 fw-bold text-white mb-4 fade-in">
+                    Vote for Alan Daylee Yealu
+                  </h1>
+                  <h2 className="h2 text-warning mb-4 slide-up">
+                    <i className="fas fa-star me-2"></i>For Liberian President
+                  </h2>
+                  <p className="lead text-white mb-4">
+                    A Liberian youth leader, education advocate, and organizational strategist dedicated to empowering young people across Africa through leadership, innovation, and access to opportunities.
+                  </p>
+                  <div className="d-flex gap-3">
+                    <a href="#vote" className="btn btn-warning btn-lg">
+                      <i className="fas fa-vote-yea me-2"></i>Vote Now
+                    </a>
+                    <a href="#about" className="btn btn-outline-light btn-lg">
+                      Learn More
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div className="hero-image text-center">
+                  <div className="candidate-profile rounded-circle overflow-hidden shadow-lg mx-auto" style={{ width: '400px', height: '400px', border: '8px solid #d4af37' }}>
+                    <img 
+                      src="/african/alan-yealu.jpg" 
+                      alt="Alan Daylee Yealu - African Presidential Candidate" 
+                      className="w-100 h-100 object-fit-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.parentElement!.innerHTML = '<div class="w-100 h-100 bg-gradient-to-br from-purple-600 to-blue-600 d-flex align-items-center justify-content-center"><i class="fas fa-user-tie text-white" style="font-size: 150px"></i></div>';
+                      }}
+                    />
+                  </div>
+                  <div className="mt-4 text-center">
+                    <h3 className="fw-bold text-white">Alan Daylee Yealu</h3>
+                    <p className="text-warning">African Presidential Candidate</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="py-3">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12 text-center mb-3">
+                <h2 className="display-5 fw-bold">About Alan Daylee Yealu</h2>
+                <p className="lead text-muted mb-2">A Leader for Africa's Future</p>
+              </div>
+            </div>
+            <div className="row g-4">
+              <div className="col-lg-4">
+                <div className="card h-100 shadow-sm">
+                  <div className="card-body text-center p-4">
+                    <div className="mb-3">
+                      <i className="fas fa-graduation-cap fa-3x text-primary"></i>
+                    </div>
+                    <h4 className="fw-bold text-primary mb-3">Education Advocate</h4>
+                    <p className="text-muted">Passionate about transforming education systems across Africa to ensure every child has access to quality learning opportunities.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4">
+                <div className="card h-100 shadow-sm">
+                  <div className="card-body text-center p-4">
+                    <div className="mb-3">
+                      <i className="fas fa-heartbeat fa-3x text-success"></i>
+                    </div>
+                    <h4 className="fw-bold text-success mb-3">Co-Founder, VitalCare Initiative</h4>
+                    <p className="text-muted">An organization established to contribute to the development and improvement of Liberia's health sector, ensuring better healthcare access for all citizens.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4">
+                <div className="card h-100 shadow-sm">
+                  <div className="card-body text-center p-4">
+                    <div className="mb-3">
+                      <i className="fas fa-globe-africa fa-3x text-warning"></i>
+                    </div>
+                    <h4 className="fw-bold text-warning mb-3">Director for African Affairs</h4>
+                    <p className="text-muted">At Global Pass Career Consultancy, supporting and guiding African students seeking international educational and career opportunities.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row mt-5">
+              <div className="col-lg-12">
+                <div className="card shadow-sm">
+                  <div className="card-body p-4">
+                    <h4 className="fw-bold text-primary mb-3">Leadership Experience</h4>
+                    <ul className="list-group list-group-flush">
+                      <li className="list-group-item"><i className="fas fa-check-circle text-success me-2"></i>Vice President, Liberian International Students Alliance (LISA)</li>
+                      <li className="list-group-item"><i className="fas fa-check-circle text-success me-2"></i>Technical Advisor, The Changers Liberia (since 2019)</li>
+                      <li className="list-group-item"><i className="fas fa-check-circle text-success me-2"></i>Speaker on women empowerment, financial security, and youth advancement</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Vision Section */}
+        <section id="vision" className="py-3">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12 text-center mb-3">
+                <h2 className="display-5 fw-bold">Our Vision for Africa</h2>
+                <p className="lead text-muted mb-2">Building a Brighter Future Together</p>
+              </div>
+            </div>
+            <div className="row g-4">
+              <div className="col-lg-3">
+                <div className="card h-100 shadow-sm program-card">
+                  <div className="card-body text-center p-4">
+                    <div className="mb-3">
+                      <i className="fas fa-graduation-cap fa-3x text-primary"></i>
+                    </div>
+                    <h4 className="fw-bold text-primary mb-3">Education for All</h4>
+                    <p className="text-muted">Ensuring every African child has access to quality education and opportunities for growth.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3">
+                <div className="card h-100 shadow-sm program-card">
+                  <div className="card-body text-center p-4">
+                    <div className="mb-3">
+                      <i className="fas fa-lightbulb fa-3x text-warning"></i>
+                    </div>
+                    <h4 className="fw-bold text-warning mb-3">Innovation</h4>
+                    <p className="text-muted">Promoting technological innovation and entrepreneurship across the continent.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3">
+                <div className="card h-100 shadow-sm program-card">
+                  <div className="card-body text-center p-4">
+                    <div className="mb-3">
+                      <i className="fas fa-crown fa-3x text-success"></i>
+                    </div>
+                    <h4 className="fw-bold text-success mb-3">Leadership</h4>
+                    <p className="text-muted">Developing the next generation of African leaders who will drive positive change.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3">
+                <div className="card h-100 shadow-sm program-card">
+                  <div className="card-body text-center p-4">
+                    <div className="mb-3">
+                      <i className="fas fa-hand-holding-heart fa-3x text-danger"></i>
+                    </div>
+                    <h4 className="fw-bold text-danger mb-3">Healthcare</h4>
+                    <p className="text-muted">Improving healthcare systems and access to medical services for all Africans.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* Voting Form */}
-        <section className="py-5">
+        <section id="vote" className="py-3">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-8">
                 <div className="card shadow-lg">
-                  <div className="card-body p-5">
+                  <div className="card-body p-4">
                     {showSuccess ? (
                       <div className="text-center py-5">
                         <div className="mb-4">
