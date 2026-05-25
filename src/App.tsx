@@ -26,6 +26,8 @@ import RootPage from "./pages/apply/RootPage";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminRoute from "./components/admin/AdminRoute";
+import VotingForm from "./components/VotingForm";
+import VotingCRM from "./components/VotingCRM";
 
 const queryClient = new QueryClient();
 
@@ -65,6 +67,9 @@ const App = () => (
               </AdminRoute>
             } 
           />
+          {/* Voting Routes */}
+          <Route path="/vote" element={<VotingForm />} />
+          <Route path="/vote-crm" element={<VotingCRM />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
