@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
+import './crm.css';
 
 interface Vote {
   id: string;
@@ -139,366 +139,381 @@ const VotingCRM = () => {
   const currentVotes = filteredVotes.slice(startIndex, endIndex);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Navigation */}
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div className="container-fluid px-4">
-          <a className="navbar-brand fw-bold" href="/">
-            <i className="fas fa-graduation-cap me-2"></i>Global Pass Career CRM
-          </a>
-          <span className="navbar-text text-white">
-            <i className="fas fa-user-shield me-2"></i>Admin Dashboard
-          </span>
-        </div>
-      </nav>
+    <>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+      
+      <div style={{ fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
+        {/* Navigation */}
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+          <div className="container-fluid px-4">
+            <a className="navbar-brand fw-bold" href="/">
+              <i className="fas fa-graduation-cap me-2"></i>Global Pass Career CRM
+            </a>
+            <span className="navbar-text text-white">
+              <i className="fas fa-user-shield me-2"></i>Admin Dashboard
+            </span>
+          </div>
+        </nav>
 
-      <div className="container-fluid dashboard-container" style={{ paddingTop: '70px' }}>
-        <div className="row">
-          {/* Sidebar */}
-          <nav className="col-md-3 col-lg-2 d-md-block bg-light sidebar py-3">
-            <div className="position-sticky">
-              <ul className="nav flex-column">
-                <li className="nav-item">
-                  <a className="nav-link active" href="#">
-                    <i className="fas fa-tachometer-alt me-2"></i>Dashboard
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#students">
-                    <i className="fas fa-users me-2"></i>Students
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#analytics">
-                    <i className="fas fa-chart-bar me-2"></i>Analytics
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#export" onClick={handleExport}>
-                    <i className="fas fa-download me-2"></i>Export Data
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
+        <div className="container-fluid dashboard-container" style={{ paddingTop: '70px' }}>
+          <div className="row">
+            {/* Sidebar */}
+            <nav className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+              <div className="sidebar-sticky pt-3">
+                <ul className="nav flex-column">
+                  <li className="nav-item">
+                    <a className="nav-link active" href="#">
+                      <i className="fas fa-tachometer-alt me-2"></i>Dashboard
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#students">
+                      <i className="fas fa-users me-2"></i>Students
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#analytics">
+                      <i className="fas fa-chart-bar me-2"></i>Analytics
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#export" onClick={handleExport}>
+                      <i className="fas fa-download me-2"></i>Export Data
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
 
-          {/* Main Content */}
-          <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            {/* Header */}
-            <div className="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 className="h2">Liberian Presidential Election CRM</h1>
-              <div className="btn-toolbar">
-                <div className="btn-group me-2">
-                  <Button onClick={loadVotes} variant="outline" size="sm">
-                    <i className="fas fa-sync-alt me-1"></i>Refresh
-                  </Button>
-                </div>
-                <div className="btn-group">
-                  <Button onClick={handleExport} variant="primary" size="sm">
-                    <i className="fas fa-file-excel me-1"></i>Export Excel
-                  </Button>
+            {/* Main Content */}
+            <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+              {/* Header */}
+              <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 className="h2">Liberian Presidential Election CRM</h1>
+                <div className="btn-toolbar mb-2 mb-md-0">
+                  <div className="btn-group me-2">
+                    <button type="button" className="btn btn-sm btn-outline-secondary" onClick={loadVotes}>
+                      <i className="fas fa-sync-alt me-1"></i>Refresh
+                    </button>
+                  </div>
+                  <div className="btn-group">
+                    <button type="button" className="btn btn-sm btn-primary" onClick={handleExport}>
+                      <i className="fas fa-file-excel me-1"></i>Export Excel
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Live Vote Counter */}
-            <div className="row mb-4">
-              <div className="col-12">
-                <div className="card bg-gradient-primary text-white shadow-lg">
-                  <div className="card-body text-center py-4">
-                    <h4 className="mb-2">
-                      <i className="fas fa-vote-yea me-2"></i>Live Vote Count
-                    </h4>
-                    <div className="display-1 fw-bold mb-2">{totalVotes}</div>
-                    <p className="mb-0">Total Votes for Alan Daylee Yealu</p>
-                    <div className="mt-3">
-                      <span className="badge bg-light text-dark">
-                        <i className="fas fa-clock me-1"></i>Auto-refreshing every 5 seconds
-                      </span>
+              {/* Live Vote Counter */}
+              <div className="row mb-4">
+                <div className="col-12">
+                  <div className="card bg-gradient-primary text-white shadow-lg">
+                    <div className="card-body text-center py-4">
+                      <h4 className="mb-2">
+                        <i className="fas fa-vote-yea me-2"></i>Live Vote Count
+                      </h4>
+                      <div className="display-1 fw-bold mb-2">{totalVotes}</div>
+                      <p className="mb-0">Total Votes for Alan Daylee Yealu</p>
+                      <div className="mt-3">
+                        <span className="badge bg-light text-dark">
+                          <i className="fas fa-clock me-1"></i>Auto-refreshing every 5 seconds
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Statistics Cards */}
-            <div className="row mb-4">
-              <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-primary shadow h-100 py-2">
-                  <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                      <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          Total Votes
+              {/* Statistics Cards */}
+              <div className="row mb-4">
+                <div className="col-xl-3 col-md-6 mb-4">
+                  <div className="card border-left-primary shadow h-100 py-2">
+                    <div className="card-body">
+                      <div className="row no-gutters align-items-center">
+                        <div className="col mr-2">
+                          <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Total Votes
+                          </div>
+                          <div className="h5 mb-0 font-weight-bold text-gray-800">{totalVotes}</div>
                         </div>
-                        <div className="h5 mb-0 font-weight-bold text-gray-800">{totalVotes}</div>
-                      </div>
-                      <div className="col-auto">
-                        <i className="fas fa-vote-yea fa-2x text-gray-300"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-success shadow h-100 py-2">
-                  <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                      <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-success text-uppercase mb-1">
-                          Today's Votes
+                        <div className="col-auto">
+                          <i className="fas fa-vote-yea fa-2x text-gray-300"></i>
                         </div>
-                        <div className="h5 mb-0 font-weight-bold text-gray-800">{todayVotes}</div>
-                      </div>
-                      <div className="col-auto">
-                        <i className="fas fa-calendar-day fa-2x text-gray-300"></i>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-info shadow h-100 py-2">
-                  <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                      <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-info text-uppercase mb-1">
-                          Countries Represented
+                <div className="col-xl-3 col-md-6 mb-4">
+                  <div className="card border-left-success shadow h-100 py-2">
+                    <div className="card-body">
+                      <div className="row no-gutters align-items-center">
+                        <div className="col mr-2">
+                          <div className="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Today's Votes
+                          </div>
+                          <div className="h5 mb-0 font-weight-bold text-gray-800">{todayVotes}</div>
                         </div>
-                        <div className="h5 mb-0 font-weight-bold text-gray-800">{countries.length}</div>
-                      </div>
-                      <div className="col-auto">
-                        <i className="fas fa-globe-africa fa-2x text-gray-300"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-warning shadow h-100 py-2">
-                  <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                      <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                          Top Country
+                        <div className="col-auto">
+                          <i className="fas fa-calendar-day fa-2x text-gray-300"></i>
                         </div>
-                        <div className="h5 mb-0 font-weight-bold text-gray-800">{topCountry}</div>
                       </div>
-                      <div className="col-auto">
-                        <i className="fas fa-trophy fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-xl-3 col-md-6 mb-4">
+                  <div className="card border-left-info shadow h-100 py-2">
+                    <div className="card-body">
+                      <div className="row no-gutters align-items-center">
+                        <div className="col mr-2">
+                          <div className="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            Countries Represented
+                          </div>
+                          <div className="h5 mb-0 font-weight-bold text-gray-800">{countries.length}</div>
+                        </div>
+                        <div className="col-auto">
+                          <i className="fas fa-globe-africa fa-2x text-gray-300"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-xl-3 col-md-6 mb-4">
+                  <div className="card border-left-warning shadow h-100 py-2">
+                    <div className="card-body">
+                      <div className="row no-gutters align-items-center">
+                        <div className="col mr-2">
+                          <div className="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Top Country
+                          </div>
+                          <div className="h5 mb-0 font-weight-bold text-gray-800">{topCountry}</div>
+                        </div>
+                        <div className="col-auto">
+                          <i className="fas fa-trophy fa-2x text-gray-300"></i>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Votes Table */}
-            <div className="card shadow mb-4">
-              <div className="card-header py-3 d-flex justify-content-between align-items-center">
-                <h6 className="m-0 font-weight-bold text-primary">
-                  <i className="fas fa-vote-yea me-2"></i>Voter Registrations
-                </h6>
-                <div className="d-flex gap-2">
-                  <input
-                    type="text"
-                    placeholder="Search voters..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="form-control form-control-sm"
-                    style={{ width: '200px' }}
-                  />
-                  <select
-                    value={countryFilter}
-                    onChange={(e) => setCountryFilter(e.target.value)}
-                    className="form-select form-select-sm"
-                    style={{ width: '150px' }}
-                  >
-                    <option value="">All Countries</option>
-                    {countries.map(country => (
-                      <option key={country} value={country}>{country}</option>
-                    ))}
-                  </select>
+              {/* Votes Table */}
+              <div className="card shadow mb-4">
+                <div className="card-header py-3 d-flex justify-content-between align-items-center">
+                  <h6 className="m-0 font-weight-bold text-primary">
+                    <i className="fas fa-vote-yea me-2"></i>Voter Registrations
+                  </h6>
+                  <div className="d-flex gap-2">
+                    <input
+                      type="text"
+                      placeholder="Search voters..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="form-control form-control-sm"
+                      id="searchInput"
+                      style={{ width: '200px' }}
+                    />
+                    <select
+                      value={countryFilter}
+                      onChange={(e) => setCountryFilter(e.target.value)}
+                      className="form-select form-select-sm"
+                      id="filterCountry"
+                      style={{ width: '150px' }}
+                    >
+                      <option value="">All Countries</option>
+                      {countries.map(country => (
+                        <option key={country} value={country}>{country}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div className="card-body">
-                <div className="table-responsive">
-                  <table className="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>WhatsApp</th>
-                        <th>Country</th>
-                        <th>College</th>
-                        <th>Course</th>
-                        <th>Semester</th>
-                        <th>Date</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {isLoading ? (
+                <div className="card-body">
+                  <div className="table-responsive">
+                    <table className="table table-bordered" id="votesTable" width="100%" cellSpacing="0">
+                      <thead>
                         <tr>
-                          <td colSpan={11} className="text-center py-12 text-gray-500">
-                            Loading votes...
-                          </td>
+                          <th>ID</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Phone</th>
+                          <th>WhatsApp</th>
+                          <th>Country</th>
+                          <th>College</th>
+                          <th>Course</th>
+                          <th>Semester</th>
+                          <th>Date</th>
+                          <th>Actions</th>
                         </tr>
-                      ) : currentVotes.length === 0 ? (
-                        <tr>
-                          <td colSpan={11} className="text-center py-12 text-gray-500">
-                            No votes found
-                          </td>
-                        </tr>
-                      ) : (
-                        currentVotes.map((vote) => (
-                          <tr key={vote.id}>
-                            <td>{vote.id.slice(-6)}</td>
-                            <td>{vote.voterName}</td>
-                            <td>{vote.voterEmail}</td>
-                            <td>{vote.voterPhone}</td>
-                            <td>{vote.voterContactNumber}</td>
-                            <td>{vote.voterCountry}</td>
-                            <td>{vote.collegeName}</td>
-                            <td>{vote.courseName}</td>
-                            <td>{vote.semester}</td>
-                            <td>{new Date(vote.timestamp).toLocaleDateString()}</td>
-                            <td>
-                              <Button onClick={() => handleViewDetails(vote)} variant="outline" size="sm" className="me-2">
-                                View
-                              </Button>
-                              <Button onClick={() => handleDelete(vote.id)} variant="destructive" size="sm">
-                                Delete
-                              </Button>
+                      </thead>
+                      <tbody id="votesTableBody">
+                        {isLoading ? (
+                          <tr>
+                            <td colSpan={11} className="text-center py-12 text-gray-500">
+                              Loading votes...
                             </td>
                           </tr>
-                        ))
-                      )}
-                    </tbody>
-                  </table>
-                </div>
+                        ) : currentVotes.length === 0 ? (
+                          <tr>
+                            <td colSpan={11} className="text-center py-12 text-gray-500">
+                              No votes found
+                            </td>
+                          </tr>
+                        ) : (
+                          currentVotes.map((vote) => (
+                            <tr key={vote.id}>
+                              <td>{vote.id.slice(-6)}</td>
+                              <td>{vote.voterName}</td>
+                              <td>{vote.voterEmail}</td>
+                              <td>{vote.voterPhone}</td>
+                              <td>{vote.voterContactNumber}</td>
+                              <td>{vote.voterCountry}</td>
+                              <td>{vote.collegeName}</td>
+                              <td>{vote.courseName}</td>
+                              <td>{vote.semester}</td>
+                              <td>{new Date(vote.timestamp).toLocaleDateString()}</td>
+                              <td>
+                                <button
+                                  type="button"
+                                  className="btn btn-sm btn-outline-primary me-2 action-btn"
+                                  onClick={() => handleViewDetails(vote)}
+                                >
+                                  <i className="fas fa-eye"></i>
+                                </button>
+                                <button
+                                  type="button"
+                                  className="btn btn-sm btn-outline-danger action-btn"
+                                  onClick={() => handleDelete(vote.id)}
+                                >
+                                  <i className="fas fa-trash"></i>
+                                </button>
+                              </td>
+                            </tr>
+                          ))
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
 
-                {/* Pagination */}
-                {totalPages > 1 && (
-                  <nav className="mt-3">
-                    <ul className="pagination justify-content-center">
-                      <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                        <button
-                          className="page-link"
-                          onClick={() => setCurrentPage(currentPage - 1)}
-                          disabled={currentPage === 1}
-                        >
-                          Previous
-                        </button>
-                      </li>
-                      {[...Array(totalPages)].map((_, i) => (
-                        <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+                  {/* Pagination */}
+                  {totalPages > 1 && (
+                    <nav aria-label="Page navigation" className="mt-3">
+                      <ul className="pagination justify-content-center" id="pagination">
+                        <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
                           <button
                             className="page-link"
-                            onClick={() => setCurrentPage(i + 1)}
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
                           >
-                            {i + 1}
+                            Previous
                           </button>
                         </li>
-                      ))}
-                      <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-                        <button
-                          className="page-link"
-                          onClick={() => setCurrentPage(currentPage + 1)}
-                          disabled={currentPage === totalPages}
-                        >
-                          Next
-                        </button>
-                      </li>
-                    </ul>
-                  </nav>
-                )}
+                        {[...Array(totalPages)].map((_, i) => (
+                          <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+                            <button
+                              className="page-link"
+                              onClick={() => setCurrentPage(i + 1)}
+                            >
+                              {i + 1}
+                            </button>
+                          </li>
+                        ))}
+                        <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                          <button
+                            className="page-link"
+                            onClick={() => setCurrentPage(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                          >
+                            Next
+                          </button>
+                        </li>
+                      </ul>
+                    </nav>
+                  )}
+                </div>
               </div>
-            </div>
 
-            {/* Analytics Section */}
-            <div className="row">
-              <div className="col-lg-6">
-                <div className="card shadow mb-4">
-                  <div className="card-header py-3">
-                    <h6 className="m-0 font-weight-bold text-primary">
-                      <i className="fas fa-chart-pie me-2"></i>Program Distribution
-                    </h6>
+              {/* Analytics Section */}
+              <div className="row" id="analyticsSection">
+                <div className="col-lg-6">
+                  <div className="card shadow mb-4">
+                    <div className="card-header py-3">
+                      <h6 className="m-0 font-weight-bold text-primary">
+                        <i className="fas fa-chart-pie me-2"></i>Program Distribution
+                      </h6>
+                    </div>
+                    <div className="card-body">
+                      <div className="text-center text-gray-500">
+                        Chart will be rendered here
+                      </div>
+                    </div>
                   </div>
-                  <div className="card-body">
-                    <div className="text-center text-gray-500">
-                      Chart will be rendered here
+                </div>
+
+                <div className="col-lg-6">
+                  <div className="card shadow mb-4">
+                    <div className="card-header py-3">
+                      <h6 className="m-0 font-weight-bold text-primary">
+                        <i className="fas fa-chart-bar me-2"></i>Country Distribution
+                      </h6>
+                    </div>
+                    <div className="card-body">
+                      <div className="text-center text-gray-500">
+                        Chart will be rendered here
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div className="col-lg-6">
-                <div className="card shadow mb-4">
-                  <div className="card-header py-3">
-                    <h6 className="m-0 font-weight-bold text-primary">
-                      <i className="fas fa-chart-bar me-2"></i>Country Distribution
-                    </h6>
-                  </div>
-                  <div className="card-body">
-                    <div className="text-center text-gray-500">
-                      Chart will be rendered here
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </main>
+            </main>
+          </div>
         </div>
-      </div>
 
-      {/* Student Details Modal */}
-      {showModal && selectedVote && (
-        <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
-          <div className="modal-dialog modal-lg">
-            <div className="modal-content">
-              <div className="modal-header bg-primary text-white">
-                <h5 className="modal-title">
-                  <i className="fas fa-user-graduate me-2"></i>Student Details
-                </h5>
-                <button type="button" className="btn-close btn-close-white" onClick={() => setShowModal(false)}></button>
-              </div>
-              <div className="modal-body">
-                <div className="row">
-                  <div className="col-md-6">
-                    <p><strong>Name:</strong> {selectedVote.voterName}</p>
-                    <p><strong>Email:</strong> {selectedVote.voterEmail}</p>
-                    <p><strong>Phone:</strong> {selectedVote.voterPhone}</p>
-                    <p><strong>WhatsApp:</strong> {selectedVote.voterContactNumber}</p>
+        {/* Student Details Modal */}
+        {showModal && selectedVote && (
+          <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }} tabIndex={-1}>
+            <div className="modal-dialog modal-lg">
+              <div className="modal-content">
+                <div className="modal-header bg-primary text-white">
+                  <h5 className="modal-title">
+                    <i className="fas fa-user-graduate me-2"></i>Student Details
+                  </h5>
+                  <button type="button" className="btn-close btn-close-white" onClick={() => setShowModal(false)}></button>
+                </div>
+                <div className="modal-body" id="studentDetails">
+                  <div className="row">
+                    <div className="col-md-6">
+                      <p><strong>Name:</strong> {selectedVote.voterName}</p>
+                      <p><strong>Email:</strong> {selectedVote.voterEmail}</p>
+                      <p><strong>Phone:</strong> {selectedVote.voterPhone}</p>
+                      <p><strong>WhatsApp:</strong> {selectedVote.voterContactNumber}</p>
+                    </div>
+                    <div className="col-md-6">
+                      <p><strong>Country:</strong> {selectedVote.voterCountry}</p>
+                      <p><strong>College:</strong> {selectedVote.collegeName}</p>
+                      <p><strong>Course:</strong> {selectedVote.courseName}</p>
+                      <p><strong>Semester:</strong> {selectedVote.semester}</p>
+                    </div>
                   </div>
-                  <div className="col-md-6">
-                    <p><strong>Country:</strong> {selectedVote.voterCountry}</p>
-                    <p><strong>College:</strong> {selectedVote.collegeName}</p>
-                    <p><strong>Course:</strong> {selectedVote.courseName}</p>
-                    <p><strong>Semester:</strong> {selectedVote.semester}</p>
+                  <div className="mt-3">
+                    <p><strong>Support Reason:</strong> {selectedVote.supportReason || 'Not provided'}</p>
+                    <p><strong>Voted On:</strong> {new Date(selectedVote.timestamp).toLocaleString()}</p>
                   </div>
                 </div>
-                <div className="mt-3">
-                  <p><strong>Support Reason:</strong> {selectedVote.supportReason || 'Not provided'}</p>
-                  <p><strong>Voted On:</strong> {new Date(selectedVote.timestamp).toLocaleString()}</p>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Close</button>
+                  <button type="button" className="btn btn-primary" onClick={() => window.location.href = `mailto:${selectedVote.voterEmail}`}>
+                    <i className="fas fa-envelope me-2"></i>Contact Student
+                  </button>
                 </div>
-              </div>
-              <div className="modal-footer">
-                <Button variant="outline" onClick={() => setShowModal(false)}>Close</Button>
-                <Button variant="primary" onClick={() => window.location.href = `mailto:${selectedVote.voterEmail}`}>
-                  <i className="fas fa-envelope me-2"></i>Contact Student
-                </Button>
               </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 };
 
