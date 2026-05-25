@@ -143,7 +143,10 @@ const VotingCRM = () => {
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
       
-      <div style={{ fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
+      <div
+        className="crm-dashboard"
+        style={{ fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", backgroundColor: '#f8f9fa', minHeight: '100vh', margin: 0, padding: 0 }}
+      >
         {/* Navigation */}
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container-fluid px-4">
@@ -156,9 +159,9 @@ const VotingCRM = () => {
           </div>
         </nav>
 
-        <div className="container-fluid px-4" style={{ paddingTop: '30px' }}>
+        <div style={{ paddingTop: '30px' }}>
           {/* Header */}
-          <div className="d-flex justify-content-between flex-wrap align-items-center mb-4">
+          <div className="d-flex justify-content-between flex-wrap align-items-center mb-4 px-4">
             <h1 className="h2">Liberian Presidential Election CRM</h1>
             <div className="d-flex gap-2">
               <button type="button" className="btn btn-sm btn-outline-secondary" onClick={loadVotes}>
@@ -171,8 +174,8 @@ const VotingCRM = () => {
           </div>
 
               {/* Live Vote Counter */}
-          <div className="row mb-4">
-            <div className="col-12">
+          <div className="row mb-4 mx-0">
+            <div className="col-12 px-4">
               <div className="card bg-gradient-primary text-white shadow-lg">
                 <div className="card-body text-center py-4">
                   <h4 className="mb-2">
@@ -191,7 +194,7 @@ const VotingCRM = () => {
           </div>
 
           {/* Statistics Cards */}
-          <div className="row mb-4">
+          <div className="row mb-4 mx-0 px-4">
             <div className="col-xl-3 col-md-6 mb-4">
               <div className="card border-left-primary shadow h-100 py-2">
                 <div className="card-body">
@@ -266,142 +269,144 @@ const VotingCRM = () => {
           </div>
 
           {/* Votes Table */}
-          <div className="card shadow mb-4">
-            <div className="card-header py-3 d-flex justify-content-between align-items-center">
-              <h6 className="m-0 font-weight-bold text-primary">
-                <i className="fas fa-vote-yea me-2"></i>Voter Registrations
-              </h6>
-              <div className="d-flex gap-2">
-                <input
-                  type="text"
-                  placeholder="Search voters..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="form-control form-control-sm"
-                  id="searchInput"
-                  style={{ width: '200px' }}
-                />
-                <select
-                  value={countryFilter}
-                  onChange={(e) => setCountryFilter(e.target.value)}
-                  className="form-select form-select-sm"
-                  id="filterCountry"
-                  style={{ width: '150px' }}
-                >
-                  <option value="">All Countries</option>
-                  {countries.map(country => (
-                    <option key={country} value={country}>{country}</option>
-                  ))}
-                </select>
+          <div className="px-4">
+            <div className="card shadow mb-4">
+              <div className="card-header py-3 d-flex justify-content-between align-items-center">
+                <h6 className="m-0 font-weight-bold text-primary">
+                  <i className="fas fa-vote-yea me-2"></i>Voter Registrations
+                </h6>
+                <div className="d-flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="Search voters..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="form-control form-control-sm"
+                    id="searchInput"
+                    style={{ width: '200px' }}
+                  />
+                  <select
+                    value={countryFilter}
+                    onChange={(e) => setCountryFilter(e.target.value)}
+                    className="form-select form-select-sm"
+                    id="filterCountry"
+                    style={{ width: '150px' }}
+                  >
+                    <option value="">All Countries</option>
+                    {countries.map(country => (
+                      <option key={country} value={country}>{country}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
-            </div>
-            <div className="card-body">
-              <div className="table-responsive">
-                <table className="table table-bordered" id="votesTable" width="100%" cellSpacing="0">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Phone</th>
-                      <th>WhatsApp</th>
-                      <th>Country</th>
-                      <th>College</th>
-                      <th>Course</th>
-                      <th>Semester</th>
-                      <th>Date</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody id="votesTableBody">
-                    {isLoading ? (
+              <div className="card-body">
+                <div className="table-responsive">
+                  <table className="table table-bordered" id="votesTable" width="100%" cellSpacing="0">
+                    <thead>
                       <tr>
-                        <td colSpan={11} className="text-center py-12 text-gray-500">
-                          Loading votes...
-                        </td>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>WhatsApp</th>
+                        <th>Country</th>
+                        <th>College</th>
+                        <th>Course</th>
+                        <th>Semester</th>
+                        <th>Date</th>
+                        <th>Actions</th>
                       </tr>
-                    ) : currentVotes.length === 0 ? (
-                      <tr>
-                        <td colSpan={11} className="text-center py-12 text-gray-500">
-                          No votes found
-                        </td>
-                      </tr>
-                    ) : (
-                      currentVotes.map((vote) => (
-                        <tr key={vote.id}>
-                          <td>{vote.id.slice(-6)}</td>
-                          <td>{vote.voterName}</td>
-                          <td>{vote.voterEmail}</td>
-                          <td>{vote.voterPhone}</td>
-                          <td>{vote.voterContactNumber}</td>
-                          <td>{vote.voterCountry}</td>
-                          <td>{vote.collegeName}</td>
-                          <td>{vote.courseName}</td>
-                          <td>{vote.semester}</td>
-                          <td>{new Date(vote.timestamp).toLocaleDateString()}</td>
-                          <td>
-                            <button
-                              type="button"
-                              className="btn btn-sm btn-outline-primary me-2 action-btn"
-                              onClick={() => handleViewDetails(vote)}
-                            >
-                              <i className="fas fa-eye"></i>
-                            </button>
-                            <button
-                              type="button"
-                              className="btn btn-sm btn-outline-danger action-btn"
-                              onClick={() => handleDelete(vote.id)}
-                            >
-                              <i className="fas fa-trash"></i>
-                            </button>
+                    </thead>
+                    <tbody id="votesTableBody">
+                      {isLoading ? (
+                        <tr>
+                          <td colSpan={11} className="text-center py-12 text-gray-500">
+                            Loading votes...
                           </td>
                         </tr>
-                      ))
-                    )}
-                  </tbody>
-                </table>
-              </div>
+                      ) : currentVotes.length === 0 ? (
+                        <tr>
+                          <td colSpan={11} className="text-center py-12 text-gray-500">
+                            No votes found
+                          </td>
+                        </tr>
+                      ) : (
+                        currentVotes.map((vote) => (
+                          <tr key={vote.id}>
+                            <td>{vote.id.slice(-6)}</td>
+                            <td>{vote.voterName}</td>
+                            <td>{vote.voterEmail}</td>
+                            <td>{vote.voterPhone}</td>
+                            <td>{vote.voterContactNumber}</td>
+                            <td>{vote.voterCountry}</td>
+                            <td>{vote.collegeName}</td>
+                            <td>{vote.courseName}</td>
+                            <td>{vote.semester}</td>
+                            <td>{new Date(vote.timestamp).toLocaleDateString()}</td>
+                            <td>
+                              <button
+                                type="button"
+                                className="btn btn-sm btn-outline-primary me-2 action-btn"
+                                onClick={() => handleViewDetails(vote)}
+                              >
+                                <i className="fas fa-eye"></i>
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn-sm btn-outline-danger action-btn"
+                                onClick={() => handleDelete(vote.id)}
+                              >
+                                <i className="fas fa-trash"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
+                </div>
 
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <nav aria-label="Page navigation" className="mt-3">
-                  <ul className="pagination justify-content-center" id="pagination">
-                    <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                      <button
-                        className="page-link"
-                        onClick={() => setCurrentPage(currentPage - 1)}
-                        disabled={currentPage === 1}
-                      >
-                        Previous
-                      </button>
-                    </li>
-                    {[...Array(totalPages)].map((_, i) => (
-                      <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <nav aria-label="Page navigation" className="mt-3">
+                    <ul className="pagination justify-content-center" id="pagination">
+                      <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
                         <button
                           className="page-link"
-                          onClick={() => setCurrentPage(i + 1)}
+                          onClick={() => setCurrentPage(currentPage - 1)}
+                          disabled={currentPage === 1}
                         >
-                          {i + 1}
+                          Previous
                         </button>
                       </li>
-                    ))}
-                    <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-                      <button
-                        className="page-link"
-                        onClick={() => setCurrentPage(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                      >
-                        Next
-                      </button>
-                    </li>
-                  </ul>
-                </nav>
-              )}
+                      {[...Array(totalPages)].map((_, i) => (
+                        <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+                          <button
+                            className="page-link"
+                            onClick={() => setCurrentPage(i + 1)}
+                          >
+                            {i + 1}
+                          </button>
+                        </li>
+                      ))}
+                      <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                        <button
+                          className="page-link"
+                          onClick={() => setCurrentPage(currentPage + 1)}
+                          disabled={currentPage === totalPages}
+                        >
+                          Next
+                        </button>
+                      </li>
+                    </ul>
+                  </nav>
+                )}
+              </div>
             </div>
           </div>
 
           {/* Analytics Section */}
-          <div className="row">
+          <div className="row px-4">
             <div className="col-lg-6">
               <div className="card shadow mb-4">
                 <div className="card-header py-3">

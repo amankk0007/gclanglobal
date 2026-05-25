@@ -72,7 +72,7 @@ const Header = ({ onOpenModal }: HeaderProps) => {
     <>
       {/* Top Bar - Premium Dark - Visible on all screens */}
       <div className="bg-[#020617] text-white py-2 border-b border-white/5 relative z-50">
-        <div className="container mx-auto px-4 flex justify-between items-center text-xs font-medium">
+        <div className="w-full px-4 flex justify-between items-center text-xs font-medium">
           {/* Mobile: Phone only, Desktop: Phone + Email */}
           <div className="flex items-center gap-4 lg:gap-6">
             <a href="tel:+917508813555" className="flex items-center gap-1.5 lg:gap-2 hover:text-primary transition-colors">
@@ -114,7 +114,7 @@ const Header = ({ onOpenModal }: HeaderProps) => {
           : "bg-white/60 backdrop-blur-md py-3.5 border-white/10"
           }`}
       >
-        <div className="container mx-auto px-4">
+        <div className="w-full px-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">

@@ -21,11 +21,6 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
-}
-
 /* Dashboard Container */
 .dashboard-container {
     padding-top: 60px;
@@ -75,13 +70,13 @@ body {
     margin-right: 8px;
 }
 
-/* Main Content */
-main {
+/* Main Content (scoped to CRM only) */
+.crm-dashboard main {
     margin-left: 0;
 }
 
 @media (min-width: 768px) {
-    main {
+    .crm-dashboard main {
         margin-left: 240px;
     }
 }
@@ -288,7 +283,7 @@ main {
         padding: 0;
     }
     
-    main {
+    .crm-dashboard main {
         margin-left: 0;
     }
     
@@ -350,7 +345,7 @@ main {
         display: none !important;
     }
     
-    main {
+    .crm-dashboard main {
         margin-left: 0 !important;
     }
     
@@ -361,7 +356,7 @@ main {
 
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
-    body {
+    .crm-dashboard {
         background-color: #1a1d20;
         color: #e9ecef;
     }

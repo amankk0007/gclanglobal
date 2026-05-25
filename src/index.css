@@ -98,10 +98,17 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   html {
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   body {
@@ -114,8 +121,23 @@
       radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0) 0, transparent 50%),
       radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0) 0, transparent 50%);
     /* Optional: Subtle noise pattern or texture could be added here */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
   }
 
+  #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  
+  
   h1,
   h2,
   h3,
