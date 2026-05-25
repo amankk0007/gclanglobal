@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import './voting.css';
 
 interface VoteData {
   voterName: string;
@@ -98,249 +98,285 @@ const VotingForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 text-white">
-      {/* Hero Section */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold mb-4">Vote for Alan Daylee Yealu</h1>
-          <p className="text-2xl text-blue-200">Liberian Presidential Election</p>
-          <p className="text-lg text-blue-300 mt-4">Empowering Africa Through Education, Healthcare & Leadership</p>
-        </div>
+    <>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+      
+      <div>
+        {/* Navigation */}
+        <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
+          <div className="container">
+            <a className="navbar-brand" href="/">
+              <i className="fas fa-graduation-cap me-2"></i>Global Pass Career
+            </a>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav ms-auto">
+                <li className="nav-item">
+                  <a className="nav-link" href="/">Home</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#about">About</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#vision">Vision</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
 
-        {/* About Candidate */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center">
-            <div className="text-5xl mb-4">🎓</div>
-            <h3 className="text-xl font-bold mb-2">Education Advocate</h3>
-            <p className="text-blue-200">Promoting access to quality education for all Africans</p>
+        {/* Hero Section */}
+        <section className="hero-section text-center py-5">
+          <div className="container hero-content">
+            <h1 className="display-3 fw-bold mb-3">Vote for Alan Daylee Yealu</h1>
+            <h2 className="h3 mb-4">African Presidential Election</h2>
+            <p className="lead text-white-50 mb-4">Empowering Africa Through Education, Healthcare & Leadership</p>
           </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center">
-            <div className="text-5xl mb-4">❤️</div>
-            <h3 className="text-xl font-bold mb-2">Healthcare Champion</h3>
-            <p className="text-blue-200">Co-Founder, VitalCare Initiative for better healthcare</p>
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center">
-            <div className="text-5xl mb-4">🌍</div>
-            <h3 className="text-xl font-bold mb-2">African Leadership</h3>
-            <p className="text-blue-200">Director for African Affairs at Global Pass Career</p>
-          </div>
-        </div>
+        </section>
 
         {/* Voting Form */}
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 text-gray-900">
-            {showSuccess ? (
-              <div className="text-center py-12">
-                <div className="text-8xl mb-6">✅</div>
-                <h2 className="text-4xl font-bold text-green-600 mb-4">Vote Submitted Successfully!</h2>
-                <p className="text-xl text-gray-600 mb-8">Thank you for your vote. Your support matters!</p>
-                <Button
-                  onClick={() => setShowSuccess(false)}
-                  className="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 text-lg rounded-xl"
-                >
-                  Submit Another Vote
-                </Button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Phase 1: Personal Information */}
-                <div>
-                  <h3 className="text-2xl font-bold text-primary mb-4 flex items-center">
-                    <span className="mr-2">👤</span> Phase 1: Personal Information
-                  </h3>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.voterName}
-                        onChange={(e) => setFormData({ ...formData, voterName: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                        placeholder="Enter your full name"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                      <input
-                        type="email"
-                        required
-                        value={formData.voterEmail}
-                        onChange={(e) => setFormData({ ...formData, voterEmail: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                        placeholder="your.email@example.com"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
-                      <input
-                        type="tel"
-                        required
-                        value={formData.voterPhone}
-                        onChange={(e) => setFormData({ ...formData, voterPhone: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                        placeholder="+231 XXX XXX XXX"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Contact Number (WhatsApp) *</label>
-                      <input
-                        type="tel"
-                        required
-                        value={formData.voterContactNumber}
-                        onChange={(e) => setFormData({ ...formData, voterContactNumber: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                        placeholder="+231 XXX XXX XXX (WhatsApp)"
-                      />
-                    </div>
-                    <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Country (African Countries Only) *</label>
-                      <select
-                        required
-                        value={formData.voterCountry}
-                        onChange={(e) => setFormData({ ...formData, voterCountry: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                      >
-                        <option value="">Select your country</option>
-                        {africanCountries.map(country => (
-                          <option key={country} value={country}>{country}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Phase 2: Education Information */}
-                <div>
-                  <h3 className="text-2xl font-bold text-primary mb-4 flex items-center">
-                    <span className="mr-2">🎓</span> Phase 2: Education Information
-                  </h3>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">College/University Name *</label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.collegeName}
-                        onChange={(e) => setFormData({ ...formData, collegeName: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                        placeholder="Enter your college/university name"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Course/Program *</label>
-                      <select
-                        required
-                        value={formData.courseName}
-                        onChange={(e) => setFormData({ ...formData, courseName: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                      >
-                        <option value="">Select your course</option>
-                        {courses.map(course => (
-                          <option key={course} value={course}>{course}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Current Semester *</label>
-                      <select
-                        required
-                        value={formData.semester}
-                        onChange={(e) => setFormData({ ...formData, semester: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                      >
-                        <option value="">Select semester</option>
-                        {semesters.map(sem => (
-                          <option key={sem} value={sem}>{sem}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Year of Study *</label>
-                      <select
-                        required
-                        value={formData.yearOfStudy}
-                        onChange={(e) => setFormData({ ...formData, yearOfStudy: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                      >
-                        <option value="">Select year</option>
-                        {years.map(year => (
-                          <option key={year} value={year}>{year}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Candidate Selection */}
-                <div>
-                  <h3 className="text-2xl font-bold text-primary mb-4 flex items-center">
-                    <span className="mr-2">🗳️</span> Candidate Selection
-                  </h3>
-                  <div className="bg-indigo-50 border-2 border-indigo-200 rounded-xl p-6">
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        name="candidate"
-                        value="alan"
-                        checked={formData.candidate === 'alan'}
-                        onChange={(e) => setFormData({ ...formData, candidate: e.target.value })}
-                        className="w-5 h-5 text-indigo-600"
-                      />
-                      <div className="ml-4">
-                        <h4 className="text-xl font-bold text-indigo-900">Alan Daylee Yealu</h4>
-                        <p className="text-indigo-700">Liberian Presidential Candidate</p>
+        <section className="py-5">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-lg-8">
+                <div className="card shadow-lg">
+                  <div className="card-body p-5">
+                    {showSuccess ? (
+                      <div className="text-center py-5">
+                        <div className="mb-4">
+                          <i className="fas fa-check-circle text-success" style={{ fontSize: '5rem' }}></i>
+                        </div>
+                        <h2 className="fw-bold text-success mb-3">Vote Submitted Successfully!</h2>
+                        <p className="mb-4">Thank you for your vote. Your support matters!</p>
+                        <button className="btn btn-primary" onClick={() => setShowSuccess(false)}>
+                          Submit Another Vote
+                        </button>
                       </div>
-                    </div>
+                    ) : (
+                      <form onSubmit={handleSubmit}>
+                        {/* Phase 1: Personal Information */}
+                        <h5 className="text-primary mb-4 fw-bold">
+                          <i className="fas fa-user me-2"></i>Phase 1: Personal Information
+                        </h5>
+                        <div className="row g-3 mb-4">
+                          <div className="col-md-6">
+                            <label htmlFor="voterName" className="form-label">Full Name *</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              id="voterName"
+                              required
+                              value={formData.voterName}
+                              onChange={(e) => setFormData({ ...formData, voterName: e.target.value })}
+                              placeholder="Enter your full name"
+                            />
+                          </div>
+                          <div className="col-md-6">
+                            <label htmlFor="voterEmail" className="form-label">Email Address *</label>
+                            <input
+                              type="email"
+                              className="form-control"
+                              id="voterEmail"
+                              required
+                              value={formData.voterEmail}
+                              onChange={(e) => setFormData({ ...formData, voterEmail: e.target.value })}
+                              placeholder="Enter your email"
+                            />
+                          </div>
+                          <div className="col-md-6">
+                            <label htmlFor="voterPhone" className="form-label">Phone Number *</label>
+                            <input
+                              type="tel"
+                              className="form-control"
+                              id="voterPhone"
+                              required
+                              value={formData.voterPhone}
+                              onChange={(e) => setFormData({ ...formData, voterPhone: e.target.value })}
+                              placeholder="+231 XXX XXX XXX"
+                            />
+                          </div>
+                          <div className="col-md-6">
+                            <label htmlFor="voterContactNumber" className="form-label">Contact Number (WhatsApp) *</label>
+                            <input
+                              type="tel"
+                              className="form-control"
+                              id="voterContactNumber"
+                              required
+                              value={formData.voterContactNumber}
+                              onChange={(e) => setFormData({ ...formData, voterContactNumber: e.target.value })}
+                              placeholder="+231 XXX XXX XXX (WhatsApp)"
+                            />
+                          </div>
+                          <div className="col-12">
+                            <label htmlFor="voterCountry" className="form-label">Country (African Countries Only) *</label>
+                            <select
+                              className="form-select"
+                              id="voterCountry"
+                              required
+                              value={formData.voterCountry}
+                              onChange={(e) => setFormData({ ...formData, voterCountry: e.target.value })}
+                            >
+                              <option value="">Select your country</option>
+                              {africanCountries.map(country => (
+                                <option key={country} value={country}>{country}</option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+
+                        {/* Phase 2: Education Information */}
+                        <h5 className="text-primary mb-4 mt-5 fw-bold">
+                          <i className="fas fa-graduation-cap me-2"></i>Phase 2: Education Information
+                        </h5>
+                        <div className="row g-3 mb-4">
+                          <div className="col-md-6">
+                            <label htmlFor="collegeName" className="form-label">College/University Name *</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              id="collegeName"
+                              required
+                              value={formData.collegeName}
+                              onChange={(e) => setFormData({ ...formData, collegeName: e.target.value })}
+                              placeholder="Enter your college/university name"
+                            />
+                          </div>
+                          <div className="col-md-6">
+                            <label htmlFor="courseName" className="form-label">Course/Program *</label>
+                            <select
+                              className="form-select"
+                              id="courseName"
+                              required
+                              value={formData.courseName}
+                              onChange={(e) => setFormData({ ...formData, courseName: e.target.value })}
+                            >
+                              <option value="">Select your course</option>
+                              {courses.map(course => (
+                                <option key={course} value={course}>{course}</option>
+                              ))}
+                            </select>
+                          </div>
+                          <div className="col-md-6">
+                            <label htmlFor="semester" className="form-label">Current Semester *</label>
+                            <select
+                              className="form-select"
+                              id="semester"
+                              required
+                              value={formData.semester}
+                              onChange={(e) => setFormData({ ...formData, semester: e.target.value })}
+                            >
+                              <option value="">Select semester</option>
+                              {semesters.map(sem => (
+                                <option key={sem} value={sem}>{sem}</option>
+                              ))}
+                            </select>
+                          </div>
+                          <div className="col-md-6">
+                            <label htmlFor="yearOfStudy" className="form-label">Year of Study *</label>
+                            <select
+                              className="form-select"
+                              id="yearOfStudy"
+                              required
+                              value={formData.yearOfStudy}
+                              onChange={(e) => setFormData({ ...formData, yearOfStudy: e.target.value })}
+                            >
+                              <option value="">Select year</option>
+                              {years.map(year => (
+                                <option key={year} value={year}>{year}</option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+
+                        {/* Candidate Selection */}
+                        <h5 className="text-primary mb-4 fw-bold">
+                          <i className="fas fa-vote-yea me-2"></i>Candidate Selection
+                        </h5>
+                        <div className="mb-4">
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="candidate"
+                              id="candidateAlan"
+                              value="alan"
+                              checked={formData.candidate === 'alan'}
+                              onChange={(e) => setFormData({ ...formData, candidate: e.target.value })}
+                              required
+                            />
+                            <label className="form-check-label" htmlFor="candidateAlan">
+                              <strong>Alan Daylee Yealu</strong> - Liberian Presidential Candidate
+                            </label>
+                          </div>
+                        </div>
+
+                        {/* Support Reason */}
+                        <div className="mb-4">
+                          <label htmlFor="supportReason" className="form-label">Why do you support this candidate?</label>
+                          <textarea
+                            className="form-control"
+                            id="supportReason"
+                            rows="3"
+                            value={formData.supportReason}
+                            onChange={(e) => setFormData({ ...formData, supportReason: e.target.value })}
+                            placeholder="Share your reason for supporting Alan Daylee Yealu"
+                          ></textarea>
+                        </div>
+
+                        {/* Terms Agreement */}
+                        <div className="mb-4">
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="checkbox"
+                              id="agreeTerms"
+                              required
+                              checked={formData.agreeTerms}
+                              onChange={(e) => setFormData({ ...formData, agreeTerms: e.target.checked })}
+                            />
+                            <label className="form-check-label" htmlFor="agreeTerms">
+                              I agree to the terms and conditions and confirm that this vote is genuine and the information provided is accurate.
+                            </label>
+                          </div>
+                        </div>
+
+                        <div className="text-center">
+                          <button type="submit" className="btn btn-primary btn-lg" disabled={isSubmitting}>
+                            {isSubmitting ? 'Submitting...' : <><i className="fas fa-vote-yea me-2"></i>Submit Vote</>}
+                          </button>
+                        </div>
+                      </form>
+                    )}
                   </div>
                 </div>
-
-                {/* Support Reason */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Why do you support this candidate?</label>
-                  <textarea
-                    value={formData.supportReason}
-                    onChange={(e) => setFormData({ ...formData, supportReason: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    rows={4}
-                    placeholder="Share your reason for supporting Alan Daylee Yealu"
-                  />
-                </div>
-
-                {/* Terms Agreement */}
-                <div className="flex items-start">
-                  <input
-                    type="checkbox"
-                    required
-                    checked={formData.agreeTerms}
-                    onChange={(e) => setFormData({ ...formData, agreeTerms: e.target.checked })}
-                    className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500 mt-1"
-                  />
-                  <label className="ml-3 text-sm text-gray-700">
-                    I agree to the terms and conditions and confirm that this vote is genuine and the information provided is accurate.
-                  </label>
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 text-lg rounded-xl"
-                >
-                  {isSubmitting ? 'Submitting...' : '🗳️ Submit Vote'}
-                </Button>
-              </form>
-            )}
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
 
         {/* Footer */}
-        <div className="text-center mt-12 text-blue-200">
-          <h3 className="text-xl font-bold mb-2">Global Pass Career Consultancy</h3>
-          <p className="mb-4">Empowering African Students for Global Success</p>
-          <p className="text-sm">© 2024 Global Pass Career Consultancy. All rights reserved.</p>
-        </div>
+        <footer>
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12 text-center">
+                <h5 className="mb-3">Global Pass Career Consultancy</h5>
+                <p className="mb-3">Empowering African Students for Global Success</p>
+                <div className="mb-3">
+                  <a href="#" className="text-white me-3"><i className="fab fa-facebook fa-2x"></i></a>
+                  <a href="#" className="text-white me-3"><i className="fab fa-twitter fa-2x"></i></a>
+                  <a href="#" className="text-white me-3"><i className="fab fa-instagram fa-2x"></i></a>
+                  <a href="#" className="text-white"><i className="fab fa-linkedin fa-2x"></i></a>
+                </div>
+                <p className="small text-white-50">&copy; 2024 Global Pass Career Consultancy. All rights reserved.</p>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
-    </div>
+    </>
   );
 };
 
