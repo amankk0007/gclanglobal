@@ -101,12 +101,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Submit form to localStorage
+    // Submit form to PHP backend
     function submitForm(successModal) {
         const formData = new FormData(form);
         const voteData = {
-            id: Date.now(),
-            timestamp: new Date().toISOString(),
             voterName: formData.get('voterName') || document.getElementById('voterName').value,
             voterEmail: formData.get('voterEmail') || document.getElementById('voterEmail').value,
             voterPhone: formData.get('voterPhone') || document.getElementById('voterPhone').value,
@@ -118,31 +116,40 @@ document.addEventListener('DOMContentLoaded', function() {
             yearOfStudy: formData.get('yearOfStudy') || document.getElementById('yearOfStudy').value,
             candidate: formData.get('candidate') || document.querySelector('input[name="candidate"]:checked').value,
             supportReason: formData.get('supportReason') || document.getElementById('supportReason').value,
-            agreeTerms: formData.get('agreeTerms') || document.getElementById('agreeTerms').checked
+            agreeTerms: formData.get('agreeTerms') || document.getElementById('agreeTerms').checked ? 'on' : 'off'
         };
         
-        // Save to localStorage
-        saveVoteData(voteData);
-        
-        // Show success message
-        showSuccessMessage();
-        
-        // Reset form
-        form.reset();
-        
-        // Show success modal
-        if (successModal) {
-            successModal.show();
-        } else {
-            alert('Vote submitted successfully!');
-        }
-    }
-    
-    // Save vote data to localStorage
-    function saveVoteData(data) {
-        let votes = JSON.parse(localStorage.getItem('alanVotes') || '[]');
-        votes.push(data);
-        localStorage.setItem('alanVotes', JSON.stringify(votes));
+        // Send to Vercel serverless API
+        fetch('/api/votes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(voteData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Show success message
+                showSuccessMessage();
+                
+                // Reset form
+                form.reset();
+                
+                // Show success modal
+                if (successModal) {
+                    successModal.show();
+                } else {
+                    alert('Vote submitted successfully!');
+                }
+            } else {
+                alert('Error submitting vote: ' + (data.error || 'Unknown error'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error submitting vote. Please try again.');
+        });
     }
     
     // Show success message

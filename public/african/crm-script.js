@@ -57,29 +57,30 @@ function initializeDashboard() {
     populateCountryFilter();
 }
 
-// Load vote data from localStorage
+// Load vote data from Vercel serverless API
 function loadVoteData() {
-    console.log('Loading vote data from localStorage...');
-    const storedData = localStorage.getItem('alanVotes');
-    console.log('Stored data:', storedData);
+    console.log('Loading vote data from Vercel API...');
     
-    if (storedData) {
-        votesData = JSON.parse(storedData);
-        console.log('Parsed votes data:', votesData);
-        filteredData = [...votesData];
-        displayVotes();
-        updateStatistics();
-        
-        // Update charts with error handling
-        try {
-            updateCharts();
-        } catch (error) {
-            console.error('Error updating charts:', error);
-        }
-    } else {
-        console.log('No data found in localStorage');
-        showEmptyState();
-    }
+    fetch('/api/votes')
+        .then(response => response.json())
+        .then(data => {
+            console.log('Fetched votes data:', data);
+            votesData = data || [];
+            filteredData = [...votesData];
+            displayVotes();
+            updateStatistics();
+            
+            // Update charts with error handling
+            try {
+                updateCharts();
+            } catch (error) {
+                console.error('Error updating charts:', error);
+            }
+        })
+        .catch(error => {
+            console.error('Error loading votes:', error);
+            showEmptyState();
+        });
 }
 
 // Initialize event listeners
@@ -370,17 +371,34 @@ function contactVoter(email) {
 // Delete vote
 function deleteVote(voteId) {
     if (confirm('Are you sure you want to delete this vote record? This action cannot be undone.')) {
-        votesData = votesData.filter(v => v.id !== voteId);
-        filteredData = filteredData.filter(v => v.id !== voteId);
-        localStorage.setItem('alanVotes', JSON.stringify(votesData));
-        
-        displayVotes();
-        updateStatistics();
-        updateCharts();
-        populateCountryFilter();
-        
-        // Show success message
-        showNotification('Vote record deleted successfully', 'success');
+        fetch('/api/votes', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: voteId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                votesData = votesData.filter(v => v.id !== voteId);
+                filteredData = filteredData.filter(v => v.id !== voteId);
+                
+                displayVotes();
+                updateStatistics();
+                updateCharts();
+                populateCountryFilter();
+                
+                // Show success message
+                showNotification('Vote record deleted successfully', 'success');
+            } else {
+                showNotification('Error deleting vote: ' + (data.error || 'Unknown error'), 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting vote:', error);
+            showNotification('Error deleting vote. Please try again.', 'error');
+        });
     }
 }
 
