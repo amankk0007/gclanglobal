@@ -1,5 +1,67 @@
 // Voting Form Handler
 document.addEventListener('DOMContentLoaded', function() {
+    // JSONBin Configuration - REPLACE WITH YOUR CREDENTIALS
+    const JSONBIN_CONFIG = {
+        apiKey: 'YOUR_JSONBIN_API_KEY',
+        binId: 'YOUR_BIN_ID'
+    };
+
+    // JSONBin API functions
+    const JSONBinAPI = {
+        getVotes: async function() {
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.binId}/latest`, {
+                    headers: {
+                        'X-Master-Key': JSONBIN_CONFIG.apiKey,
+                        'X-Bin-Meta': 'false'
+                    }
+                });
+                
+                if (!response.ok) {
+                    console.error('Error fetching from JSONBin:', response.status);
+                    return [];
+                }
+                
+                const data = await response.json();
+                return data.votes || [];
+            } catch (error) {
+                console.error('Error fetching votes:', error);
+                return [];
+            }
+        },
+        
+        saveVotes: async function(votes) {
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.binId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': JSONBIN_CONFIG.apiKey
+                    },
+                    body: JSON.stringify({ votes: votes })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to save votes');
+                }
+                
+                return await response.json();
+            } catch (error) {
+                console.error('Error saving votes:', error);
+                throw error;
+            }
+        },
+        
+        addVote: async function(vote) {
+            const currentVotes = await this.getVotes();
+            vote.id = Date.now();
+            vote.timestamp = new Date().toISOString();
+            currentVotes.push(vote);
+            await this.saveVotes(currentVotes);
+            return vote;
+        }
+    };
+
     // Initialize form
     const form = document.getElementById('voteForm');
     const successModalElement = document.getElementById('successModal');
@@ -101,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Submit form to PHP backend
+    // Submit form to JSONBin
     function submitForm(successModal) {
         const formData = new FormData(form);
         const voteData = {
@@ -119,17 +181,11 @@ document.addEventListener('DOMContentLoaded', function() {
             agreeTerms: formData.get('agreeTerms') || document.getElementById('agreeTerms').checked ? 'on' : 'off'
         };
         
-        // Send to Vercel serverless API
-        fetch('/api/votes', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(voteData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
+        // Save to JSONBin
+        JSONBinAPI.addVote(voteData)
+            .then(() => {
+                console.log('Vote saved successfully');
+                
                 // Show success message
                 showSuccessMessage();
                 
@@ -142,14 +198,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     alert('Vote submitted successfully!');
                 }
-            } else {
-                alert('Error submitting vote: ' + (data.error || 'Unknown error'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error submitting vote. Please try again.');
-        });
+            })
+            .catch((error) => {
+                console.error('Error adding vote:', error);
+                alert('Error submitting vote. Please try again.');
+            });
     }
     
     // Show success message

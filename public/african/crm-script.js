@@ -1,5 +1,65 @@
 // CRM Dashboard JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    // JSONBin Configuration - REPLACE WITH YOUR CREDENTIALS
+    const JSONBIN_CONFIG = {
+        apiKey: 'YOUR_JSONBIN_API_KEY',
+        binId: 'YOUR_BIN_ID'
+    };
+
+    // JSONBin API functions
+    const JSONBinAPI = {
+        getVotes: async function() {
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.binId}/latest`, {
+                    headers: {
+                        'X-Master-Key': JSONBIN_CONFIG.apiKey,
+                        'X-Bin-Meta': 'false'
+                    }
+                });
+                
+                if (!response.ok) {
+                    console.error('Error fetching from JSONBin:', response.status);
+                    return [];
+                }
+                
+                const data = await response.json();
+                return data.votes || [];
+            } catch (error) {
+                console.error('Error fetching votes:', error);
+                return [];
+            }
+        },
+        
+        saveVotes: async function(votes) {
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.binId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': JSONBIN_CONFIG.apiKey
+                    },
+                    body: JSON.stringify({ votes: votes })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to save votes');
+                }
+                
+                return await response.json();
+            } catch (error) {
+                console.error('Error saving votes:', error);
+                throw error;
+            }
+        },
+        
+        deleteVote: async function(voteId) {
+            const currentVotes = await this.getVotes();
+            const filteredVotes = currentVotes.filter(v => v.id !== voteId);
+            await this.saveVotes(filteredVotes);
+            return true;
+        }
+    };
+
     // Check authentication
     if (!checkAuth()) {
         window.location.href = 'admin-login.html';
@@ -57,15 +117,14 @@ function initializeDashboard() {
     populateCountryFilter();
 }
 
-// Load vote data from Vercel serverless API
+// Load vote data from JSONBin
 function loadVoteData() {
-    console.log('Loading vote data from Vercel API...');
+    console.log('Loading vote data from JSONBin...');
     
-    fetch('/api/votes')
-        .then(response => response.json())
-        .then(data => {
-            console.log('Fetched votes data:', data);
+    JSONBinAPI.getVotes()
+        .then((data) => {
             votesData = data || [];
+            console.log('Fetched votes data:', votesData);
             filteredData = [...votesData];
             displayVotes();
             updateStatistics();
@@ -77,8 +136,8 @@ function loadVoteData() {
                 console.error('Error updating charts:', error);
             }
         })
-        .catch(error => {
-            console.error('Error loading votes:', error);
+        .catch((error) => {
+            console.error('Error loading votes from JSONBin:', error);
             showEmptyState();
         });
 }
@@ -371,16 +430,8 @@ function contactVoter(email) {
 // Delete vote
 function deleteVote(voteId) {
     if (confirm('Are you sure you want to delete this vote record? This action cannot be undone.')) {
-        fetch('/api/votes', {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ id: voteId })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
+        JSONBinAPI.deleteVote(voteId)
+            .then(() => {
                 votesData = votesData.filter(v => v.id !== voteId);
                 filteredData = filteredData.filter(v => v.id !== voteId);
                 
@@ -391,14 +442,11 @@ function deleteVote(voteId) {
                 
                 // Show success message
                 showNotification('Vote record deleted successfully', 'success');
-            } else {
-                showNotification('Error deleting vote: ' + (data.error || 'Unknown error'), 'error');
-            }
-        })
-        .catch(error => {
-            console.error('Error deleting vote:', error);
-            showNotification('Error deleting vote. Please try again.', 'error');
-        });
+            })
+            .catch((error) => {
+                console.error('Error deleting vote:', error);
+                showNotification('Error deleting vote. Please try again.', 'error');
+            });
     }
 }
 
